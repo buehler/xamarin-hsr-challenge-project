@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSR_Helper.DomainLibrary.Android", "HSR_Helper.DomainLibrary.Android\HSR_Helper.DomainLibrary.Android.csproj", "{3F741858-52D4-48FA-940A-371E958768F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSR_Helper.DomainLibrary", "HSR_Helper.DomainLibrary\HSR_Helper.DomainLibrary.csproj", "{3B919C2B-391F-42E3-87CA-3AB67770C6D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSR_Helper.Android", "HSR_Helper.Android\HSR_Helper.Android.csproj", "{619927C1-79B4-4597-92A8-06AD95848F45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F741858-52D4-48FA-940A-371E958768F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F741858-52D4-48FA-940A-371E958768F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F741858-52D4-48FA-940A-371E958768F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F741858-52D4-48FA-940A-371E958768F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B919C2B-391F-42E3-87CA-3AB67770C6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B919C2B-391F-42E3-87CA-3AB67770C6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B919C2B-391F-42E3-87CA-3AB67770C6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B919C2B-391F-42E3-87CA-3AB67770C6D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619927C1-79B4-4597-92A8-06AD95848F45}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
