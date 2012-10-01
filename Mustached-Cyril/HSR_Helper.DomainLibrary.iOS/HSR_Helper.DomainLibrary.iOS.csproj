@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,6 +11,8 @@
     <RootNamespace>HSR_Helper.DomainLibrary.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_Helper.DomainLibrary.iOS</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -37,12 +39,8 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Attribute\" />
-    <Folder Include="Domain\" />
-    <Folder Include="Helper\" />
-    <Folder Include="Persistency\" />
-  </ItemGroup>
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="..\HSR_Helper.DomainLibrary\Attribute\PersistentPropertyAttribute.cs">
       <Link>Attribute\PersistentPropertyAttribute.cs</Link>
@@ -75,4 +73,9 @@
       <Link>Persistency\IPersistentObject.cs</Link>
     </Compile>
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
