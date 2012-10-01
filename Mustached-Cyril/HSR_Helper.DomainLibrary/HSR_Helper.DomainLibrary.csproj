@@ -39,8 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\PersistentPropertyAttribute.cs" />
+    <Compile Include="Domain\BadgeInformation.cs" />
+    <Compile Include="Domain\Dish.cs" />
+    <Compile Include="Domain\Lecture.cs" />
+    <Compile Include="Domain\Lunchtable.cs" />
+    <Compile Include="Domain\Timetable.cs" />
+    <Compile Include="Domain\UserInformation.cs" />
+    <Compile Include="Helper\DomainLibraryHelper.cs" />
+    <Compile Include="Persistency\IPersistency.cs" />
+    <Compile Include="Persistency\IPersistentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
