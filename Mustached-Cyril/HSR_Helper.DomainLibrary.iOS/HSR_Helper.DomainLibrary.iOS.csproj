@@ -37,4 +37,42 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Attribute\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Persistency\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Attribute\PersistentPropertyAttribute.cs">
+      <Link>Attribute\PersistentPropertyAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\BadgeInformation.cs">
+      <Link>Domain\BadgeInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Dish.cs">
+      <Link>Domain\Dish.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lecture.cs">
+      <Link>Domain\Lecture.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lunchtable.cs">
+      <Link>Domain\Lunchtable.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable.cs">
+      <Link>Domain\Timetable.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\UserInformation.cs">
+      <Link>Domain\UserInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Helper\DomainLibraryHelper.cs">
+      <Link>Helper\DomainLibraryHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\IPersistency.cs">
+      <Link>Persistency\IPersistency.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\IPersistentObject.cs">
+      <Link>Persistency\IPersistentObject.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>
