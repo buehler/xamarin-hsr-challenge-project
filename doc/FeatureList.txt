@@ -1,0 +1,10 @@
+- Anzeige aktueller Kontostand
+- Anzeige Menü (parser)
+- Automatische Warnung bei zu tiefem Kontostand (refresh ?)
+- Optional: Tabbed App ---> Zeigt zusätzlich Stundenplan an
+- Überlegung: Menü wird nur jeden neuen Montag für die ganze Woche abgerufen (für HSR Mensa möglich) und dann lokal gespeichert.
+
+
+Optional:
+- Location hinterlegen, wenn user die Mensa betritt, erhält er aktuelles Menü als Push-Notification
+- Alternative: Zeit einstellbar (evtl auch für jeden tag.. wie einen wecker) wann die Push-Notification kommt
