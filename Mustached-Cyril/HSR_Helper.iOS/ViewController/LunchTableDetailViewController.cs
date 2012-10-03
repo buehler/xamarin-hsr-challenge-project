@@ -9,7 +9,7 @@ namespace HSR_Helper.iOS
 {
 	public partial class LunchTableDetailViewController : UIViewController
 	{
-		private string _weekday;
+		private readonly string _weekday;
 		public LunchTableDetailViewController (string weekday) : base ("LunchTableDetailView", null)
 		{
 			_weekday = weekday;

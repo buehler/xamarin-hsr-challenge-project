@@ -14,8 +14,8 @@ namespace HSR_Helper.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		private UIWindow window;
-		private UITabBarController tabBarController;
+		private UIWindow _window;
+		private UITabBarController _tabBarController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -27,18 +27,21 @@ namespace HSR_Helper.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			_window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
-			tabBarController = new UITabBarController ();
-			tabBarController.ViewControllers = new UIViewController [] {
-				new LunchTableViewController(),
-				new TimetableViewController(),
-				new SettingsViewController()
-			};
-			
-			window.RootViewController = tabBarController;
+			_tabBarController = new UITabBarController
+			                        {
+			                            ViewControllers = new UIViewController[]
+			                                                  {
+			                                                      new LunchTableViewController(),
+			                                                      new TimetableViewController(),
+			                                                      new SettingsViewController()
+			                                                  }
+			                        };
+
+		    _window.RootViewController = _tabBarController;
 			// make the window visible
-			window.MakeKeyAndVisible ();
+			_window.MakeKeyAndVisible ();
 			
 			return true;
 		}
