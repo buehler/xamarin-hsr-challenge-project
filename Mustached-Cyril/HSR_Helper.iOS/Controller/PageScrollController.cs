@@ -9,7 +9,6 @@ namespace HSR_Helper.iOS.Controller
 	{
         private UIScrollView _scrollView;
 	    private UIPageControl _pageControl;
-	    private int _pageCount = 0;
 
 		public PageScrollController (UIScrollView scrollView, UIPageControl pageControl)
 		{
@@ -26,7 +25,7 @@ namespace HSR_Helper.iOS.Controller
 	    public void AddPage(UIViewController controller)
 	    {
             RectangleF scrollFrame = _scrollView.Frame;
-            scrollFrame.Width = scrollFrame.Width * (!_scrollView.Subviews.Any() ? 1 : _scrollView.Subviews.Count());
+            scrollFrame.Width = scrollFrame.Width * (!_scrollView.Subviews.Any() ? 1 : _scrollView.Subviews.Count() + 1);
             _scrollView.ContentSize = scrollFrame.Size;
 
             RectangleF lastFrame = _scrollView.Frame;

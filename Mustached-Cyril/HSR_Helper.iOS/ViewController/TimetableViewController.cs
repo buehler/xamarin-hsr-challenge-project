@@ -4,47 +4,29 @@ using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HSR_Helper.iOS.Controller;
 
 namespace HSR_Helper.iOS
 {
 	public partial class TimetableViewController : UIViewController
 	{
+		private PageScrollController _pageScrollController;
+
 		public TimetableViewController () : base ("TimetableView", null)
 		{
 			Title = "Stundenplan";
 		}
 		
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+			_pageScrollController = new PageScrollController(ScrollView, PageController);
+			_pageScrollController.AddPage(new LunchTableDetailViewController("Montag"));
+			_pageScrollController.AddPage(new LunchTableDetailViewController("Dienstag"));
+			_pageScrollController.AddPage(new LunchTableDetailViewController("Mittwoch"));
+			_pageScrollController.AddPage(new LunchTableDetailViewController("Donnerstag"));
+			_pageScrollController.AddPage(new LunchTableDetailViewController("Freitag"));
 			// Perform any additional setup after loading the view, typically from a nib.
-		}
-		
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			
-			// Clear any references to subviews of the main view in order to
-			// allow the Garbage Collector to collect them sooner.
-			//
-			// e.g. myOutlet.Dispose (); myOutlet = null;
-			
-			ReleaseDesignerOutlets ();
-		}
-		
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-		{
-			// Return true for supported orientations
-			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
 	}
 }

@@ -11,8 +11,23 @@ namespace HSR_Helper.iOS
 	[Register ("TimetableView")]
 	partial class TimetableViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIPageControl PageController { get; set; }
+		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+
+			if (PageController != null) {
+				PageController.Dispose ();
+				PageController = null;
+			}
 		}
 	}
 }
