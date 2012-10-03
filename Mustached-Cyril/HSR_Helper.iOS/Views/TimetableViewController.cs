@@ -1,3 +1,4 @@
+
 using System;
 using System.Drawing;
 
@@ -6,10 +7,11 @@ using MonoTouch.UIKit;
 
 namespace HSR_Helper.iOS
 {
-	public partial class HSR_Helper_iOSViewController : UIViewController
+	public partial class TimetableViewController : UIViewController
 	{
-		public HSR_Helper_iOSViewController (IntPtr handle) : base (handle)
+		public TimetableViewController () : base ("TimetableView", null)
 		{
+			Title = "Stundenplan";
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -19,8 +21,6 @@ namespace HSR_Helper.iOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
-		#region View lifecycle
 		
 		public override void ViewDidLoad ()
 		{
@@ -40,28 +40,6 @@ namespace HSR_Helper.iOS
 			
 			ReleaseDesignerOutlets ();
 		}
-		
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-		}
-		
-		public override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
-		}
-		
-		public override void ViewWillDisappear (bool animated)
-		{
-			base.ViewWillDisappear (animated);
-		}
-		
-		public override void ViewDidDisappear (bool animated)
-		{
-			base.ViewDidDisappear (animated);
-		}
-		
-		#endregion
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{

@@ -1,18 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B50EFE12-ED41-40EF-AAF8-3C00765D6FB7}</ProjectGuid>
+    <ProjectGuid>{35BA284F-EEB8-4650-87F9-88B0C6FF4184}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>HSR_Helper.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_HelperiOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -26,6 +24,7 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -82,28 +81,48 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="HSR_Helper.iOSViewController.cs" />
-    <Compile Include="HSR_Helper.iOSViewController.designer.cs">
-      <DependentUpon>HSR_Helper.iOSViewController.cs</DependentUpon>
+    <Compile Include="Views\LunchTableViewController.cs" />
+    <Compile Include="Views\LunchTableViewController.designer.cs">
+      <DependentUpon>LunchTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsViewController.cs" />
+    <Compile Include="Views\SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LunchTableDetailViewController.cs" />
+    <Compile Include="Views\LunchTableDetailViewController.designer.cs">
+      <DependentUpon>LunchTableDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimetableViewController.cs" />
+    <Compile Include="Views\TimetableViewController.designer.cs">
+      <DependentUpon>TimetableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\PageScrollController.cs" />
+    <Compile Include="Views\TimetableDetailViewController.cs" />
+    <Compile Include="Views\TimetableDetailViewController.designer.cs">
+      <DependentUpon>TimetableDetailViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="MainStoryboard.storyboard" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
-    <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
-      <Project>{F9BD7B4B-634B-4422-94DD-BDD6E6F15565}</Project>
-      <Name>HSR_Helper.DomainLibrary.iOS</Name>
-    </ProjectReference>
+    <Folder Include="Views\" />
+    <Folder Include="Resources\" />
+    <Folder Include="ViewController\" />
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\LunchTableView.xib" />
+    <InterfaceDefinition Include="Views\SettingsView.xib" />
+    <InterfaceDefinition Include="Views\LunchTableDetailView.xib" />
+    <InterfaceDefinition Include="Views\TimetableView.xib" />
+    <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
   </ItemGroup>
 </Project>

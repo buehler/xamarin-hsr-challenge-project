@@ -1,3 +1,4 @@
+// WARNING
 //
 // This file has been generated automatically by MonoDevelop to store outlets and
 // actions made in the Xcode designer. If it is removed, they will be lost.
@@ -7,8 +8,8 @@ using MonoTouch.Foundation;
 
 namespace HSR_Helper.iOS
 {
-	[Register ("HSR_Helper_iOSViewController")]
-	partial class HSR_Helper_iOSViewController
+	[Register ("TimetableDetailView")]
+	partial class TimetableDetailViewController
 	{
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,8 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/AppDelegate.cs">
+    <Files>
+      <File FileName="HSR_Helper.iOS/AppDelegate.cs" Line="39" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/cbuehler/Documents/GitRepositories/ChallP_mustached-cyril/Mustached-Cyril/HSR_Helper.iOS/GUI/MenueViewController.cs" line="92" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="HSR_Helper.iOS/GUI/MenueViewController.cs" line="91" offsetX="440" offsetY="1440" expression="ScrollView" liveUpdate="False" />
+    <Watch file="HSR_Helper.iOS/Views/ScrollViewController.cs" line="48" offsetX="476" offsetY="752" expression="ScrollView" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
