@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using HSR_Helper.DomainLibrary.Attribute;
 using HSR_Helper.DomainLibrary.Persistency;
+using RestSharp.Deserializers;
+using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
@@ -12,13 +14,12 @@ namespace HSR_Helper.DomainLibrary.Domain
         [PersistentProperty]
         public Guid Id { get; set; }
         [PersistentProperty]
-        public List<Dish> Dishes { get; set; }
-
-        public string fudi { get; set; }
-
+        [JsonProperty("days")]
+        public List<LunchDay> LunchDays { get; set; }
+        
         public Lunchtable()
         {
-            Dishes = new List<Dish>();
+            LunchDays = new List<LunchDay>();
         }
     }
 }

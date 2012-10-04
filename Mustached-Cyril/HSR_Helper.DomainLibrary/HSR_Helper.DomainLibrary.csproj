@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,10 +46,12 @@
     <Compile Include="Domain\BadgeInformation.cs" />
     <Compile Include="Domain\Dish.cs" />
     <Compile Include="Domain\Lecture.cs" />
+    <Compile Include="Domain\LunchDay.cs" />
     <Compile Include="Domain\Lunchtable.cs" />
     <Compile Include="Domain\Timetable.cs" />
     <Compile Include="Domain\UserInformation.cs" />
     <Compile Include="Helper\DomainLibraryHelper.cs" />
+    <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Persistency\IPersistency.cs" />
     <Compile Include="Persistency\IPersistentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

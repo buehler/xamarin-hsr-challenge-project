@@ -14,16 +14,16 @@ namespace HSR_Helper.DomainLibrary.Helper
 
     public static class DomainLibraryHelper
     {
-        private static readonly string SVGROUP_REST_URL = "http://kck.me/svhsr";
-        
+        private const string SvgroupRestUrl = "http://kck.me/svhsr";
+
         public static void GetUserBadgeInformation(UserInformation userInformation, BadgeInformationCallback callback)
         {
-            
+            throw new NotImplementedException("Kommt am 7.okt");
         }
 
         public static void GetUserTimetable(UserInformation userInformation, TimetableCallback callback)
         {
-            
+            throw new NotImplementedException("scheiss adunis fuzzies sölled d'schnittstell usegeh.");
         }
 
         public static void GetLunchtable(LunchtableCallback callback)
@@ -31,12 +31,11 @@ namespace HSR_Helper.DomainLibrary.Helper
             var b = new BackgroundWorker();
             b.DoWork += (sender, args) =>
                             {
-                                var lunchtable = new Lunchtable();
-                                RestClient restClient = new RestClient(SVGROUP_REST_URL);
-                                RestRequest request = new RestRequest("/menus", Method.GET);
+                                var restClient = new RestClient(SvgroupRestUrl);
+                                var request = new RestRequest("/days", Method.GET);
                                 restClient.ExecuteAsync(request, (response, handle) =>
                                                                      {
-                                                                         lunchtable.fudi = response.Content;
+                                                                         var lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
                                                                          callback(lunchtable);
                                                                      });
                             };
