@@ -21,11 +21,6 @@ namespace HSR_Helper.iOS
 		{
 			base.ViewDidLoad ();
 			_pageScrollController = new PageScrollController(ScrollView, PageController);
-			_pageScrollController.AddPage(new LunchTableDetailViewController("Montag"));
-			_pageScrollController.AddPage(new LunchTableDetailViewController("Dienstag"));
-			_pageScrollController.AddPage(new LunchTableDetailViewController("Mittwoch"));
-			_pageScrollController.AddPage(new LunchTableDetailViewController("Donnerstag"));
-			_pageScrollController.AddPage(new LunchTableDetailViewController("Freitag"));
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 	}

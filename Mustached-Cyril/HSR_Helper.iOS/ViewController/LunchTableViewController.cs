@@ -5,6 +5,7 @@ using HSR_Helper.iOS.Controller;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Linq;
+using HSR_Helper.DomainLibrary.Domain;
 
 namespace HSR_Helper.iOS
 {
@@ -21,12 +22,19 @@ namespace HSR_Helper.iOS
 		{
 			base.ViewDidLoad ();
             _pageScrollController = new PageScrollController(ScrollView, PageController);
-            _pageScrollController.AddPage(new LunchTableDetailViewController("Montag"));
-            _pageScrollController.AddPage(new LunchTableDetailViewController("Dienstag"));
-            _pageScrollController.AddPage(new LunchTableDetailViewController("Mittwoch"));
-            _pageScrollController.AddPage(new LunchTableDetailViewController("Donnerstag"));
-            _pageScrollController.AddPage(new LunchTableDetailViewController("Freitag"));
+			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		private void LunchtableCallback(Lunchtable lunchtable)
+		{
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
+			                                                   {
+				foreach(LunchDay lunchDay in lunchtable.LunchDays)
+				{
+					_pageScrollController.AddPage(new LunchTableDetailViewController(lunchDay));
+				}
+			});
 		}
 	}
 }

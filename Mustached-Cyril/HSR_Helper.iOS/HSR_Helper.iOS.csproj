@@ -11,8 +11,6 @@
     <RootNamespace>HSR_Helper.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_HelperiOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -120,10 +118,16 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\LunchTableView.xib" />
-    <Page Include="Views\SettingsView.xib" />
-    <Page Include="Views\LunchTableDetailView.xib" />
-    <Page Include="Views\TimetableView.xib" />
-    <Page Include="Views\TimetableDetailView.xib" />
+    <InterfaceDefinition Include="Views\LunchTableView.xib" />
+    <InterfaceDefinition Include="Views\SettingsView.xib" />
+    <InterfaceDefinition Include="Views\LunchTableDetailView.xib" />
+    <InterfaceDefinition Include="Views\TimetableView.xib" />
+    <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
+      <Project>{F9BD7B4B-634B-4422-94DD-BDD6E6F15565}</Project>
+      <Name>HSR_Helper.DomainLibrary.iOS</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
