@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/TimetableViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs">
     <Files>
       <File FileName="HSR_Helper.iOS/ViewController/TimetableViewController.cs" Line="23" Column="81" />
-      <File FileName="HSR_Helper.DomainLibrary/Helper/JSONHelper.cs" Line="1" Column="1" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="35" Column="82" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="17" Column="24" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="36" Column="6" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,11 +18,11 @@
           <Node name="HSR_Helper.iOS" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="ViewController" expanded="True">
-              <Node name="LunchTableDetailViewController.cs" expanded="True" />
+              <Node name="LunchTableDetailViewController.cs" expanded="True" selected="True" />
             </Node>
             <Node name="Views" expanded="True" />
           </Node>
-          <Node name="RestSharp" expanded="True" selected="True" />
+          <Node name="RestSharp" expanded="True" />
         </State>
       </Pad>
     </Pads>
