@@ -32,8 +32,7 @@ namespace HSR_Helper.DomainLibrary.Helper
             b.DoWork += (sender, args) =>
                             {
                                 var restClient = new RestClient(SvgroupRestUrl);
-                                var request = new RestRequest("/days", Method.GET);
-                                restClient.ExecuteAsync(request, (response, handle) =>
+                                restClient.ExecuteAsync(new RestRequest("/days", Method.GET), (response, handle) =>
                                                                      {
                                                                          var lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
                                                                          callback(lunchtable);
