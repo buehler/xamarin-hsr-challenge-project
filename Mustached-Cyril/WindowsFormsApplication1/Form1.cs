@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
 
         private void Cb(Lunchtable lunchtable)
         {
-            Console.WriteLine(lunchtable.ToString());
+            Console.WriteLine(lunchtable.fudi);
         }
     }
 }

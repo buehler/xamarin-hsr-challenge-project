@@ -14,6 +14,8 @@ namespace HSR_Helper.DomainLibrary.Domain
         [PersistentProperty]
         public List<Dish> Dishes { get; set; }
 
+        public string fudi { get; set; }
+
         public Lunchtable()
         {
             Dishes = new List<Dish>();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using HSR_Helper.DomainLibrary.Domain;
 using System.ComponentModel;
+using RestSharp;
 
 namespace HSR_Helper.DomainLibrary.Helper
 {
@@ -13,6 +14,7 @@ namespace HSR_Helper.DomainLibrary.Helper
 
     public static class DomainLibraryHelper
     {
+        private static readonly string SVGROUP_REST_URL = "http://kck.me/svhsr";
         
         public static void GetUserBadgeInformation(UserInformation userInformation, BadgeInformationCallback callback)
         {
@@ -30,8 +32,13 @@ namespace HSR_Helper.DomainLibrary.Helper
             b.DoWork += (sender, args) =>
                             {
                                 var lunchtable = new Lunchtable();
-
-                                callback(lunchtable);
+                                RestClient restClient = new RestClient(SVGROUP_REST_URL);
+                                RestRequest request = new RestRequest("/menus", Method.GET);
+                                restClient.ExecuteAsync(request, (response, handle) =>
+                                                                     {
+                                                                         lunchtable.fudi = response.Content;
+                                                                         callback(lunchtable);
+                                                                     });
                             };
             b.RunWorkerAsync();
         }
