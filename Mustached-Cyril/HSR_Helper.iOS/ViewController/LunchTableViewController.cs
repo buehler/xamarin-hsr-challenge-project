@@ -54,11 +54,14 @@ namespace HSR_Helper.iOS
 				var section = new Section(d.Title)
 				{
 					new MultilineElement(d.Description),
-					new Element(d.PriceInternal)
+					new MultilineElement("Preis", d.PriceInternal)
 				};
 				root.Add(section);
 			}
-			return new DialogViewController(root);
+			var m = new DialogViewController(root);
+//			m.TableView.BackgroundView = null;
+//			m.TableView.BackgroundColor = new UIColor(0f,0.3f,0.7f,1f);
+			return m;
 		}
 	}
 }
