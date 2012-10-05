@@ -1,28 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableViewController.cs">
     <Files>
       <File FileName="HSR_Helper.iOS/ViewController/TimetableViewController.cs" Line="23" Column="81" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="36" Column="6" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="14" Column="1" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="42" Column="70" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="13" Column="7" />
+      <File FileName="HSR_Helper.iOS/AppDelegate.cs" Line="36" Column="48" />
+      <File FileName="HSR_Helper.iOS/Controller/PageScrollController.cs" Line="44" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="HSR_Helper.DomainLibrary" expanded="True">
-            <Node name="Domain" expanded="True" />
-          </Node>
-          <Node name="HSR_Helper.DomainLibrary.iOS" expanded="True">
-            <Node name="Helper" expanded="True" />
-          </Node>
           <Node name="HSR_Helper.iOS" expanded="True">
-            <Node name="References" expanded="True" />
+            <Node name="Controller" expanded="True" />
             <Node name="ViewController" expanded="True">
-              <Node name="LunchTableDetailViewController.cs" expanded="True" selected="True" />
+              <Node name="LunchTableViewController.cs" selected="True" />
             </Node>
             <Node name="Views" expanded="True" />
           </Node>
-          <Node name="RestSharp" expanded="True" />
         </State>
       </Pad>
     </Pads>

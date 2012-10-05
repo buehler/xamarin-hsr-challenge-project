@@ -28,12 +28,12 @@ namespace HSR_Helper.iOS
 		{
 			// create a new window instance based on the screen size
 			_window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			_tabBarController = new UITabBarController
 			                        {
 			                            ViewControllers = new UIViewController[]
 			                                                  {
-			                                                      new LunchTableViewController(),
+															  	  new UINavigationController(new LunchTableViewController()),
 			                                                      new TimetableViewController(),
 			                                                      new SettingsViewController()
 			                                                  }

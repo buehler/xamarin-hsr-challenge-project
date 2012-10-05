@@ -28,7 +28,6 @@ namespace HSR_Helper.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			Weekday.Text = _lunchDay.DateString;
 			string a = "";
 			foreach(Dish d in _lunchDay.Dishes)
 			{

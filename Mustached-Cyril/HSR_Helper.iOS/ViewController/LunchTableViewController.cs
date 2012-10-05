@@ -22,8 +22,15 @@ namespace HSR_Helper.iOS
 		{
 			base.ViewDidLoad ();
             _pageScrollController = new PageScrollController(ScrollView, PageController);
+			_pageScrollController.OnPageChange += PageChanged;
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
+			NavigationItem.Title="Menü";
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		private void PageChanged(int newPage)
+		{
+
 		}
 
 		private void LunchtableCallback(Lunchtable lunchtable)
