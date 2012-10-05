@@ -12,21 +12,13 @@ namespace HSR_Helper.iOS
 	partial class LunchTableDetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel MenuText { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel Weekday { get; set; }
+		MonoTouch.UIKit.UILabel TestLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (MenuText != null) {
-				MenuText.Dispose ();
-				MenuText = null;
-			}
-
-			if (Weekday != null) {
-				Weekday.Dispose ();
-				Weekday = null;
+			if (TestLabel != null) {
+				TestLabel.Dispose ();
+				TestLabel = null;
 			}
 		}
 	}

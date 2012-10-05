@@ -11,8 +11,6 @@
     <RootNamespace>HSR_Helper.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_HelperiOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -83,7 +81,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -113,23 +110,30 @@
     <Compile Include="ViewController\TimetableDetailViewController.designer.cs">
       <DependentUpon>TimetableDetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControlls\DishTableItem.cs" />
+    <Compile Include="CustomControlls\DishTableItemGroup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\LunchTableView.xib" />
-    <Page Include="Views\SettingsView.xib" />
-    <Page Include="Views\LunchTableDetailView.xib" />
-    <Page Include="Views\TimetableView.xib" />
-    <Page Include="Views\TimetableDetailView.xib" />
+    <Folder Include="CustomControlls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
       <Project>{F9BD7B4B-634B-4422-94DD-BDD6E6F15565}</Project>
       <Name>HSR_Helper.DomainLibrary.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonoTouch.Dialog\MonoTouch.Dialog\MonoTouch.Dialog.csproj">
+      <Project>{3FFBFFF8-5560-4EDE-82E5-3FFDFBBA8A50}</Project>
+      <Name>MonoTouch.Dialog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\LunchTableView.xib" />
+    <InterfaceDefinition Include="Views\SettingsView.xib" />
+    <InterfaceDefinition Include="Views\LunchTableDetailView.xib" />
+    <InterfaceDefinition Include="Views\TimetableView.xib" />
+    <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
   </ItemGroup>
 </Project>

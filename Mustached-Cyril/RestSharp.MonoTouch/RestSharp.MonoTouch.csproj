@@ -12,8 +12,6 @@
     <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <AssemblyName>RestSharp.MonoTouch</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>

@@ -1,23 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs">
     <Files>
-      <File FileName="HSR_Helper.iOS/ViewController/TimetableViewController.cs" Line="23" Column="81" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="42" Column="70" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="13" Column="7" />
-      <File FileName="HSR_Helper.iOS/AppDelegate.cs" Line="36" Column="48" />
-      <File FileName="HSR_Helper.iOS/Controller/PageScrollController.cs" Line="44" Column="1" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="29" Column="5" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="27" Column="28" />
+      <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItem.cs" Line="8" Column="3" />
+      <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItemGroup.cs" Line="17" Column="1" />
+      <File FileName="HSR_Helper.iOS/Controller/PageScrollController.cs" Line="57" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="HSR_Helper.iOS" expanded="True">
             <Node name="Controller" expanded="True" />
+            <Node name="CustomControlls" expanded="True" />
             <Node name="ViewController" expanded="True">
-              <Node name="LunchTableViewController.cs" selected="True" />
+              <Node name="LunchTableDetailViewController.cs" expanded="True" selected="True" />
             </Node>
             <Node name="Views" expanded="True" />
           </Node>
+          <Node name="MonoTouch.Dialog" expanded="True" />
         </State>
       </Pad>
     </Pads>

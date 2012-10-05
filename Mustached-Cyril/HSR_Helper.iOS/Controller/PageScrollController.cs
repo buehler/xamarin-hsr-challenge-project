@@ -62,7 +62,7 @@ namespace HSR_Helper.iOS.Controller
 
         public void AddPages(IEnumerable<T> views)
         {
-            foreach (UIViewController view in views)
+            foreach (T view in views)
             {
                 AddPage(view);
             }
