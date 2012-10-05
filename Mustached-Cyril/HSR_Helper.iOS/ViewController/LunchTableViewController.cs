@@ -11,26 +11,26 @@ namespace HSR_Helper.iOS
 {
 	public partial class LunchTableViewController : UIViewController
 	{
-	    private PageScrollController _pageScrollController;
+	    private PageScrollController<LunchTableDetailViewController> _pageScrollController;
 
 		public LunchTableViewController () : base ("LunchTableView", null)
 		{
-			Title = "Menü";
 		}
 		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-            _pageScrollController = new PageScrollController(ScrollView, PageController);
+            _pageScrollController = new PageScrollController<LunchTableDetailViewController>(ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
+            Title = "Menü";
 			NavigationItem.Title="Menü";
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		private void PageChanged(int newPage)
 		{
-
+            NavigationItem.Title = _pageScrollController[newPage].MENU;
 		}
 
 		private void LunchtableCallback(Lunchtable lunchtable)
