@@ -1,0 +1,26 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sample/Main.cs">
+    <Files>
+      <File FileName="Sample/Main.cs" Line="42" Column="30" />
+      <File FileName="Sample/DemoElementApi.cs" Line="15" Column="20" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="MonoTouch.Dialog" expanded="True" />
+          <Node name="Sample" expanded="True">
+            <Node name="Main.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../HSR_Helper.iOS/GUI/MenueViewController.cs" line="91" offsetX="440" offsetY="1440" expression="ScrollView" liveUpdate="False" />
+    <Watch file="../HSR_Helper.iOS/Views/ScrollViewController.cs" line="48" offsetX="476" offsetY="752" expression="ScrollView" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
