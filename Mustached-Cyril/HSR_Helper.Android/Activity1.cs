@@ -16,23 +16,15 @@ namespace HSR_Helper.Android
         {
             base.OnCreate (bundle);
 
-            //Create the user interface in code
-            var layout = new LinearLayout (this);
-            layout.Orientation = Orientation.Vertical;
+            SetContentView(Resource.Layout.Main);
 
-            var aLabel = new TextView (this);
-            aLabel.SetText(Resource.String.helloLabelText);
+            var aButton = FindViewById<Button>(Resource.Id.aButton);
+            var aLabel = FindViewById<TextView>(Resource.Id.helloLabel);
 
-            var aButton = new Button (this);
-            aButton.Text = "Say Hello";
-            aButton.Click += (sender, e) => {
-                aLabel.SetText(Resource.String.helloButtonText);
+            aButton.Click += (sender, e) =>
+            {
+                aLabel.Text = "Hello from the ueli";
             };
-
-            layout.AddView(aLabel);
-            layout.AddView(aButton);
-
-            SetContentView(layout);
         }
     }
 }
