@@ -2,4 +2,6 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">HSR_Helper.Android</string>
+    <string name="helloButtonText">Say Ueli</string>
+    <string name="helloLabelText">Hello Mono for Android</string>
 </resources>

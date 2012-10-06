@@ -12,20 +12,27 @@ namespace HSR_Helper.Android
     [Activity(Label = "HSR_Helper.Android", MainLauncher = true, Icon = "@drawable/icon")]
     public class Activity1 : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            base.OnCreate (bundle);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            //Create the user interface in code
+            var layout = new LinearLayout (this);
+            layout.Orientation = Orientation.Vertical;
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+            var aLabel = new TextView (this);
+            aLabel.SetText(Resource.String.helloLabelText);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            var aButton = new Button (this);
+            aButton.Text = "Say Hello";
+            aButton.Click += (sender, e) => {
+                aLabel.SetText(Resource.String.helloButtonText);
+            };
+
+            layout.AddView(aLabel);
+            layout.AddView(aButton);
+
+            SetContentView(layout);
         }
     }
 }
