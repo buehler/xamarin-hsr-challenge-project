@@ -103,6 +103,7 @@
     <Compile Include="CustomControlls\CustomFontMultilineElement.cs" />
     <Compile Include="CustomControlls\CustomFontSection.cs" />
     <Compile Include="ViewController\SettingsViewController.cs" />
+    <Compile Include="Controller\ApplicationSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
