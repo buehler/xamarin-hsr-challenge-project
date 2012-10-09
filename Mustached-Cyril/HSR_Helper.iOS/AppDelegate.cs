@@ -28,19 +28,18 @@ namespace HSR_Helper.iOS
 		{
 			// create a new window instance based on the screen size
 			_window = new UIWindow (UIScreen.MainScreen.Bounds);
-
+			UINavigationBar.Appearance.TintColor = ApplicationColors.NAVIGATIONBAR_COLOR;
 			_tabBarController = new UITabBarController
 			                        {
 			                            ViewControllers = new UIViewController[]
 			                                                  {
 															  	  new UINavigationController(new LunchTableViewController()),
-			                                                      new TimetableViewController(),
+																  new UINavigationController(new TimetableViewController()),
 			                                                      new SettingsViewController()
 			                                                  }
 			                        };
 
-		    _window.RootViewController = _tabBarController;
-			// make the window visible
+			_window.RootViewController = _tabBarController;
 			_window.MakeKeyAndVisible ();
 			
 			return true;

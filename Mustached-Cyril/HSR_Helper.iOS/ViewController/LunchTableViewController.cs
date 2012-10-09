@@ -21,54 +21,49 @@ namespace HSR_Helper.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			//NavigationController.NavigationBar.TintColor = UIColor.Blue;
-			_pageScrollController = new PageScrollController<DialogViewController>(ScrollView, PageController);
+			_pageScrollController = new PageScrollController<DialogViewController> (ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
-			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
-            Title = "Menü";
+			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable (LunchtableCallback);
+			Title = "Menü";
 			NavigationItem.Title = "Menü";
-			// Perform any additional setup after loading the view, typically from a nib.
+			View.BackgroundColor = ApplicationColors.VIEW_BACKGROUND_COLOR;
 		}
 
-		private void PageChanged(int newPage)
+		private void PageChanged (int newPage)
 		{
-            NavigationItem.Title = _pageScrollController[newPage].Root.Caption;
+			NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
 		}
 
-		private void LunchtableCallback(Lunchtable lunchtable)
+		private void LunchtableCallback (Lunchtable lunchtable)
 		{
-			UIApplication.SharedApplication.InvokeOnMainThread(() =>
-			                                                   {
-				foreach(LunchDay lunchDay in lunchtable.LunchDays)
-				{
-					_pageScrollController.AddPage(CreateView(lunchDay));
+			UIApplication.SharedApplication.InvokeOnMainThread (() =>
+			{
+				foreach (LunchDay lunchDay in lunchtable.LunchDays) {
+					_pageScrollController.AddPage (CreateView (lunchDay));
 				}
 			});
 		}
 
-		private DialogViewController CreateView(LunchDay lunchDay)
+		private DialogViewController CreateView (LunchDay lunchDay)
 		{
-			if(lunchDay == null){
-				return new DialogViewController(new RootElement("BLUB"){
+			if (lunchDay == null) {
+				return new DialogViewController (new RootElement ("BLUB"){
 					new Section("Kein Eintrag"){
 						new MultilineElement("Kein Menü gefunden")
 					}
 				});
 			}
-			var root = new RootElement(lunchDay.DateString);
-			foreach(Dish d in lunchDay.Dishes)
-			{
-				var section = new Section(d.Title)
+			var root = new RootElement (lunchDay.DateString);
+			foreach (Dish d in lunchDay.Dishes) {
+				var section = new Section (d.Title)
 				{
 					new MultilineElement(d.Description),
 					new MultilineElement("Preis", d.PriceInternal)
 				};
-				root.Add(section);
+				root.Add (section);
 			}
-			var m = new DialogViewController(root);
-//			m.TableView.BackgroundView = null;
-//			m.TableView.BackgroundColor = new UIColor(0f,0.3f,0.7f,1f);
-			return m;
+
+			return new DefaultDialogViewController (root);
 		}
 	}
 }

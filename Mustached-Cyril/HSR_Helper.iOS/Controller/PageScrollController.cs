@@ -42,10 +42,7 @@ namespace HSR_Helper.iOS.Controller
 
 		public void AddPage (T controller)
 		{
-			RectangleF scrollFrame = _scrollView.Frame;
-			scrollFrame.Width = scrollFrame.Width * (!_scrollView.Subviews.Any () ? 1 : _scrollView.Subviews.Count () + 1);
-			_scrollView.ContentSize = scrollFrame.Size;
-
+			ReframeScrollview ();
 			RectangleF lastFrame = _scrollView.Frame;
 			PointF lastLocation = new PointF ();
 			lastLocation.X = lastFrame.Width * _scrollView.Subviews.Count ();
@@ -65,18 +62,35 @@ namespace HSR_Helper.iOS.Controller
 
 		public void RemovePage (int pageNumber)
 		{
-			throw new NotImplementedException ("not yet");
+			for (int i = pageNumber-1; i < _scrollView.Subviews.Count (); i++) {
+				if (i == (_scrollView.Subviews.Count () - 1)) {
+					_scrollView.Subviews [i] = null;
+					break;
+				} else {
+					_scrollView.Subviews [i] = _scrollView.Subviews [i + 1];
+				}
+			}
+			_viewControllers.RemoveAt (pageNumber - 1);
+			ReframeScrollview ();
+			_pageControl.Pages = _viewControllers.Count ();
 		}
 
 		public void RemovePage (T controller)
 		{
-			RemovePage (_viewControllers.IndexOf (controller));
+			RemovePage (_viewControllers.IndexOf (controller) + 1);
 		}
 
 		public void ScrollToPage (int pageNumber)
 		{
 			_scrollView.SetContentOffset (new PointF (_scrollView.Frame.Width * pageNumber, 0), true);
 			PageChanged ();
+		}
+
+		private void ReframeScrollview ()
+		{
+			RectangleF scrollFrame = _scrollView.Frame;
+			scrollFrame.Width = scrollFrame.Width * (!_viewControllers.Any () ? 1 : _viewControllers.Count () + 1);
+			_scrollView.ContentSize = scrollFrame.Size;
 		}
 
 		private void ScrollViewScrolled (object sender, EventArgs e)

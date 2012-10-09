@@ -97,10 +97,6 @@
     <Compile Include="ViewController\SettingsViewController.designer.cs">
       <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewController\LunchTableDetailViewController.cs" />
-    <Compile Include="ViewController\LunchTableDetailViewController.designer.cs">
-      <DependentUpon>LunchTableDetailViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewController\TimetableViewController.cs" />
     <Compile Include="ViewController\TimetableViewController.designer.cs">
       <DependentUpon>TimetableViewController.cs</DependentUpon>
@@ -110,12 +106,15 @@
     <Compile Include="ViewController\TimetableDetailViewController.designer.cs">
       <DependentUpon>TimetableDetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControlls\DefaultDialogViewController.cs" />
+    <Compile Include="Helpers\ApplicationColors.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="CustomControlls\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
@@ -130,7 +129,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\LunchTableView.xib" />
     <InterfaceDefinition Include="Views\SettingsView.xib" />
-    <InterfaceDefinition Include="Views\LunchTableDetailView.xib" />
     <InterfaceDefinition Include="Views\TimetableView.xib" />
     <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
   </ItemGroup>
