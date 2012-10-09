@@ -9,13 +9,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 {
 	public class IPhonePersistency : IPersistency
 	{
-
 		public static string SavePath = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-
-		public IPhonePersistency ()
-		{
-
-		}
 
 		public bool Save (IPersistentObject obj)
 		{
@@ -32,7 +26,12 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 
 		public bool Delete (string filename)
 		{
-			throw new System.NotImplementedException ();
+			try {
+				File.Delete (Path.Combine (SavePath, filename));
+				return true;
+			} catch (Exception) {
+				return false;
+			}
 		}
 
 		public T Load<T> (string filename) where T : IPersistentObject, new()
