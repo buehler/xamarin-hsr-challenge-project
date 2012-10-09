@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using HSR_Helper.DomainLibrary.Domain;
+using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.Android
 {
@@ -25,6 +27,13 @@ namespace HSR_Helper.Android
             {
                 aLabel.Text = "Hello from the ueli";
             };
+
+            DomainLibraryHelper.GetLunchtable(Foedle);
+        }
+
+        private void Foedle(Lunchtable lunchtable)
+        {
+            
         }
     }
 }
