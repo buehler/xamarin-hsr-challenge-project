@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
-	public class Lunchtable : IPersistentObject
+	public class Lunchtable
 	{
 		[PersistentProperty]
 		public Guid Id { get; set; }

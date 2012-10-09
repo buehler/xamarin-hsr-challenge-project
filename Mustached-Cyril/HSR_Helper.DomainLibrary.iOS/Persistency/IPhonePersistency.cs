@@ -30,12 +30,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 			}
 		}
 
-		public bool Delete (System.Guid id)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		public T Load<T> (System.Guid id) where T : IPersistentObject
+		public bool Delete (string filename)
 		{
 			throw new System.NotImplementedException ();
 		}

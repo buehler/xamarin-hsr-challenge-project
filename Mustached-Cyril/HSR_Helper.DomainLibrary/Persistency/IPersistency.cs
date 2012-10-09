@@ -8,7 +8,7 @@ namespace HSR_Helper.DomainLibrary.Persistency
 	public interface IPersistency
 	{
 		bool Save (IPersistentObject obj);
-		bool Delete (Guid id);
-		T Load<T> (Guid id) where T : IPersistentObject;
+		bool Delete (string filename);
+		T Load<T> (string filename) where T : IPersistentObject, new();
 	}
 }

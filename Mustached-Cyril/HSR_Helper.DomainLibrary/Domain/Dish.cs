@@ -8,7 +8,7 @@ using RestSharp.Deserializers;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
-	public class Dish : IPersistentObject
+	public class Dish
 	{
 #region IPersistentObject implementation
 

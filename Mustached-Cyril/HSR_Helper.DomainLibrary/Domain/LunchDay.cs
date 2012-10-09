@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace HSR_Helper.DomainLibrary.Domain
 {
     
-	public class LunchDay : IPersistentObject
+	public class LunchDay
 	{
 		[PersistentProperty]
 		public Guid Id { get; set; }
