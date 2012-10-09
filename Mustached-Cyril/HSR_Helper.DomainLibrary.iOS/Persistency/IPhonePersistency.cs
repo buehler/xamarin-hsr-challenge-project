@@ -1,8 +1,13 @@
 ﻿using HSR_Helper.DomainLibrary.Persistency;
+using System;
+
+
 namespace HSR_Helper.DomainLibrary.iOS.Persistency
 {
 	public class IPhonePersistency : IPersistency
 	{
+
+		public static string SavePath = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 
 		public bool Save (IPersistentObject obj)
 		{

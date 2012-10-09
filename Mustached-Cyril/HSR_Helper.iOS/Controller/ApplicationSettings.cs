@@ -18,6 +18,7 @@ namespace HSR_Helper.iOS
 
 		private ApplicationSettings ()
 		{
+			Persistency = new IPhonePersistency ();
 		}
 	}
 }
