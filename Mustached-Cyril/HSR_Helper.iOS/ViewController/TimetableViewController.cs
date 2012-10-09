@@ -15,6 +15,7 @@ namespace HSR_Helper.iOS
 		public TimetableViewController () : base ("TimetableView", null)
 		{
 			Title = "Stundenplan";
+			NavigationItem.Title = "Stundenplan";
 		}
 		
 		public override void ViewDidLoad ()

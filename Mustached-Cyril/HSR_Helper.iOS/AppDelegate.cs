@@ -48,13 +48,30 @@ namespace HSR_Helper.iOS
 
 		private DefaultDialogViewController GetSettingsView ()
 		{
-			var root = new RootElement ("Einstellungen")
-			{
-				new CustomFontSection("Benutzer", 16, UITextAlignment.Center){
-					new StringElement("HUHU")
+//			if (userInformation == null) {
+//				userInformation = new IPhoneUserInformation ();
+//			}
+			var userEntry = new EntryElement ("Benutzername", "benutzername", "");
+			var passwordEntry = new EntryElement ("Passwort", "passwort", "", true);
+			
+			userEntry.Changed += FUDI;
+			passwordEntry.Changed += FUDI;
+			
+			var root = new RootElement ("Einstellungen"){
+				new CustomFontSection("Benutzerinformationen", 16){
+					userEntry,
+					passwordEntry
 				}
 			};
-			return new DefaultDialogViewController (root);
+			var vc = new DefaultDialogViewController (root);
+			vc.Title = "Einstellugen";
+			vc.NavigationItem.Title = "Einstellungen";
+			return vc;
+		}
+		
+		private void FUDI (object s, EventArgs e)
+		{
+			Console.WriteLine ("NOW from: " + s.ToString ());
 		}
 	}
 }

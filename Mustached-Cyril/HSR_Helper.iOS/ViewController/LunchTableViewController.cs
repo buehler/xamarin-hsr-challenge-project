@@ -16,6 +16,8 @@ namespace HSR_Helper.iOS
 
 		public LunchTableViewController () : base ("LunchTableView", null)
 		{
+			Title = "Menü";
+			NavigationItem.Title = "Menü";
 		}
 		
 		public override void ViewDidLoad ()
@@ -24,8 +26,6 @@ namespace HSR_Helper.iOS
 			_pageScrollController = new PageScrollController<DialogViewController> (ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable (LunchtableCallback);
-			Title = "Menü";
-			NavigationItem.Title = "Menü";
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
 		}
 

@@ -4,14 +4,20 @@ using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using HSR_Helper.DomainLibrary.iOS;
+using MonoTouch.Dialog;
 
 namespace HSR_Helper.iOS
 {
 	public partial class SettingsViewController : UIViewController
 	{
+		private IPhoneUserInformation userInformation;
+		private DefaultDialogViewController vc;
+
 		public SettingsViewController () : base ("SettingsView", null)
 		{
 			Title = "Einstellungen";
+			NavigationItem.Title = "Einstellungen";
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -25,15 +31,35 @@ namespace HSR_Helper.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			Username.ShouldReturn += DismissKeyboard;
-			Password.ShouldReturn += DismissKeyboard;
+			vc = GetSettingsView ();
+			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
+			SettingsView = vc.View;
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		private bool DismissKeyboard(UITextField textField)
+		private DefaultDialogViewController GetSettingsView ()
 		{
-			textField.ResignFirstResponder();
-			return true;
+			if (userInformation == null) {
+				userInformation = new IPhoneUserInformation ();
+			}
+			var userEntry = new EntryElement ("Benutzername", "benutzername", "");
+			var passwordEntry = new EntryElement ("Passwort", "passwort", "", true);
+			
+			userEntry.Changed += FUDI;
+			passwordEntry.Changed += FUDI;
+			
+			var root = new RootElement ("Einstellungen"){
+				new CustomFontSection("Benutzerinformationen", 16){
+					userEntry,
+					passwordEntry
+				}
+			};
+			return new DefaultDialogViewController (root);
+		}
+		
+		private void FUDI (object s, EventArgs e)
+		{
+			Console.WriteLine ("NOW from: " + s.ToString ());
 		}
 	}
 }

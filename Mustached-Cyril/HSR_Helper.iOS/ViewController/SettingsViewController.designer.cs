@@ -12,21 +12,13 @@ namespace HSR_Helper.iOS
 	partial class SettingsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITextField Username { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UITextField Password { get; set; }
+		MonoTouch.UIKit.UIView SettingsView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Username != null) {
-				Username.Dispose ();
-				Username = null;
-			}
-
-			if (Password != null) {
-				Password.Dispose ();
-				Password = null;
+			if (SettingsView != null) {
+				SettingsView.Dispose ();
+				SettingsView = null;
 			}
 		}
 	}
