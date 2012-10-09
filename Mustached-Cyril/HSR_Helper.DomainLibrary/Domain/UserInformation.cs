@@ -7,6 +7,7 @@ using HSR_Helper.DomainLibrary.Security;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
+	[Serializable]
 	public class UserInformation : ISecureObject, IPersistentObject
 	{
 		public Guid Id { get; set; }

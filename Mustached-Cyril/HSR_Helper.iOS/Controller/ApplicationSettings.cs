@@ -1,5 +1,6 @@
 using System;
 using HSR_Helper.DomainLibrary.iOS.Persistency;
+using HSR_Helper.DomainLibrary.Domain;
 
 namespace HSR_Helper.iOS
 {
@@ -11,6 +12,15 @@ namespace HSR_Helper.iOS
 				if (_instance == null)
 					_instance = new ApplicationSettings ();
 				return _instance;
+			}
+		}
+
+		private UserInformation _userInformation;
+		public UserInformation UserInformation {
+			get {
+				if (_userInformation == null)
+					_userInformation = Persistency.Load<UserInformation> ("userInformation.dat");
+				return _userInformation;
 			}
 		}
 
