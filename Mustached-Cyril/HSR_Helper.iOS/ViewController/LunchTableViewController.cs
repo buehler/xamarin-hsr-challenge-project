@@ -48,6 +48,13 @@ namespace HSR_Helper.iOS
 
 		private DialogViewController CreateView(LunchDay lunchDay)
 		{
+			if(lunchDay == null){
+				return new DialogViewController(new RootElement("BLUB"){
+					new Section("Kein Eintrag"){
+						new MultilineElement("Kein Menü gefunden")
+					}
+				});
+			}
 			var root = new RootElement(lunchDay.DateString);
 			foreach(Dish d in lunchDay.Dishes)
 			{

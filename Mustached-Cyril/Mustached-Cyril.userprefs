@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableViewController.cs">
     <Files>
       <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="29" Column="5" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="68" Column="1" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="45" Column="6" />
       <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItem.cs" Line="8" Column="3" />
       <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItemGroup.cs" Line="17" Column="1" />
       <File FileName="HSR_Helper.iOS/Controller/PageScrollController.cs" Line="57" Column="28" />
@@ -12,18 +12,10 @@
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="HSR_Helper.iOS" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Controller" expanded="True" />
-            <Node name="CustomControlls" expanded="True" />
-            <Node name="ViewController" expanded="True">
-              <Node name="LunchTableDetailViewController.cs" expanded="True" />
-              <Node name="LunchTableViewController.cs" selected="True" />
-            </Node>
-            <Node name="Views" expanded="True" />
+            <Node name="ViewController" expanded="True" />
           </Node>
-          <Node name="MonoTouch.Dialog" expanded="True" />
         </State>
       </Pad>
     </Pads>
@@ -36,5 +28,6 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="HSR_Helper.iOS/GUI/MenueViewController.cs" line="91" offsetX="440" offsetY="1440" expression="ScrollView" liveUpdate="False" />
     <Watch file="HSR_Helper.iOS/Views/ScrollViewController.cs" line="48" offsetX="476" offsetY="752" expression="ScrollView" liveUpdate="False" />
+    <Watch file="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" line="42" offsetX="548" offsetY="656" expression="lunchtable.LunchDays" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

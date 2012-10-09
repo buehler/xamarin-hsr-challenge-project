@@ -11,8 +11,6 @@
     <RootNamespace>HSR_Helper.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_HelperiOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -112,13 +110,12 @@
     <Compile Include="ViewController\TimetableDetailViewController.designer.cs">
       <DependentUpon>TimetableDetailViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControlls\DishTableItem.cs" />
-    <Compile Include="CustomControlls\DishTableItemGroup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="CustomControlls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
