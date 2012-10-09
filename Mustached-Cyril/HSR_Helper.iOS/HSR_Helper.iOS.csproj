@@ -98,10 +98,6 @@
       <DependentUpon>TimetableViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\PageScrollController.cs" />
-    <Compile Include="ViewController\TimetableDetailViewController.cs" />
-    <Compile Include="ViewController\TimetableDetailViewController.designer.cs">
-      <DependentUpon>TimetableDetailViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomControlls\DefaultDialogViewController.cs" />
     <Compile Include="Helpers\ApplicationColors.cs" />
     <Compile Include="CustomControlls\CustomFontMultilineElement.cs" />
@@ -125,6 +121,5 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\LunchTableView.xib" />
     <InterfaceDefinition Include="Views\TimetableView.xib" />
-    <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
       <File FileName="HSR_Helper.iOS/CustomControlls/CustomFontSection.cs" Line="20" Column="28" />
       <File FileName="MonoTouch.Dialog/MonoTouch.Dialog/Elements.cs" Line="1321" Column="17" />
       <File FileName="MonoTouch.Dialog/Sample/DemoDynamic.cs" Line="33" Column="27" />
-      <File FileName="HSR_Helper.DomainLibrary/Domain/UserInformation.cs" Line="13" Column="2" />
+      <File FileName="HSR_Helper.DomainLibrary/Domain/UserInformation.cs" Line="16" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,7 +15,7 @@
           <Node name="HSR_Helper.DomainLibrary" expanded="True">
             <Node name="Domain" expanded="True" />
           </Node>
-          <Node name="HSR_Helper.DomainLibrary.iOS" expanded="True" selected="True">
+          <Node name="HSR_Helper.DomainLibrary.iOS" expanded="True">
             <Node name="Domain" expanded="True" />
             <Node name="Persistency" expanded="True" />
           </Node>
@@ -24,7 +24,9 @@
             <Node name="CustomControlls" expanded="True" />
             <Node name="Helpers" expanded="True" />
             <Node name="ViewController" expanded="True" />
-            <Node name="Views" expanded="True" />
+            <Node name="Views" expanded="True">
+              <Node name="LunchTableView.xib" selected="True" />
+            </Node>
           </Node>
           <Node name="MonoTouch.Dialog" expanded="True" />
         </State>
