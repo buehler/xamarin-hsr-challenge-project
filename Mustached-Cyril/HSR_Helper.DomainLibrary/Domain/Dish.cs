@@ -8,18 +8,24 @@ using RestSharp.Deserializers;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
-    public class Dish : IPersistentObject
-    {
-        public Guid Id { get; set; }
-        [JsonProperty("id")]
-        public int DishId { get; set; }
-        [JsonProperty("title")]
-        public string Title { get; set; }
-        [JsonProperty("description")]
-        public string Description { get; set; }
-        [JsonProperty("price_external")]
-        public string PriceExternal { get; set; }
-        [JsonProperty("price_internal")]
-        public string PriceInternal { get; set; }
-    }
+	public class Dish : IPersistentObject
+	{
+		public Guid Id { get; set; }
+		[JsonProperty("id")]
+		public int DishId { get; set; }
+		[JsonProperty("title")]
+		public string Title { get; set; }
+		[JsonProperty("description")]
+		public string Description { get; set; }
+		private string _priceInternal;
+		[JsonProperty("price_internal")]
+		public string PriceInternal { 
+			get {
+				return _priceInternal;
+			} 
+			set {
+				_priceInternal = "CHF " + value;
+			} 
+		}
+	}
 }

@@ -16,7 +16,7 @@ namespace HSR_Helper.iOS
 			label.Text = caption;
 			label.TextAlignment = UITextAlignment.Center;
 			label.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
-			label.TextColor = ApplicationColors.TABLE_FONT_COLOR;
+			label.TextColor = ApplicationColors.TABLE_HEADER_FONT_COLOR;
 			this.HeaderView = label;
 		}
 	}

@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 
 namespace HSR_Helper.iOS
 {
-	public class CustomFontMultilineElement : MultilineElement
+	public class CustomFontMultilineElement : StyledMultilineElement
 	{
 		public enum FontStyle
 		{
@@ -15,20 +15,28 @@ namespace HSR_Helper.iOS
 		}
 
 		private readonly UIFont _font;
+		private readonly UIFont _detailFont;
 
-		public CustomFontMultilineElement (string caption, int fontSize = 16, FontStyle fontStyle = FontStyle.Bold) : base(caption)
+		public CustomFontMultilineElement (string caption) : this(caption, 16, FontStyle.Bold)
 		{
-			switch (fontStyle) {
-			case FontStyle.Bold:
-				_font = UIFont.BoldSystemFontOfSize (fontSize);
-				break;
-			case FontStyle.Italic:
-				_font = UIFont.ItalicSystemFontOfSize (fontSize);
-				break;
-			case FontStyle.Normal:
-				_font = UIFont.SystemFontOfSize (fontSize);
-				break;
-			}
+		}
+
+		public CustomFontMultilineElement (string caption, int fontSize, FontStyle fontStyle):base(caption)
+		{
+			_font = GetFontFromStyle (fontStyle, fontSize);
+			TextColor = ApplicationColors.TABLE_FONT_COLOR;
+		}
+
+		public CustomFontMultilineElement (string caption, string value):this(caption, value, 16, FontStyle.Bold, FontStyle.Normal)
+		{
+		}
+
+		public CustomFontMultilineElement (string caption, string value, int fontSize, FontStyle fontStyle, FontStyle detailFontStyle) : base(caption, value)
+		{
+			_font = GetFontFromStyle (fontStyle, fontSize);
+			TextColor = ApplicationColors.TABLE_FONT_COLOR;
+			_detailFont = GetFontFromStyle (detailFontStyle, fontSize);
+			DetailColor = ApplicationColors.TABLE_DETAIL_FONT_COLOR;
 		}
 
 		public override UITableViewCell GetCell (UITableView tv)
@@ -36,6 +44,9 @@ namespace HSR_Helper.iOS
 			var cell = base.GetCell (tv);
 			var textLabel = cell.TextLabel;
 			textLabel.Font = _font;
+			if (!String.IsNullOrEmpty (Value) && _detailFont != null) {
+				cell.DetailTextLabel.Font = _detailFont;
+			}
 			return cell;
 		}
 
@@ -48,6 +59,20 @@ namespace HSR_Helper.iOS
 			if (String.IsNullOrEmpty (c) && !String.IsNullOrEmpty (Value))
 				c = " ";
 			return tableView.StringSize (c, _font, size, UILineBreakMode.WordWrap).Height + 10;
+		}
+
+		private UIFont GetFontFromStyle (FontStyle fontStyle, int fontSize)
+		{
+			switch (fontStyle) {
+			case FontStyle.Bold:
+				return UIFont.BoldSystemFontOfSize (fontSize);
+			case FontStyle.Italic:
+				return UIFont.ItalicSystemFontOfSize (fontSize);
+			case FontStyle.Normal:
+				return UIFont.SystemFontOfSize (fontSize);
+			default:
+				return null;
+			}
 		}
 	}
 }
