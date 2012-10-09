@@ -79,6 +79,12 @@
     <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\IPersistentObject.cs">
       <Link>Persistency\IPersistentObject.cs</Link>
     </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Security\ISecureObject.cs">
+      <Link>Security\ISecureObject.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Security\ISecurity.cs">
+      <Link>Security\ISecurity.cs</Link>
+    </Compile>
     <Compile Include="Persistency\AndroidPersistency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,7 +97,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

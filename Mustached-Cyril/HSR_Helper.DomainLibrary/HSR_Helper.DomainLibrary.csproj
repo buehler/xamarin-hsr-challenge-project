@@ -55,6 +55,8 @@
     <Compile Include="Persistency\IPersistency.cs" />
     <Compile Include="Persistency\IPersistentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\ISecureObject.cs" />
+    <Compile Include="Security\ISecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestSharp\RestSharp.csproj">
