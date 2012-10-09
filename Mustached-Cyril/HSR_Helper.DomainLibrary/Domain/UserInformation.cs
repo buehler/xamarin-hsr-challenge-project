@@ -5,9 +5,9 @@ using System.Text;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
-    public class UserInformation
-    {
-        public string Name { get; set; }
-        public string Password { get; set; }
-    }
+	public abstract class UserInformation
+	{
+		public string Name { get; set; }
+		public string Password { get; set; }
+	}
 }

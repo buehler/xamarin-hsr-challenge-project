@@ -10,7 +10,7 @@ namespace HSR_Helper.iOS
 {
 	public partial class TimetableViewController : UIViewController
 	{
-		private PageScrollController<TimetableDetailViewController> _pageScrollController;
+		//private PageScrollController<TimetableDetailViewController> _pageScrollController;
 
 		public TimetableViewController () : base ("TimetableView", null)
 		{
@@ -20,7 +20,7 @@ namespace HSR_Helper.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			_pageScrollController = new PageScrollController<TimetableDetailViewController>(ScrollView, PageController);
+			//_pageScrollController = new PageScrollController<TimetableDetailViewController>(ScrollView, PageController);
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 	}

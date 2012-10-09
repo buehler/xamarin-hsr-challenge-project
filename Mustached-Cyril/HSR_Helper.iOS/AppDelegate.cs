@@ -4,6 +4,7 @@ using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.Dialog;
 
 namespace HSR_Helper.iOS
 {
@@ -35,7 +36,7 @@ namespace HSR_Helper.iOS
 			                                                  {
 															  	  new UINavigationController(new LunchTableViewController()),
 																  new UINavigationController(new TimetableViewController()),
-			                                                      new SettingsViewController()
+																  new UINavigationController(GetSettingsView())
 			                                                  }
 			                        };
 
@@ -43,6 +44,17 @@ namespace HSR_Helper.iOS
 			_window.MakeKeyAndVisible ();
 			
 			return true;
+		}
+
+		private DefaultDialogViewController GetSettingsView ()
+		{
+			var root = new RootElement ("Einstellungen")
+			{
+				new CustomFontSection("Benutzer", 16, UITextAlignment.Center){
+					new StringElement("HUHU")
+				}
+			};
+			return new DefaultDialogViewController (root);
 		}
 	}
 }

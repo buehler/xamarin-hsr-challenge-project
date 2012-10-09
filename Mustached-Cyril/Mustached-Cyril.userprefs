@@ -1,21 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.iOS/ViewController/LunchTableViewController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HSR_Helper.DomainLibrary/Domain/UserInformation.cs">
     <Files>
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableDetailViewController.cs" Line="29" Column="5" />
-      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="45" Column="6" />
-      <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItem.cs" Line="8" Column="3" />
-      <File FileName="HSR_Helper.iOS/CustomControlls/DishTableItemGroup.cs" Line="17" Column="1" />
-      <File FileName="HSR_Helper.iOS/Controller/PageScrollController.cs" Line="57" Column="28" />
-      <File FileName="MonoTouch.Dialog/Sample/DemoElementApi.cs" Line="46" Column="7" />
-      <File FileName="MonoTouch.Dialog/MonoTouch.Dialog/DialogViewController.cs" Line="39" Column="14" />
+      <File FileName="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" Line="61" Column="147" />
+      <File FileName="HSR_Helper.iOS/AppDelegate.cs" Line="54" Column="31" />
+      <File FileName="HSR_Helper.iOS/CustomControlls/CustomFontSection.cs" Line="20" Column="28" />
+      <File FileName="HSR_Helper.DomainLibrary/Domain/UserInformation.cs" Line="10" Column="11" />
+      <File FileName="MonoTouch.Dialog/MonoTouch.Dialog/Elements.cs" Line="1321" Column="17" />
+      <File FileName="MonoTouch.Dialog/Sample/DemoDynamic.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="HSR_Helper.iOS" expanded="True">
-            <Node name="ViewController" expanded="True" />
+        <State expanded="True">
+          <Node name="HSR_Helper.DomainLibrary" expanded="True" selected="True">
+            <Node name="Domain" expanded="True" />
           </Node>
+          <Node name="HSR_Helper.DomainLibrary.iOS" expanded="True">
+            <Node name="Domain" expanded="True" />
+          </Node>
+          <Node name="HSR_Helper.iOS" expanded="True">
+            <Node name="Controller" expanded="True" />
+            <Node name="CustomControlls" expanded="True" />
+            <Node name="Helpers" expanded="True" />
+            <Node name="ViewController" expanded="True" />
+            <Node name="Views" expanded="True" />
+          </Node>
+          <Node name="MonoTouch.Dialog" expanded="True" />
         </State>
       </Pad>
     </Pads>
@@ -29,5 +39,7 @@
     <Watch file="HSR_Helper.iOS/GUI/MenueViewController.cs" line="91" offsetX="440" offsetY="1440" expression="ScrollView" liveUpdate="False" />
     <Watch file="HSR_Helper.iOS/Views/ScrollViewController.cs" line="48" offsetX="476" offsetY="752" expression="ScrollView" liveUpdate="False" />
     <Watch file="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" line="42" offsetX="548" offsetY="656" expression="lunchtable.LunchDays" liveUpdate="False" />
+    <Watch file="HSR_Helper.iOS/ViewController/LunchTableViewController.cs" line="42" offsetX="548" offsetY="656" expression="lunchtable.LunchDays" liveUpdate="False" />
+    <Watch file="HSR_Helper.iOS/Controller/PageScrollController.cs" line="65" offsetX="533" offsetY="944" expression="_scrollView.Subviews" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
