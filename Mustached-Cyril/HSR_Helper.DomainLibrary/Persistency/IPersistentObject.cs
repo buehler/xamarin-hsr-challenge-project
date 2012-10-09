@@ -5,8 +5,9 @@ using System.Text;
 
 namespace HSR_Helper.DomainLibrary.Persistency
 {
-    public interface IPersistentObject
-    {
-        Guid Id { get; set; }
-    }
+	public interface IPersistentObject
+	{
+		Guid Id { get; set; }
+		string Filename { get; set; }
+	}
 }

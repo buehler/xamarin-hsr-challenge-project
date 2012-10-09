@@ -10,6 +10,7 @@ namespace HSR_Helper.DomainLibrary.Domain
 	public class UserInformation : ISecureObject, IPersistentObject
 	{
 		public Guid Id { get; set; }
+		public string Filename{ get; set; }
 		public string Name { get; set; }
 		public string Password { get; set; }
 	}

@@ -9,17 +9,18 @@ using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
-    public class Lunchtable : IPersistentObject
-    {
-        [PersistentProperty]
-        public Guid Id { get; set; }
-        [PersistentProperty]
-        [JsonProperty("days")]
-        public List<LunchDay> LunchDays { get; set; }
+	public class Lunchtable : IPersistentObject
+	{
+		[PersistentProperty]
+		public Guid Id { get; set; }
+		public string Filename{ get; set; }
+		[PersistentProperty]
+		[JsonProperty("days")]
+		public List<LunchDay> LunchDays { get; set; }
         
-        public Lunchtable()
-        {
-            LunchDays = new List<LunchDay>();
-        }
-    }
+		public Lunchtable ()
+		{
+			LunchDays = new List<LunchDay> ();
+		}
+	}
 }
