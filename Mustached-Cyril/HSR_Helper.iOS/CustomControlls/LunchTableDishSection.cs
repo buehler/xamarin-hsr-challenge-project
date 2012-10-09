@@ -10,13 +10,13 @@ namespace HSR_Helper.iOS
 		{
 			var label = new UILabel ();
 			var frame = label.Frame;
-			frame.Inflate (0, 16);
+			frame.Inflate (0, 24);
 			label.Frame = frame;
-			label.Font = UIFont.BoldSystemFontOfSize (16);
+			label.Font = UIFont.BoldSystemFontOfSize (24);
 			label.Text = caption;
 			label.TextAlignment = UITextAlignment.Center;
 			label.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
-			label.TextColor = ApplicationColors.FONT_COLOR;
+			label.TextColor = ApplicationColors.TABLE_FONT_COLOR;
 			this.HeaderView = label;
 		}
 	}

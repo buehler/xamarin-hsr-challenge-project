@@ -109,6 +109,7 @@
     <Compile Include="CustomControlls\DefaultDialogViewController.cs" />
     <Compile Include="Helpers\ApplicationColors.cs" />
     <Compile Include="CustomControlls\LunchTableDishSection.cs" />
+    <Compile Include="CustomControlls\CustomFontMultilineElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
