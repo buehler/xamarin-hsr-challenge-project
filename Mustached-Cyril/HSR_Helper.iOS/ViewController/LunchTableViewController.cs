@@ -26,7 +26,7 @@ namespace HSR_Helper.iOS
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable (LunchtableCallback);
 			Title = "Menü";
 			NavigationItem.Title = "Menü";
-			View.BackgroundColor = ApplicationColors.VIEW_BACKGROUND_COLOR;
+			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
 		}
 
 		private void PageChanged (int newPage)
@@ -55,7 +55,7 @@ namespace HSR_Helper.iOS
 			}
 			var root = new RootElement (lunchDay.DateString);
 			foreach (Dish d in lunchDay.Dishes) {
-				var section = new Section (d.Title)
+				var section = new LunchTableDishSection (d.Title)
 				{
 					new MultilineElement(d.Description),
 					new MultilineElement("Preis", d.PriceInternal)

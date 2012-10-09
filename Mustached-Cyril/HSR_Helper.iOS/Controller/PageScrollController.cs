@@ -20,6 +20,12 @@ namespace HSR_Helper.iOS.Controller
 			}
 		}
 
+		public int PageCount {
+			get {
+				return _viewControllers.Count ();
+			}
+		}
+
 		public T this [int pageIndex] {
 			get {
 				if (pageIndex < 0 || pageIndex > _viewControllers.Count ())
@@ -51,6 +57,8 @@ namespace HSR_Helper.iOS.Controller
 			_scrollView.AddSubview (controller.View);
 			_viewControllers.Add (controller);
 			_pageControl.Pages = _scrollView.Subviews.Count ();
+			if (PageCount == 1)
+				PageChanged ();
 		}
 
 		public void AddPages (IEnumerable<T> views)
