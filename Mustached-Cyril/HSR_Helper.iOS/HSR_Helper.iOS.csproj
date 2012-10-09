@@ -93,10 +93,6 @@
     <Compile Include="ViewController\LunchTableViewController.designer.cs">
       <DependentUpon>LunchTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewController\SettingsViewController.cs" />
-    <Compile Include="ViewController\SettingsViewController.designer.cs">
-      <DependentUpon>SettingsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewController\TimetableViewController.cs" />
     <Compile Include="ViewController\TimetableViewController.designer.cs">
       <DependentUpon>TimetableViewController.cs</DependentUpon>
@@ -128,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\LunchTableView.xib" />
-    <InterfaceDefinition Include="Views\SettingsView.xib" />
     <InterfaceDefinition Include="Views\TimetableView.xib" />
     <InterfaceDefinition Include="Views\TimetableDetailView.xib" />
   </ItemGroup>
