@@ -2,9 +2,9 @@
 using HSR_Helper.DomainLibrary.Persistency;
 using HSR_Helper.DomainLibrary.Security;
 
-namespace HSR_Helper.DomainLibrary.Domain
+namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 {
-	public sealed class UserInformation : ISecureObject, IPersistentObject
+	public sealed class UserCredentials : ISecureObject, IPersistentObject
 	{
         [XmlIgnore]
 		public string Id { 

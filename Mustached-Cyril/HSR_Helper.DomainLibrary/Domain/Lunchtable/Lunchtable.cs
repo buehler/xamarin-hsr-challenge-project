@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace HSR_Helper.DomainLibrary.Domain
+namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 {
 	public class Lunchtable
 	{

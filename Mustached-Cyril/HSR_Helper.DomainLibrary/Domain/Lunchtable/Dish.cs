@@ -6,7 +6,7 @@ using HSR_Helper.DomainLibrary.Persistency;
 using Newtonsoft.Json;
 using RestSharp.Deserializers;
 
-namespace HSR_Helper.DomainLibrary.Domain
+namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 {
 	public class Dish
 	{

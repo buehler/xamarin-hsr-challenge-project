@@ -1,6 +1,6 @@
 using System;
 using HSR_Helper.DomainLibrary.iOS.Persistency;
-using HSR_Helper.DomainLibrary.Domain;
+using HSR_Helper.DomainLibrary.Domain.Userinformation;
 
 namespace HSR_Helper.iOS
 {

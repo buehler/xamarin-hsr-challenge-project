@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using HSR_Helper.DomainLibrary.Domain;
+using HSR_Helper.DomainLibrary.Domain.Userinformation;
 using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.Android

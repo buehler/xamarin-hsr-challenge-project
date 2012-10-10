@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 
-namespace HSR_Helper.DomainLibrary.Domain
+namespace HSR_Helper.DomainLibrary.Domain.Timetable
 {
     public class TimetableDay
     {

@@ -6,7 +6,7 @@ using HSR_Helper.DomainLibrary.Persistency;
 using RestSharp.Deserializers;
 using Newtonsoft.Json;
 
-namespace HSR_Helper.DomainLibrary.Domain
+namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 {
     
 	public class LunchDay
