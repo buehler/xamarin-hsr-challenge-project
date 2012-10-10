@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attribute\PersistentPropertyAttribute.cs" />
     <Compile Include="Domain\BadgeInformation.cs" />
     <Compile Include="Domain\Dish.cs" />
     <Compile Include="Domain\Lecture.cs" />

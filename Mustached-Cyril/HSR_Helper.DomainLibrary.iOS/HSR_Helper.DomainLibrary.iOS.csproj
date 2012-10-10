@@ -11,6 +11,8 @@
     <RootNamespace>HSR_Helper.DomainLibrary.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_Helper.DomainLibrary.iOS</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -42,9 +44,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Attribute\PersistentPropertyAttribute.cs">
-      <Link>Attribute\PersistentPropertyAttribute.cs</Link>
-    </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Domain\BadgeInformation.cs">
       <Link>Domain\BadgeInformation.cs</Link>
     </Compile>

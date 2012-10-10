@@ -7,6 +7,6 @@ namespace HSR_Helper.DomainLibrary.Persistency
 {
 	public interface IPersistentObject
 	{
-		string Filename { get; set; }
+        string Id { get; }
 	}
 }

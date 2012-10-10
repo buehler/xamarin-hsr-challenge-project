@@ -1,8 +1,7 @@
-﻿using HSR_Helper.DomainLibrary.Persistency;
-using System;
+﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
+using System.Xml.Serialization;
+using HSR_Helper.DomainLibrary.Persistency;
 
 
 namespace HSR_Helper.DomainLibrary.iOS.Persistency
@@ -14,9 +13,9 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 		public bool Save (IPersistentObject obj)
 		{
 			try {
-				FileStream fs = new FileStream (Path.Combine (SavePath, obj.Filename), FileMode.OpenOrCreate, FileAccess.Write);
-				IFormatter formatter = new BinaryFormatter ();
-				formatter.Serialize (fs, obj);
+				FileStream fs = new FileStream (Path.Combine (SavePath, obj.Id), FileMode.OpenOrCreate, FileAccess.Write);
+				XmlSerializer serializer = new XmlSerializer(obj.GetType());
+                serializer.Serialize(fs, obj);
 				fs.Close ();
 				return true;
 			} catch (Exception) {
@@ -24,22 +23,24 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 			}
 		}
 
-		public bool Delete (string filename)
+		public bool Delete<T> () where T : IPersistentObject, new()
 		{
 			try {
-				File.Delete (Path.Combine (SavePath, filename));
+                T prototype = new T();
+				File.Delete (Path.Combine (SavePath, prototype.Id));
 				return true;
 			} catch (Exception) {
 				return false;
 			}
 		}
 
-		public T Load<T> (string filename) where T : IPersistentObject, new()
+		public T Load<T> () where T : IPersistentObject, new()
 		{
-			if (File.Exists (Path.Combine (SavePath, filename))) {
-				FileStream fs = new FileStream (Path.Combine (SavePath, filename), FileMode.Open, FileAccess.Read);
-				IFormatter formatter = new BinaryFormatter ();
-				T obj = (T)formatter.Deserialize (fs);
+            T prototype = new T();
+			if (File.Exists (Path.Combine (SavePath, prototype.Id))) {
+                FileStream fs = new FileStream(Path.Combine(SavePath, prototype.Id), FileMode.Open, FileAccess.Read);
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                T obj = (T)serializer.Deserialize(fs);
 				fs.Close ();
 				return obj;
 			} else {

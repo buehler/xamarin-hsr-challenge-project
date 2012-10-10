@@ -19,7 +19,7 @@ namespace HSR_Helper.iOS
 		public UserInformation UserInformation {
 			get {
 				if (_userInformation == null)
-					_userInformation = Persistency.Load<UserInformation> ("userInformation.dat");
+					_userInformation = Persistency.Load<UserInformation>();
 				return _userInformation;
 			}
 		}
