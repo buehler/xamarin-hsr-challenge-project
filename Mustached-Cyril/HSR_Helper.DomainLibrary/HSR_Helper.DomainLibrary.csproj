@@ -42,14 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\BadgeInformation.cs" />
-    <Compile Include="Domain\Dish.cs" />
-    <Compile Include="Domain\Lecture.cs" />
-    <Compile Include="Domain\LunchDay.cs" />
-    <Compile Include="Domain\Lunchtable.cs" />
-    <Compile Include="Domain\Timetable.cs" />
-    <Compile Include="Domain\TimetableDay.cs" />
-    <Compile Include="Domain\UserInformation.cs" />
+    <Compile Include="Domain\Timetable\CourseAllocation.cs" />
+    <Compile Include="Domain\Timetable\Lecturer.cs" />
+    <Compile Include="Domain\Userinformation\BadgeInformation.cs" />
+    <Compile Include="Domain\Lunchtable\Dish.cs" />
+    <Compile Include="Domain\Timetable\Lession.cs" />
+    <Compile Include="Domain\Lunchtable\LunchDay.cs" />
+    <Compile Include="Domain\Lunchtable\Lunchtable.cs" />
+    <Compile Include="Domain\Timetable\Timetable.cs" />
+    <Compile Include="Domain\Timetable\TimetableDay.cs" />
+    <Compile Include="Domain\Userinformation\UserCredentials.cs" />
     <Compile Include="Helper\DomainLibraryHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Persistency\IPersistency.cs" />
@@ -64,6 +66,7 @@
       <Name>RestSharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

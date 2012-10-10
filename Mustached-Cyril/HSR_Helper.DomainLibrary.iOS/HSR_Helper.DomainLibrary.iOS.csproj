@@ -44,29 +44,35 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\BadgeInformation.cs">
-      <Link>Domain\BadgeInformation.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lunchtable\Dish.cs">
+      <Link>Domain\Lunchtable\Dish.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Dish.cs">
-      <Link>Domain\Dish.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lunchtable\LunchDay.cs">
+      <Link>Domain\Lunchtable\LunchDay.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lecture.cs">
-      <Link>Domain\Lecture.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lunchtable\Lunchtable.cs">
+      <Link>Domain\Lunchtable\Lunchtable.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\LunchDay.cs">
-      <Link>Domain\LunchDay.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable\CourseAllocation.cs">
+      <Link>Domain\Timetable\CourseAllocation.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Lunchtable.cs">
-      <Link>Domain\Lunchtable.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable\Lecturer.cs">
+      <Link>Domain\Timetable\Lecturer.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable.cs">
-      <Link>Domain\Timetable.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable\Lession.cs">
+      <Link>Domain\Timetable\Lession.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\TimetableDay.cs">
-      <Link>Domain\TimetableDay.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable\Timetable.cs">
+      <Link>Domain\Timetable\Timetable.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\UserInformation.cs">
-      <Link>Domain\UserInformation.cs</Link>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Timetable\TimetableDay.cs">
+      <Link>Domain\Timetable\TimetableDay.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\BadgeInformation.cs">
+      <Link>Domain\Userinformation\BadgeInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\UserCredentials.cs">
+      <Link>Domain\Userinformation\UserCredentials.cs</Link>
     </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Helper\DomainLibraryHelper.cs">
       <Link>Helper\DomainLibraryHelper.cs</Link>
@@ -90,7 +96,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" />
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
@@ -99,4 +105,5 @@
       <Name>RestSharp.MonoTouch</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>
