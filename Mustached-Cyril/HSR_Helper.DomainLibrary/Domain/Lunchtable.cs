@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HSR_Helper.DomainLibrary.Persistency;
-using RestSharp.Deserializers;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain
