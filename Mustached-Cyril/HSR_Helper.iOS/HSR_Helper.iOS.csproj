@@ -122,8 +122,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\LunchTableView.xib" />
-    <InterfaceDefinition Include="Views\TimetableView.xib" />
+    <Page Include="Views\LunchTableView.xib" />
+    <Page Include="Views\TimetableView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\whitey_%402X.png" />
