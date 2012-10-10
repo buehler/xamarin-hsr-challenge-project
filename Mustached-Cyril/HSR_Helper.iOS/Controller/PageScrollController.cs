@@ -57,7 +57,7 @@ namespace HSR_Helper.iOS.Controller
 			controller.View.Frame = lastFrame;
 			_scrollView.AddSubview (controller.View);
 			_viewControllers.Add (controller);
-			_pageControl.Pages = _scrollView.Subviews.Count ();
+			_pageControl.Pages = (_scrollView.Subviews.Count () == 0 ? 1 : _scrollView.Subviews.Count ());
 			if (PageCount == 1)
 				PageChanged ();
 		}
@@ -80,6 +80,14 @@ namespace HSR_Helper.iOS.Controller
 							  select c).ToList ();
 			_viewControllers.Clear ();
 			AddPages (controller);
+		}
+
+		public void Clear ()
+		{
+			List<UIView> subviews = _scrollView.Subviews.ToList ();
+			subviews.ForEach (v => v.RemoveFromSuperview ());
+			_viewControllers.Clear ();
+			_pageControl.Pages = (_scrollView.Subviews.Count () == 0 ? 1 : _scrollView.Subviews.Count ());
 		}
 
 		public void ScrollToPage (int pageNumber)

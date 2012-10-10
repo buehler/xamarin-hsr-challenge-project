@@ -57,8 +57,8 @@ namespace HSR_Helper.iOS
 			foreach (Dish d in lunchDay.Dishes) {
 				var section = new CustomFontSection (d.Title)
 				{
-					new CustomFontMultilineElement(d.Description, 15, CustomFontMultilineElement.FontStyle.Normal),
-					new CustomFontMultilineElement("", d.PriceInternal, 14, CustomFontMultilineElement.FontStyle.Bold, CustomFontMultilineElement.FontStyle.Bold)
+					new CustomFontMultilineElement(d.Description), //, 15, CustomFontMultilineElement.FontStyle.Normal),
+					new CustomFontMultilineElement("", d.PriceInternal)//, 14, CustomFontMultilineElement.FontStyle.Bold, CustomFontMultilineElement.FontStyle.Bold)
 				};
 				root.Add (section);
 			}

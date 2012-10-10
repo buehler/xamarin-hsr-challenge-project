@@ -72,7 +72,7 @@ namespace MonoTouch.Dialog
 		bool enableSearch;
 		public bool EnableSearch {
 			get {
-			   return enableSearch;
+				return enableSearch;
 			}
 			set {
 				if (enableSearch == value)
@@ -117,7 +117,7 @@ namespace MonoTouch.Dialog
 				refreshView.SetActivity (true);
 			refreshRequested (this, EventArgs.Empty);
 
-			if (reloading && showStatus && refreshView != null){
+			if (reloading && showStatus && refreshView != null) {
 				UIView.BeginAnimations ("reloadingData");
 				UIView.SetAnimationDuration (0.2);
 				TableView.ContentInset = new UIEdgeInsets (60, 0, 0, 0);
@@ -172,8 +172,8 @@ namespace MonoTouch.Dialog
 			ReloadData ();
 		}
 		
-		Section [] originalSections;
-		Element [][] originalElements;
+		Section[] originalSections;
+		Element[][] originalElements;
 		
 		/// <summary>
 		/// Allows caller to programatically activate the search bar and start the search process
@@ -205,7 +205,7 @@ namespace MonoTouch.Dialog
 			ReloadData ();
 		}
 		
-		public delegate void SearchTextEventHandler (object sender, SearchChangedEventArgs args);
+		public delegate void SearchTextEventHandler (object sender,SearchChangedEventArgs args);
 		public event SearchTextEventHandler SearchTextChanged;
 		
 		public virtual void OnSearchTextChanged (string text)
@@ -223,14 +223,14 @@ namespace MonoTouch.Dialog
 			
 			var newSections = new List<Section> ();
 			
-			for (int sidx = 0; sidx < originalSections.Length; sidx++){
+			for (int sidx = 0; sidx < originalSections.Length; sidx++) {
 				Section newSection = null;
 				var section = originalSections [sidx];
 				Element [] elements = originalElements [sidx];
 				
-				for (int eidx = 0; eidx < elements.Length; eidx++){
-					if (elements [eidx].Matches (text)){
-						if (newSection == null){
+				for (int eidx = 0; eidx < elements.Length; eidx++) {
+					if (elements [eidx].Matches (text)) {
+						if (newSection == null) {
 							newSection = new Section (section.Header, section.Footer){
 								FooterView = section.FooterView,
 								HeaderView = section.HeaderView
@@ -251,7 +251,8 @@ namespace MonoTouch.Dialog
 		{
 		}
 			
-		class SearchDelegate : UISearchBarDelegate {
+		class SearchDelegate : UISearchBarDelegate
+		{
 			DialogViewController container;
 			
 			public SearchDelegate (DialogViewController container)
@@ -289,7 +290,8 @@ namespace MonoTouch.Dialog
 			}
 		}
 		
-		public class Source : UITableViewSource {
+		public class Source : UITableViewSource
+		{
 			const float yboundary = 65;
 			protected DialogViewController Container;
 			protected RootElement Root;
@@ -342,7 +344,7 @@ namespace MonoTouch.Dialog
 			
 			public override void WillDisplay (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
 			{
-				if (Root.NeedColorUpdate){
+				if (Root.NeedColorUpdate) {
 					var section = Root.Sections [indexPath.Section];
 					var element = section.Elements [indexPath.Row];
 					var colorized = element as IColorizeBackground;
@@ -399,16 +401,16 @@ namespace MonoTouch.Dialog
 					return;
 				if (Container.reloading)
 					return;
-				var view  = Container.refreshView;
+				var view = Container.refreshView;
 				if (view == null)
 					return;
 				
 				var point = Container.TableView.ContentOffset;
 				
-				if (view.IsFlipped && point.Y > -yboundary && point.Y < 0){
+				if (view.IsFlipped && point.Y > -yboundary && point.Y < 0) {
 					view.Flip (true);
 					view.SetStatus (RefreshViewStatus.PullToReload);
-				} else if (!view.IsFlipped && point.Y < -yboundary){
+				} else if (!view.IsFlipped && point.Y < -yboundary) {
 					view.Flip (true);
 					view.SetStatus (RefreshViewStatus.ReleaseToReload);
 				}
@@ -437,8 +439,11 @@ namespace MonoTouch.Dialog
 		// probe *every* row for its size;   Avoid this by creating a separate
 		// model that is used only when we have items that require resizing
 		//
-		public class SizingSource : Source {
-			public SizingSource (DialogViewController controller) : base (controller) {}
+		public class SizingSource : Source
+		{
+			public SizingSource (DialogViewController controller) : base (controller)
+			{
+			}
 			
 			public override float GetHeightForRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 			{
@@ -489,7 +494,7 @@ namespace MonoTouch.Dialog
 
 		void SetupSearch ()
 		{
-			if (enableSearch){
+			if (enableSearch) {
 				searchBar = new UISearchBar (new RectangleF (0, 0, tableView.Bounds.Width, 44)) {
 					Delegate = new SearchDelegate (this)
 				};
@@ -544,7 +549,7 @@ namespace MonoTouch.Dialog
 		
 		void ConfigureTableView ()
 		{
-			if (refreshRequested != null){
+			if (refreshRequested != null) {
 				// The dimensions should be large enough so that even if the user scrolls, we render the
 				// whole are with the background color.
 				var bounds = View.Bounds;
@@ -563,8 +568,8 @@ namespace MonoTouch.Dialog
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (AutoHideSearch){
-				if (enableSearch){
+			if (AutoHideSearch) {
+				if (enableSearch) {
 					if (TableView.ContentOffset.Y < 44)
 						TableView.ContentOffset = new PointF (0, 44);
 				}
@@ -577,7 +582,7 @@ namespace MonoTouch.Dialog
 			NavigationItem.HidesBackButton = !pushing;
 			if (root.Caption != null)
 				NavigationItem.Title = root.Caption;
-			if (dirty){
+			if (dirty) {
 				tableView.ReloadData ();
 				dirty = false;
 			}
@@ -615,11 +620,11 @@ namespace MonoTouch.Dialog
 			if (root == null)
 				return;
 			
-			if(root.Caption != null) 
+			if (root.Caption != null) 
 				NavigationItem.Title = root.Caption;
 			
 			root.Prepare ();
-			if (tableView != null){
+			if (tableView != null) {
 				UpdateSource ();
 				tableView.ReloadData ();
 			}

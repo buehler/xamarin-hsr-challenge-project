@@ -4,7 +4,6 @@ using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
 
 namespace HSR_Helper.iOS
 {
@@ -50,4 +49,3 @@ namespace HSR_Helper.iOS
 		}
 	}
 }
-

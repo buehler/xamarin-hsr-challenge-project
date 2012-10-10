@@ -7,7 +7,7 @@ namespace HSR_Helper.iOS
 	{
 		public TimetableDialogViewController (RootElement root) : base(root)
 		{
-			Style = MonoTouch.UIKit.UITableViewStyle.Plain;
+			base.Style = MonoTouch.UIKit.UITableViewStyle.Plain;
 		}
 	}
 }
