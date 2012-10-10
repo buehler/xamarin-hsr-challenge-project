@@ -15,12 +15,13 @@ namespace HSR_Helper.iOS
 			}
 		}
 
-		private UserInformation _userInformation;
-		public UserInformation UserInformation {
+		private UserCredentials _userCredentials;
+        public UserCredentials UserCredentials
+        {
 			get {
-				if (_userInformation == null)
-					_userInformation = Persistency.Load<UserInformation>();
-				return _userInformation;
+				if (_userCredentials == null)
+                    _userCredentials = Persistency.Load<UserCredentials>();
+				return _userCredentials;
 			}
 		}
 

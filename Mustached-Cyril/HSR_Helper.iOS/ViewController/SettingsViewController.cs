@@ -7,8 +7,8 @@ namespace HSR_Helper.iOS
 	{
 		public SettingsViewController () : base(new RootElement("Einstellungen"))
 		{
-			var userEntry = new EntryElement ("Benutzername", "benutzername", ApplicationSettings.Instance.UserInformation.Name);
-			var passwordEntry = new EntryElement ("Passwort", "passwort", ApplicationSettings.Instance.UserInformation.Name, true);
+			var userEntry = new EntryElement ("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
+			var passwordEntry = new EntryElement ("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name, true);
 			userEntry.Changed += UsernameChanged;
 			passwordEntry.Changed += PasswordChanged;
 			Root.Add (new CustomFontSection ("Benutzerinformationen", 16){
@@ -24,8 +24,8 @@ namespace HSR_Helper.iOS
 			Console.WriteLine ("Username changed");
 			var field = s as EntryElement;
 			if (field != null) {
-				ApplicationSettings.Instance.UserInformation.Name = field.Value;
-				ApplicationSettings.Instance.Persistency.Save (ApplicationSettings.Instance.UserInformation);
+				ApplicationSettings.Instance.UserCredentials.Name = field.Value;
+				ApplicationSettings.Instance.Persistency.Save (ApplicationSettings.Instance.UserCredentials);
 			}
 		}
 
@@ -34,8 +34,8 @@ namespace HSR_Helper.iOS
 			Console.WriteLine ("PW Changed");
 			var field = s as EntryElement;
 			if (field != null) {
-				ApplicationSettings.Instance.UserInformation.Password = field.Value;
-				ApplicationSettings.Instance.Persistency.Save (ApplicationSettings.Instance.UserInformation);
+				ApplicationSettings.Instance.UserCredentials.Password = field.Value;
+				ApplicationSettings.Instance.Persistency.Save (ApplicationSettings.Instance.UserCredentials);
 			}
 		}
 	}

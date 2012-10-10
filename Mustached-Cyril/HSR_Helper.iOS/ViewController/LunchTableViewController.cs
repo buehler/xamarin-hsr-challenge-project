@@ -1,11 +1,11 @@
 ﻿
 using System;
 using System.Drawing;
+using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 using HSR_Helper.iOS.Controller;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Linq;
-using HSR_Helper.DomainLibrary.Domain.Userinformation;
 using MonoTouch.Dialog;
 
 namespace HSR_Helper.iOS
