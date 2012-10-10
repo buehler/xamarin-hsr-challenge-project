@@ -69,14 +69,14 @@ namespace HSR_Helper.iOS.Controller
 			}
 		}
 
-		public void RemovePage (int pageNumber)
+		public void RemovePage (int pageIndex)
 		{
-			if (pageNumber < 1 || pageNumber > _scrollView.Subviews.Count ())
+			if (pageIndex < 0 || pageIndex > _scrollView.Subviews.Count () - 1)
 				throw new ArgumentOutOfRangeException ("pageNumber", "No page with that number exists.");
 			List<UIView> subviews = _scrollView.Subviews.ToList ();
 			subviews.ForEach (v => v.RemoveFromSuperview ());
 			var controller = (from c in _viewControllers
-							  where _viewControllers.IndexOf (c) != (pageNumber - 1)
+							  where _viewControllers.IndexOf (c) != (pageIndex)
 							  select c).ToList ();
 			_viewControllers.Clear ();
 			AddPages (controller);
@@ -90,10 +90,14 @@ namespace HSR_Helper.iOS.Controller
 			_pageControl.Pages = (_scrollView.Subviews.Count () == 0 ? 1 : _scrollView.Subviews.Count ());
 		}
 
-		public void ScrollToPage (int pageNumber)
+		public void ScrollToPage (int pageIndex)
 		{
-			_scrollView.SetContentOffset (new PointF (_scrollView.Frame.Width * pageNumber, 0), true);
-			PageChanged ();
+			if (pageIndex < 0 || pageIndex > _scrollView.Subviews.Count () - 1)
+				throw new ArgumentOutOfRangeException ("pageNumber", "No page with that number exists.");
+			if (pageIndex != CurrentPage) {
+				_scrollView.SetContentOffset (new PointF (_scrollView.Frame.Width * pageIndex, 0), true);
+				PageChanged ();
+			}
 		}
 
 		private void ReframeScrollview ()

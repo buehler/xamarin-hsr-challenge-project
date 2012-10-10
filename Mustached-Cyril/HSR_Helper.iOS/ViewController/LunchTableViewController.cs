@@ -41,7 +41,12 @@ namespace HSR_Helper.iOS
 				foreach (LunchDay lunchDay in lunchtable.LunchDays) {
 					_pageScrollController.AddPage (CreateView (lunchDay));
 				}
+				try {
+					_pageScrollController.ScrollToPage ((int)DateTime.Now.DayOfWeek - 1);
+				} catch (Exception) {
+				}
 			});
+
 		}
 
 		private DialogViewController CreateView (LunchDay lunchDay)
