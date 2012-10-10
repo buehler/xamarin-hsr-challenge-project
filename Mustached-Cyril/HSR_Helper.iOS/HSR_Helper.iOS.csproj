@@ -104,6 +104,7 @@
     <Compile Include="ViewController\SettingsViewController.cs" />
     <Compile Include="Controller\ApplicationSettings.cs" />
     <Compile Include="Enums\ApplicationColors.cs" />
+    <Compile Include="CustomControlls\TimetableDialogViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
