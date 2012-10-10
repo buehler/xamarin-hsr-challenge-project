@@ -11,8 +11,6 @@
     <RootNamespace>HSR_Helper.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_HelperiOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -106,7 +104,6 @@
     <Compile Include="ViewController\SettingsViewController.cs" />
     <Compile Include="Controller\ApplicationSettings.cs" />
     <Compile Include="Enums\ApplicationColors.cs" />
-    <Compile Include="CustomControlls\TimetableDialogViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
@@ -122,11 +119,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\LunchTableView.xib" />
-    <Page Include="Views\TimetableView.xib" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\whitey_%402X.png" />
     <BundleResource Include="Resources\whitey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\LunchTableView.xib" />
+    <InterfaceDefinition Include="Views\TimetableView.xib" />
   </ItemGroup>
 </Project>
