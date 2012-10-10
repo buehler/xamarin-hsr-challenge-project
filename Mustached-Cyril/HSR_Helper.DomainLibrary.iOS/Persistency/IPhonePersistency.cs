@@ -23,6 +23,12 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 			}
 		}
 
+        public bool Exists<T>() where T : IPersistentObject, new()
+        {
+            T prototype = new T();
+            return File.Exists(Path.Combine(SavePath, prototype.Id));
+        }
+
 		public bool Delete<T> () where T : IPersistentObject, new()
 		{
 			try {
@@ -47,5 +53,6 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 				return new T ();
 			}
 		}
-	}
+
+    }
 }
