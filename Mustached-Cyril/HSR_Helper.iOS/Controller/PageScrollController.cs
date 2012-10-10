@@ -62,31 +62,24 @@ namespace HSR_Helper.iOS.Controller
 				PageChanged ();
 		}
 
-		public void AddPages (IEnumerable<T> views)
+		public void AddPages (IEnumerable<T> controller)
 		{
-			foreach (T view in views) {
-				AddPage (view);
+			foreach (T c in controller) {
+				AddPage (c);
 			}
 		}
 
 		public void RemovePage (int pageNumber)
 		{
-			for (int i = pageNumber-1; i < _scrollView.Subviews.Count (); i++) {
-				if (i == (_scrollView.Subviews.Count () - 1)) {
-					_scrollView.Subviews [i] = null;
-					break;
-				} else {
-					_scrollView.Subviews [i] = _scrollView.Subviews [i + 1];
-				}
-			}
-			_viewControllers.RemoveAt (pageNumber - 1);
-			ReframeScrollview ();
-			_pageControl.Pages = _viewControllers.Count ();
-		}
-
-		public void RemovePage (T controller)
-		{
-			RemovePage (_viewControllers.IndexOf (controller) + 1);
+			if (pageNumber < 1 || pageNumber > _scrollView.Subviews.Count ())
+				throw new ArgumentOutOfRangeException ("pageNumber", "No page with that number exists.");
+			List<UIView> subviews = _scrollView.Subviews.ToList ();
+			subviews.ForEach (v => v.RemoveFromSuperview ());
+			var controller = (from c in _viewControllers
+							  where _viewControllers.IndexOf (c) != (pageNumber - 1)
+							  select c).ToList ();
+			_viewControllers.Clear ();
+			AddPages (controller);
 		}
 
 		public void ScrollToPage (int pageNumber)

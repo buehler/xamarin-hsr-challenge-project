@@ -41,6 +41,7 @@ namespace HSR_Helper.iOS
 				foreach (LunchDay lunchDay in lunchtable.LunchDays) {
 					_pageScrollController.AddPage (CreateView (lunchDay));
 				}
+				_pageScrollController.RemovePage (2);
 			});
 		}
 
