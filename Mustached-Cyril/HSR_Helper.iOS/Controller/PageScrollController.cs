@@ -39,7 +39,7 @@ namespace HSR_Helper.iOS.Controller
 			_scrollView = scrollView;
 			_pageControl = pageControl;
 			_pageControl.ValueChanged += PageControllValueChanged;
-			_pageControl.Pages = 0;
+			_pageControl.Pages = 1;
 			_scrollView.PagingEnabled = true;
 			_scrollView.ScrollEnabled = true;
 			_scrollView.ShowsHorizontalScrollIndicator = false;

@@ -31,7 +31,7 @@ namespace HSR_Helper.iOS
 			_window = new UIWindow (UIScreen.MainScreen.Bounds);
 			UINavigationBar.Appearance.TintColor = ApplicationColors.NAVIGATIONBAR;
 			UITabBar.Appearance.TintColor = ApplicationColors.TABBAR;
-			//UIPageControl.Appearance.CurrentPageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_CURRENT_PAGE;
+			UIPageControl.Appearance.CurrentPageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_CURRENT_PAGE;
 			UIPageControl.Appearance.PageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_PAGES;
 			_tabBarController = new UITabBarController
 			                        {
