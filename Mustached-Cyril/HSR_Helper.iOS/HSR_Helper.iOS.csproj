@@ -99,16 +99,18 @@
     </Compile>
     <Compile Include="Controller\PageScrollController.cs" />
     <Compile Include="CustomControlls\DefaultDialogViewController.cs" />
-    <Compile Include="Helpers\ApplicationColors.cs" />
     <Compile Include="CustomControlls\CustomFontMultilineElement.cs" />
     <Compile Include="CustomControlls\CustomFontSection.cs" />
     <Compile Include="ViewController\SettingsViewController.cs" />
     <Compile Include="Controller\ApplicationSettings.cs" />
+    <Compile Include="Enums\ApplicationColors.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSR_Helper.DomainLibrary.iOS\HSR_Helper.DomainLibrary.iOS.csproj">
