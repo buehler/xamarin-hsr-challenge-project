@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain
 {
     public class Timetable
     {
-        public List<Lecture> Lectures { get; private set; }
-
+        [JsonProperty("Days")]
+        public List<TimetableDay> TimetableDays { get; set; }
+        [JsonProperty("Semester")]
+        public string Semester { get; set; }
+        
         public Timetable()
         {
-            Lectures = new List<Lecture>();
+            TimetableDays = new List<TimetableDay>();
         }
     }
 }
