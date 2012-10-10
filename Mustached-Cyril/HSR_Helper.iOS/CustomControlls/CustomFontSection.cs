@@ -15,8 +15,8 @@ namespace HSR_Helper.iOS
 			label.Font = UIFont.BoldSystemFontOfSize (fontSize);
 			label.Text = caption;
 			label.TextAlignment = alignment;
-			label.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
-			label.TextColor = (textColor == null ? ApplicationColors.TABLE_HEADER_FONT_COLOR : textColor);
+			label.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
+			label.TextColor = (textColor == null ? ApplicationColors.TABLE_HEADER_FONT : textColor);
 			this.HeaderView = label;
 		}
 	}

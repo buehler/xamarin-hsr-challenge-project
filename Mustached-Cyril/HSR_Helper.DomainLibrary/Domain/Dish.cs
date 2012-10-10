@@ -10,17 +10,6 @@ namespace HSR_Helper.DomainLibrary.Domain
 {
 	public class Dish
 	{
-#region IPersistentObject implementation
-
-		public Guid Id { get; set; }
-
-		public string Filename {
-			get;
-			set;
-		}
-
-#endregion
-
 		[JsonProperty("id")]
 		public int DishId { get; set; }
 		[JsonProperty("title")]

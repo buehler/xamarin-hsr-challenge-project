@@ -29,7 +29,10 @@ namespace HSR_Helper.iOS
 		{
 			// create a new window instance based on the screen size
 			_window = new UIWindow (UIScreen.MainScreen.Bounds);
-			UINavigationBar.Appearance.TintColor = ApplicationColors.NAVIGATIONBAR_COLOR;
+			UINavigationBar.Appearance.TintColor = ApplicationColors.NAVIGATIONBAR;
+			UITabBar.Appearance.TintColor = ApplicationColors.TABBAR;
+			//UIPageControl.Appearance.CurrentPageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_CURRENT_PAGE;
+			UIPageControl.Appearance.PageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_PAGES;
 			_tabBarController = new UITabBarController
 			                        {
 			                            ViewControllers = new UIViewController[]

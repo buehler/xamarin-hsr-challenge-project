@@ -26,7 +26,7 @@ namespace HSR_Helper.iOS
 			_pageScrollController = new PageScrollController<DialogViewController> (ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable (LunchtableCallback);
-			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
+			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
 
 		private void PageChanged (int newPage)

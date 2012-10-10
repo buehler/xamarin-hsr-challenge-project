@@ -24,7 +24,7 @@ namespace HSR_Helper.iOS
 		public CustomFontMultilineElement (string caption, int fontSize, FontStyle fontStyle):base(caption)
 		{
 			_font = GetFontFromStyle (fontStyle, fontSize);
-			TextColor = ApplicationColors.TABLE_FONT_COLOR;
+			TextColor = ApplicationColors.TABLE_FONT;
 		}
 
 		public CustomFontMultilineElement (string caption, string value):this(caption, value, 16, FontStyle.Bold, FontStyle.Normal)
@@ -34,9 +34,9 @@ namespace HSR_Helper.iOS
 		public CustomFontMultilineElement (string caption, string value, int fontSize, FontStyle fontStyle, FontStyle detailFontStyle) : base(caption, value)
 		{
 			_font = GetFontFromStyle (fontStyle, fontSize);
-			TextColor = ApplicationColors.TABLE_FONT_COLOR;
+			TextColor = ApplicationColors.TABLE_FONT;
 			_detailFont = GetFontFromStyle (detailFontStyle, fontSize);
-			DetailColor = ApplicationColors.TABLE_DETAIL_FONT_COLOR;
+			DetailColor = ApplicationColors.TABLE_DETAIL_FONT;
 		}
 
 		public override UITableViewCell GetCell (UITableView tv)

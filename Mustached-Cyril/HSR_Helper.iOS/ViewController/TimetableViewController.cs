@@ -23,7 +23,7 @@ namespace HSR_Helper.iOS
 			base.ViewDidLoad ();
 			//_pageScrollController = new PageScrollController<TimetableDetailViewController>(ScrollView, PageController);
 			// Perform any additional setup after loading the view, typically from a nib.
-			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND_COLOR;
+			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
 	}
 }
