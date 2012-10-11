@@ -89,7 +89,7 @@
     </Compile>
     <Compile Include="Persistency\IPhonePersistency.cs" />
     <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\PersistentObject.cs">
-      <Link>Persistency\IPersistentObject.cs</Link>
+      <Link>Persistency\PersistentObject.cs</Link>
     </Compile>
   </ItemGroup>
   <ProjectExtensions>

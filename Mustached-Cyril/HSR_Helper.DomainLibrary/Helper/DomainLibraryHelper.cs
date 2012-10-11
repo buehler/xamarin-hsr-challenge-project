@@ -62,7 +62,7 @@ namespace HSR_Helper.DomainLibrary.Helper
 						lunchtable = JsonHelper.ParseJson<Lunchtable> (response);
 						callback (lunchtable);
 					} else {
-						var errorMsg = new Dish ("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusDescription));
+						var errorMsg = new Dish ("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusCode + ": " + response.StatusDescription));
 						lunchtable = new Lunchtable ();
 						var lunchday = new LunchDay ("error");
 						lunchday.Dishes.Add (errorMsg);

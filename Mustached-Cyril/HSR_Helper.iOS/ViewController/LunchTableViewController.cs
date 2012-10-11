@@ -25,6 +25,8 @@ namespace HSR_Helper.iOS
 			base.ViewDidLoad ();
 			_pageScrollController = new PageScrollController<DialogViewController> (ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
+			if (ApplicationSettings.Instance.Persistency.Exists<Lunchtable> ())
+				LunchtableCallback (ApplicationSettings.Instance.Persistency.Load<Lunchtable> ());
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable (LunchtableCallback);
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
@@ -60,7 +62,7 @@ namespace HSR_Helper.iOS
 			}
 			var root = new RootElement (lunchDay.DateString);
 			foreach (Dish d in lunchDay.Dishes) {
-				var section = new Section (d.Title)//CustomFontSection (d.Title)
+				var section = new Section (d.Title)
 				{
 					new CustomFontMultilineElement(d.Description, 15, CustomFontMultilineElement.FontStyle.Normal),
 					new CustomFontMultilineElement("", d.PriceInternal, 14, CustomFontMultilineElement.FontStyle.Bold, CustomFontMultilineElement.FontStyle.Bold)
