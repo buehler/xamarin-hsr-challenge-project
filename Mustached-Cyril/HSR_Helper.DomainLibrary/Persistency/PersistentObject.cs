@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace HSR_Helper.DomainLibrary.Persistency
 {
-	public delegate void PersistentObjectChangedHandler ();
+	public delegate void PersistentObjectChangedHandler (PersistentObject changedObject);
 
 	public abstract class PersistentObject
 	{
@@ -20,7 +20,7 @@ namespace HSR_Helper.DomainLibrary.Persistency
 		protected void OnObjectChanged ()
 		{
 			if (ObjectChanged != null)
-				ObjectChanged ();
+				ObjectChanged (this);
 		}
 
 		public event PersistentObjectChangedHandler ObjectChanged;
