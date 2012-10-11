@@ -20,5 +20,10 @@ namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 		{
 			Dishes = new List<Dish> ();
 		}
+
+		public LunchDay (string datestring) : this()
+		{
+			DateString = datestring;
+		}
 	}
 }

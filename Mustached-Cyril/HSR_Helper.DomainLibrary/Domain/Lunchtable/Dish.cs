@@ -26,5 +26,15 @@ namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 				_priceInternal = "CHF " + value;
 			} 
 		}
+
+		public Dish ()
+		{
+		}
+
+		public Dish (string title, string description)
+		{
+			Title = title;
+			Description = description;
+		}
 	}
 }

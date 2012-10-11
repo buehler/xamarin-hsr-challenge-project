@@ -27,26 +27,26 @@ namespace HSR_Helper.DomainLibrary.Helper
 
 		public static void GetUserTimetable (UserCredentials userCredentials, TimetableCallback callback)
 		{
-			if (userCredentials.CredentialsFilled) {
-				var b = new BackgroundWorker ();
-				b.DoWork += (sender, args) =>
-				{
-					var restClient = new RestClient (HsrRestUrl);
-					restClient.Authenticator = new HttpBasicAuthenticator (userCredentials.Name, userCredentials.Password);
-					restClient.AddDefaultHeader ("Accept", "text/json");
-					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + userCredentials.Name, Method.GET), (response, handle) =>
-					{
-						var timetable = JsonHelper.ParseJson<Timetable> (response);
-						callback (timetable);
-					});
-				};
-				b.RunWorkerAsync ();
-			} else {
-				var timetable = new Timetable ();
-				timetable.Semester = "keine Angaben";
-				timetable.TimetableDays.Add (new TimetableDay (){Id = 0, Weekday = "kein Login"});
-				callback (timetable);
-			}
+//			if (userCredentials.CredentialsFilled) {
+//				var b = new BackgroundWorker ();
+//				b.DoWork += (sender, args) =>
+//				{
+//					var restClient = new RestClient (HsrRestUrl);
+//					restClient.Authenticator = new HttpBasicAuthenticator (userCredentials.Name, userCredentials.Password);
+//					restClient.AddDefaultHeader ("Accept", "text/json");
+//					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + userCredentials.Name, Method.GET), (response, handle) =>
+//					{
+//						var timetable = JsonHelper.ParseJson<Timetable> (response);
+//						callback (timetable);
+//					});
+//				};
+//				b.RunWorkerAsync ();
+//			} else {
+//				var timetable = new Timetable ();
+//				timetable.Semester = "keine Angaben";
+//				timetable.TimetableDays.Add (new TimetableDay (){Id = 0, Weekday = "kein Login"});
+//				callback (timetable);
+//			}
 		}
 
 		public static void GetLunchtable (LunchtableCallback callback)
@@ -57,8 +57,18 @@ namespace HSR_Helper.DomainLibrary.Helper
 				var restClient = new RestClient (SvgroupRestUrl);
 				restClient.ExecuteAsync (new RestRequest ("/days", Method.GET), (response, handle) =>
 				{
-					var lunchtable = JsonHelper.ParseJson<Lunchtable> (response);
-					callback (lunchtable);
+					Lunchtable lunchtable;
+					if (response.StatusCode == System.Net.HttpStatusCode.OK) {
+						lunchtable = JsonHelper.ParseJson<Lunchtable> (response);
+						callback (lunchtable);
+					} else {
+						var errorMsg = new Dish ("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusDescription));
+						lunchtable = new Lunchtable ();
+						var lunchday = new LunchDay ("error");
+						lunchday.Dishes.Add (errorMsg);
+						lunchtable.LunchDays.Add (lunchday);
+						callback (lunchtable);
+					}
 				});
 			};
 			b.RunWorkerAsync ();
