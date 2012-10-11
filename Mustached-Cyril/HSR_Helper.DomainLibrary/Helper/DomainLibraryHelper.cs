@@ -22,7 +22,7 @@ namespace HSR_Helper.DomainLibrary.Helper
 
 		public static void GetUserBadgeInformation (UserCredentials userCredentials, BadgeInformationCallback callback)
 		{
-			throw new NotImplementedException ("Kommt am 7.okt");
+			throw new NotImplementedException ("Nur Testdaten vorhanden und scheiss - SOAP Schnittstelle");
 		}
 
 		public static void GetUserTimetable (UserCredentials userCredentials, TimetableCallback callback)

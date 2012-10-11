@@ -9,11 +9,12 @@ namespace HSR_Helper.iOS
 		{
 			var userEntry = new EntryElement ("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
 			var passwordEntry = new EntryElement ("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name, true);
+			var deleteLocalFiles = new StyledStringElement("Lokale Daten löschen", )
 			userEntry.AutocorrectionType = passwordEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
 			userEntry.AutocapitalizationType = passwordEntry.AutocapitalizationType = MonoTouch.UIKit.UITextAutocapitalizationType.None;
 			userEntry.Changed += UsernameChanged;
 			passwordEntry.Changed += PasswordChanged;
-			Root.Add (new CustomFontSection ("Benutzerinformationen", 16){
+			Root.Add (new Section ("Benutzerinformationen"){
 				userEntry,
 				passwordEntry
 			});
