@@ -17,7 +17,7 @@ namespace HSR_Helper.DomainLibrary.Persistency
 			}
 		}
 
-
+		public DateTime LastUpdated{ get; set; }
 
 		protected void OnObjectChanged ()
 		{

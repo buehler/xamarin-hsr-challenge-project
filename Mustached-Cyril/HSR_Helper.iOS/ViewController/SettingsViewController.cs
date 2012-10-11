@@ -55,7 +55,7 @@ namespace HSR_Helper.iOS
 			Console.WriteLine ("Delete Local Files!!");
 //			ApplicationSettings.Instance.UserCredentials.Name = null;
 //			ApplicationSettings.Instance.UserCredentials.Password = null;
-//			ApplicationSettings.Instance.Persistency.Delete<Timetable> ();
+			ApplicationSettings.Instance.Persistency.Delete<Timetable> ();
 //			ApplicationSettings.Instance.Persistency.Delete<Lunchtable> ();
 		}
 	}

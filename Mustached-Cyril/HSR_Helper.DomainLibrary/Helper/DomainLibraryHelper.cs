@@ -7,11 +7,12 @@ using HSR_Helper.DomainLibrary.Domain.Userinformation;
 using HSR_Helper.DomainLibrary.Domain.Timetable;
 using System.ComponentModel;
 using RestSharp;
+using System.Threading;
 
 namespace HSR_Helper.DomainLibrary.Helper
 {
 	public delegate void BadgeInformationCallback (BadgeInformation badgeInformation);
-	public delegate void TimetableCallback (Timetable timetable);
+	public delegate void TimetableCallback (Timetable timetable,object[] callbackArguments);
 	public delegate void LunchtableCallback (Lunchtable lunchtable);
 
 	public static class DomainLibraryHelper
@@ -25,28 +26,37 @@ namespace HSR_Helper.DomainLibrary.Helper
 			throw new NotImplementedException ("Nur Testdaten vorhanden und scheiss - SOAP Schnittstelle");
 		}
 
-		public static void GetUserTimetable (UserCredentials userCredentials, TimetableCallback callback)
+		public static void GetUserTimetable (UserCredentials userCredentials, TimetableCallback callback, object[] callbackArguments = null)
 		{
-//			if (userCredentials.CredentialsFilled) {
-//				var b = new BackgroundWorker ();
-//				b.DoWork += (sender, args) =>
-//				{
-//					var restClient = new RestClient (HsrRestUrl);
-//					restClient.Authenticator = new HttpBasicAuthenticator (userCredentials.Name, userCredentials.Password);
-//					restClient.AddDefaultHeader ("Accept", "text/json");
-//					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + userCredentials.Name, Method.GET), (response, handle) =>
-//					{
-//						var timetable = JsonHelper.ParseJson<Timetable> (response);
-//						callback (timetable);
-//					});
-//				};
-//				b.RunWorkerAsync ();
-//			} else {
-//				var timetable = new Timetable ();
-//				timetable.Semester = "keine Angaben";
-//				timetable.TimetableDays.Add (new TimetableDay (){Id = 0, Weekday = "kein Login"});
-//				callback (timetable);
-//			}
+			var b = new BackgroundWorker ();
+			b.DoWork += (sender, args) =>
+			{
+				if (userCredentials.CredentialsFilled) {
+
+					var restClient = new RestClient (HsrRestUrl);
+					restClient.Authenticator = new HttpBasicAuthenticator (userCredentials.Name, userCredentials.Password);
+					restClient.AddDefaultHeader ("Accept", "text/json");
+					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + userCredentials.Name, Method.GET), (response, handle) =>
+					{
+						var timetable = JsonHelper.ParseJson<Timetable> (response);
+						timetable.LastUpdated = DateTime.Now;
+						callback (timetable, callbackArguments);
+					});
+				} else {
+					var timetable = new Timetable ();
+					timetable.Semester = "keine userdaten.";
+					var day = new TimetableDay ();
+					day.Id = 0;
+					day.Weekday = "error";
+					var lession = new Lession ();
+					lession.Name = "userdaten erfassen";
+					lession.CourseAllocations.Add (new CourseAllocation (){Timeslot="um daten abzurufen\nbitte userdaten eingeben!"});
+					day.Lessions.Add (lession);
+					timetable.TimetableDays.Add (day);
+					timetable.LastUpdated = DateTime.Now;
+					callback (timetable, callbackArguments);
+				}};
+			b.RunWorkerAsync ();
 		}
 
 		public static void GetLunchtable (LunchtableCallback callback)

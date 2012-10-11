@@ -25,44 +25,24 @@ namespace HSR_Helper.iOS
 		{
 			base.ViewDidLoad ();
 			_pageScrollController = new PageScrollController<DefaultDialogViewController> (ScrollView, PageController);
-
 			_pageScrollController.OnPageChange += PageChanged;
-			var root = new RootElement ("Pull to Refresh"){
-				new Section () {
-					new MultilineElement ("Pull from the top to add\na new item at the bottom\nThen wait 1 second")
-				}
-			};
-			var dvc = new DefaultDialogViewController (root);
+			if (ApplicationSettings.Instance.Persistency.Exists<Timetable> ())
+				TimetableCallback (ApplicationSettings.Instance.Persistency.Load<Timetable> (), null);
+			else
+				_pageScrollController.AddPage (GetNoDataScreen ());
 
-			dvc.Style = UITableViewStyle.Plain;
-
-			_pageScrollController.AddPage (dvc);
-
-//			if (ApplicationSettings.Instance.Persistency.Exists<Timetable> ())
-//				TimetableCallback (ApplicationSettings.Instance.Persistency.Load<Timetable> ());
-//			else
-//				_pageScrollController.AddPage (GetInitScreen ());
-//			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, TimetableCallback);
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
 
-		private DefaultDialogViewController GetInitScreen ()
+		private DefaultDialogViewController GetNoDataScreen ()
 		{
-			var _activityView = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.WhiteLarge);
-			_activityView.Frame.Width = 30;
-			_activityView.Frame.Height = 30;
-			_activityView.Frame.X = 150;
-			_activityView.Color = ApplicationColors.PAGECONTROLLER_PAGES;
-			_activityView.StartAnimating ();
 			return new DefaultDialogViewController (
-				new RootElement ("Lade"){
-					new Section("lade daten..."),
-					new Section("dies kann beim ersten mal etwas dauern..."),
-					new Section(""){
-						new UIViewElement("", _activityView, true)
-					}
+				new RootElement ("keine daten"){
+					new Section("keine daten"){
+					new MultilineElement("pull to refresh...\n(dauert ein wenig)")
 				}
-			);
+				}
+			, UITableViewStyle.Plain, RefreshRequested);
 		}
 
 		private void PageChanged (int newPage)
@@ -70,11 +50,14 @@ namespace HSR_Helper.iOS
 			NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
 		}
 
-		private void TimetableCallback (Timetable timetable)
+		private void TimetableCallback (Timetable timetable, object[] args)
 		{
 			ApplicationSettings.Instance.Persistency.Save (timetable);
 			UIApplication.SharedApplication.InvokeOnMainThread (() =>
 			{
+				if (args != null) {
+					args.ToList ().ForEach (o => (o as DefaultDialogViewController).ReloadComplete ());
+				}
 				_pageScrollController.Clear ();
 				foreach (var day in timetable.TimetableDays) {
 					if (day.Lessions.Count () == 0)
@@ -90,9 +73,16 @@ namespace HSR_Helper.iOS
 						}
 						root.Add (section);
 					}
-					//_pageScrollController.AddPage (new DefaultDialogViewController (UITableViewStyle.Plain, root));
+					var dvc = new DefaultDialogViewController (root, UITableViewStyle.Plain, RefreshRequested);
+					dvc.CustomLastUpdate = timetable.LastUpdated;
+					_pageScrollController.AddPage (dvc);
 				}
 			});
+		}
+
+		private void RefreshRequested (object s, EventArgs e)
+		{
+			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, TimetableCallback, new object[]{s});
 		}
 	}
 }

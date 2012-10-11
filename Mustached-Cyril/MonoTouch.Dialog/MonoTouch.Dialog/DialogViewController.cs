@@ -27,7 +27,7 @@ namespace MonoTouch.Dialog
 		public event Action<NSIndexPath> OnSelection;
 		UISearchBar searchBar;
 		UITableView tableView;
-		RefreshTableHeaderView refreshView;
+		protected RefreshTableHeaderView refreshView;
 		RootElement root;
 		bool pushing;
 		bool dirty;
