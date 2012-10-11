@@ -25,10 +25,12 @@ namespace HSR_Helper.iOS
 		{
 			base.ViewDidLoad ();
 			_pageScrollController = new PageScrollController<DefaultDialogViewController> (ScrollView, PageController);
-			_pageScrollController.AddPage (GetInitScreen ());
+
 			_pageScrollController.OnPageChange += PageChanged;
 			if (ApplicationSettings.Instance.Persistency.Exists<Timetable> ())
 				TimetableCallback (ApplicationSettings.Instance.Persistency.Load<Timetable> ());
+			else
+				_pageScrollController.AddPage (GetInitScreen ());
 			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, TimetableCallback);
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}

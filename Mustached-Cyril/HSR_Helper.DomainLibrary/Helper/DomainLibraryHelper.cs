@@ -16,6 +16,7 @@ namespace HSR_Helper.DomainLibrary.Helper
 
 	public static class DomainLibraryHelper
 	{
+		//TODO: Errorhandling
 		private const string SvgroupRestUrl = "http://kck.me/svhsr";
 		private const string HsrRestUrl = "https://stundenplanws.hsr.ch:4443";
 

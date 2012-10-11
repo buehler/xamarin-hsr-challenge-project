@@ -22,13 +22,13 @@ namespace HSR_Helper.iOS.Controller
 
 		public int PageCount {
 			get {
-				return _viewControllers.Count ();
+				return _scrollView.Subviews.Count ();
 			}
 		}
 
 		public T this [int pageIndex] {
 			get {
-				if (pageIndex < 0 || pageIndex > _viewControllers.Count ())
+				if (pageIndex < 0 || pageIndex > _viewControllers.Count () - 1)
 					throw new ArgumentOutOfRangeException ("pageIndex", "Index is out of bounds.");
 				return _viewControllers.ElementAt (pageIndex);
 			}
@@ -52,13 +52,13 @@ namespace HSR_Helper.iOS.Controller
 			ReframeScrollview ();
 			RectangleF lastFrame = _scrollView.Frame;
 			PointF lastLocation = new PointF ();
-			lastLocation.X = lastFrame.Width * _scrollView.Subviews.Count ();
+			lastLocation.X = lastFrame.Width * PageCount;
 			lastFrame.Location = lastLocation;
 			controller.View.Frame = lastFrame;
 			_scrollView.AddSubview (controller.View);
 			_viewControllers.Add (controller);
-			_pageControl.Pages = (_scrollView.Subviews.Count () == 0 ? 1 : _scrollView.Subviews.Count ());
-			if (PageCount == 1)
+			_pageControl.Pages = (PageCount == 0 ? 1 : PageCount);
+			if (PageCount >= 1)
 				PageChanged ();
 		}
 
@@ -87,7 +87,7 @@ namespace HSR_Helper.iOS.Controller
 			List<UIView> subviews = _scrollView.Subviews.ToList ();
 			subviews.ForEach (v => v.RemoveFromSuperview ());
 			_viewControllers.Clear ();
-			_pageControl.Pages = (_scrollView.Subviews.Count () == 0 ? 1 : _scrollView.Subviews.Count ());
+			_pageControl.Pages = (PageCount == 0 ? 1 : PageCount);
 		}
 
 		public void ScrollToPage (int pageIndex)
