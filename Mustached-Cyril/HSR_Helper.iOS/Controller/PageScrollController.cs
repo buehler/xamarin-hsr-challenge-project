@@ -58,8 +58,7 @@ namespace HSR_Helper.iOS.Controller
 			_scrollView.AddSubview (controller.View);
 			_viewControllers.Add (controller);
 			_pageControl.Pages = (PageCount == 0 ? 1 : PageCount);
-			if (PageCount >= 1)
-				PageChanged ();
+			PageChanged ();
 		}
 
 		public void AddPages (IEnumerable<T> controller)
@@ -130,7 +129,7 @@ namespace HSR_Helper.iOS.Controller
 
 		private void PageChanged ()
 		{
-			if (OnPageChange != null)
+			if (OnPageChange != null && PageCount >= 1)
 				OnPageChange (CurrentPage);
 		}
 
