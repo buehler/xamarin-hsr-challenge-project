@@ -40,7 +40,7 @@ namespace HSR_Helper.iOS
 			var _activityView = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.WhiteLarge);
 			_activityView.Frame.Width = 30;
 			_activityView.Frame.Height = 30;
-			_activityView.Frame.X = 100;
+			_activityView.Frame.X = 150;
 			_activityView.Color = ApplicationColors.PAGECONTROLLER_PAGES;
 			_activityView.StartAnimating ();
 			return new DefaultDialogViewController (
