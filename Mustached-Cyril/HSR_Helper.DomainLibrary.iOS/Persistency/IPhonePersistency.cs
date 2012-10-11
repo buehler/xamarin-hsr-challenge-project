@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Xml.Serialization;
 using HSR_Helper.DomainLibrary.Persistency;
@@ -10,7 +10,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 	{
 		public static string SavePath = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 
-		public bool Save (IPersistentObject obj)
+		public bool Save (PersistentObject obj)
 		{
 			try {
 				FileStream fs = new FileStream (Path.Combine (SavePath, obj.Id), FileMode.OpenOrCreate, FileAccess.Write);
@@ -23,13 +23,13 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 			}
 		}
 
-		public bool Exists<T> () where T : IPersistentObject, new()
+		public bool Exists<T> () where T : PersistentObject, new()
 		{
 			T prototype = new T ();
 			return File.Exists (Path.Combine (SavePath, prototype.Id));
 		}
 
-		public bool Delete<T> () where T : IPersistentObject, new()
+		public bool Delete<T> () where T : PersistentObject, new()
 		{
 			try {
 				T prototype = new T ();
@@ -40,7 +40,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 			}
 		}
 
-		public T Load<T> () where T : IPersistentObject, new()
+		public T Load<T> () where T : PersistentObject, new()
 		{
 			T prototype = new T ();
 			try {

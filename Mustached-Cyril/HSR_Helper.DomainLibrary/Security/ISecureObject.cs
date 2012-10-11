@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HSR_Helper.DomainLibrary.Security
 {
-    public interface ISecureObject
-    {
-    }
+	public abstract class SecureObject : Persistency.PersistentObject
+	{
+	}
 }

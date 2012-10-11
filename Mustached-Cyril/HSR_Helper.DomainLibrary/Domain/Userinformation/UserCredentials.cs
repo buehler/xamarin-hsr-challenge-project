@@ -4,12 +4,8 @@ using HSR_Helper.DomainLibrary.Security;
 
 namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 {
-	public sealed class UserCredentials : ISecureObject, IPersistentObject
+	public sealed class UserCredentials : SecureObject
 	{
-		[XmlIgnore]
-		public string Id { 
-			get { return GetType ().Name; }
-		}
 		public string Name { get; set; }
 		public string Password { get; set; }
 		[XmlIgnore]

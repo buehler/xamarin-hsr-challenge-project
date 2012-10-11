@@ -5,13 +5,8 @@ using System.Xml.Serialization;
 
 namespace HSR_Helper.DomainLibrary.Domain.Timetable
 {
-	public class Timetable : IPersistentObject
+	public class Timetable : PersistentObject
 	{
-		[XmlIgnore]
-		public string Id { 
-			get { return GetType ().Name; }
-		}
-
 		[JsonProperty("Days")]
 		public List<TimetableDay> TimetableDays { get; set; }
 		[JsonProperty("Semester")]

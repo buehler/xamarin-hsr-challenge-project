@@ -11,8 +11,6 @@
     <RootNamespace>HSR_Helper.DomainLibrary.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_Helper.DomainLibrary.iOS</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -83,9 +81,6 @@
     <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\IPersistency.cs">
       <Link>Persistency\IPersistency.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\IPersistentObject.cs">
-      <Link>Persistency\IPersistentObject.cs</Link>
-    </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Security\ISecureObject.cs">
       <Link>Security\ISecureObject.cs</Link>
     </Compile>
@@ -93,6 +88,9 @@
       <Link>Security\ISecurity.cs</Link>
     </Compile>
     <Compile Include="Persistency\IPhonePersistency.cs" />
+    <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\PersistentObject.cs">
+      <Link>Persistency\IPersistentObject.cs</Link>
+    </Compile>
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
