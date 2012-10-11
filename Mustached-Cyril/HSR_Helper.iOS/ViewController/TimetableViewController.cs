@@ -27,11 +27,22 @@ namespace HSR_Helper.iOS
 			_pageScrollController = new PageScrollController<DefaultDialogViewController> (ScrollView, PageController);
 
 			_pageScrollController.OnPageChange += PageChanged;
-			if (ApplicationSettings.Instance.Persistency.Exists<Timetable> ())
-				TimetableCallback (ApplicationSettings.Instance.Persistency.Load<Timetable> ());
-			else
-				_pageScrollController.AddPage (GetInitScreen ());
-			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, TimetableCallback);
+			var root = new RootElement ("Pull to Refresh"){
+				new Section () {
+					new MultilineElement ("Pull from the top to add\na new item at the bottom\nThen wait 1 second")
+				}
+			};
+			var dvc = new DefaultDialogViewController (root);
+
+			dvc.Style = UITableViewStyle.Plain;
+
+			_pageScrollController.AddPage (dvc);
+
+//			if (ApplicationSettings.Instance.Persistency.Exists<Timetable> ())
+//				TimetableCallback (ApplicationSettings.Instance.Persistency.Load<Timetable> ());
+//			else
+//				_pageScrollController.AddPage (GetInitScreen ());
+//			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, TimetableCallback);
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
 
@@ -79,7 +90,7 @@ namespace HSR_Helper.iOS
 						}
 						root.Add (section);
 					}
-					_pageScrollController.AddPage (new DefaultDialogViewController (UITableViewStyle.Plain, root));
+					//_pageScrollController.AddPage (new DefaultDialogViewController (UITableViewStyle.Plain, root));
 				}
 			});
 		}

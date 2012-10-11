@@ -17,6 +17,8 @@ namespace HSR_Helper.DomainLibrary.Persistency
 			}
 		}
 
+
+
 		protected void OnObjectChanged ()
 		{
 			if (ObjectChanged != null)
