@@ -1,5 +1,7 @@
 using System;
 using MonoTouch.Dialog;
+using HSR_Helper.DomainLibrary.Domain.Timetable;
+using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 
 namespace HSR_Helper.iOS
 {
@@ -51,6 +53,10 @@ namespace HSR_Helper.iOS
 		private void DeleteLocalFiles ()
 		{
 			Console.WriteLine ("Delete Local Files!!");
+//			ApplicationSettings.Instance.UserCredentials.Name = null;
+//			ApplicationSettings.Instance.UserCredentials.Password = null;
+//			ApplicationSettings.Instance.Persistency.Delete<Timetable> ();
+//			ApplicationSettings.Instance.Persistency.Delete<Lunchtable> ();
 		}
 	}
 }

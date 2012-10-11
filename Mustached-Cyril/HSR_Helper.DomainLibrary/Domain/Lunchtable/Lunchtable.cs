@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 {
-	public class Lunchtable
+	public class Lunchtable : Persistency.PersistentObject
 	{
 		[JsonProperty("days")]
 		public List<LunchDay> LunchDays { get; set; }
