@@ -27,23 +27,18 @@ namespace HSR_Helper.Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int ic_tab_dish = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int ic_tab_dish_grey = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int ic_tab_dish_white = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Icon = 2130837507;
 			
 			private Drawable()
-			{
-			}
-		}
-		
-		public partial class Id
-		{
-			
-			// aapt resource value: 0x7f050001
-			public const int aButton = 2131034113;
-			
-			// aapt resource value: 0x7f050000
-			public const int helloLabel = 2131034112;
-			
-			private Id()
 			{
 			}
 		}
@@ -73,6 +68,15 @@ namespace HSR_Helper.Android
 			
 			// aapt resource value: 0x7f040003
 			public const int helloLabelText = 2130968579;
+			
+			// aapt resource value: 0x7f040005
+			public const int lunchtable = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int settings = 2130968582;
+			
+			// aapt resource value: 0x7f040004
+			public const int timetable = 2130968580;
 			
 			private String()
 			{

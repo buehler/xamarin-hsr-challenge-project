@@ -4,4 +4,7 @@
     <string name="ApplicationName">HSR_Helper.Android</string>
     <string name="helloButtonText">Say Ueli</string>
     <string name="helloLabelText">Hello Mono for Android</string>
+  <string name="timetable">Stundenplan</string>
+  <string name="lunchtable">Menü</string>
+  <string name="settings">Einstellungen</string>
 </resources>
