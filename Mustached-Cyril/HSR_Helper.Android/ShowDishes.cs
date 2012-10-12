@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using HSR_Helper.DomainLibrary.Domain;
 using HSR_Helper.DomainLibrary.Helper;
+using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 
 namespace HSR_Helper.Android
 {

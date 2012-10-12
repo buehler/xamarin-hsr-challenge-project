@@ -15,17 +15,22 @@ namespace HSR_Helper.DomainLibrary.Android.Persistency
 {
     class AndroidPersistency : IPersistency
     {
-        public bool Save(IPersistentObject obj)
+        public bool Exists<T>() where T : PersistentObject, new()
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Guid id)
+        public bool Delete<T>() where T : PersistentObject, new()
         {
             throw new NotImplementedException();
         }
 
-        public IPersistentObject Load(Guid id)
+        public T Load<T>() where T : PersistentObject, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Save(PersistentObject obj)
         {
             throw new NotImplementedException();
         }
