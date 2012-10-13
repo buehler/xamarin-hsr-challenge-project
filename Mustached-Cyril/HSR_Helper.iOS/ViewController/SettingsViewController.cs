@@ -15,7 +15,7 @@ namespace HSR_Helper.iOS
 			var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
 			var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name, true);
 			var deleteLocalFiles = new StyledStringElement("Lokale Daten löschen", DeleteLocalFiles){
-				BackgroundColor = ApplicationColors.DANGER_BUTTON,
+				BackgroundColor = ApplicationColors.BUTTON_DANGER,
 				TextColor = MonoTouch.UIKit.UIColor.White
 			};
 			userEntry.AutocorrectionType = passwordEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
@@ -69,7 +69,11 @@ namespace HSR_Helper.iOS
 			Console.WriteLine("Delete Local Files!!");
 			ApplicationSettings.Instance.UserCredentials.Name = null;
 			ApplicationSettings.Instance.UserCredentials.Password = null;
-			ApplicationSettings.Instance.Persistency.Delete<Timetable>();
+			foreach (var user in ApplicationSettings.Instance.UserTimetablelist.Usernames)
+			{
+				ApplicationSettings.Instance.Persistency.Delete(new Timetable(){Username = user});
+			}
+			ApplicationSettings.Instance.Persistency.Delete(ApplicationSettings.Instance.UserTimetablelist);
 		}
 
 	}
