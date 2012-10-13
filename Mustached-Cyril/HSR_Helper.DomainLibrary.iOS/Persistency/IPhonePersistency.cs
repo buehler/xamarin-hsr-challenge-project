@@ -27,7 +27,11 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 
         public bool Exists<T>() where T : PersistentObject, new()
         {
-            T prototype = new T();
+            return Exists(new T());
+        }
+
+        public bool Exists<T>(T prototype) where T : PersistentObject, new()
+        {
             return File.Exists(Path.Combine(SavePath, prototype.Id));
         }
 
@@ -46,7 +50,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 
         public T Load<T>() where T : PersistentObject, new()
         {
-            return Load<T>(new T());
+            return Load(new T());
         }
 
         public T Load<T>(T prototype) where T : PersistentObject, new()
