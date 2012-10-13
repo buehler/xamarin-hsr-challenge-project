@@ -24,10 +24,10 @@ namespace HSR_Helper.iOS
 		//
 		// You have 17 seconds to return from this method, or iOS will terminate your application.
 		//
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
-			_window = new UIWindow (UIScreen.MainScreen.Bounds);
+			_window = new UIWindow(UIScreen.MainScreen.Bounds);
 			UINavigationBar.Appearance.TintColor = ApplicationColors.NAVIGATIONBAR;
 			UITabBar.Appearance.TintColor = ApplicationColors.TABBAR;
 			UIPageControl.Appearance.CurrentPageIndicatorTintColor = ApplicationColors.PAGECONTROLLER_CURRENT_PAGE;
@@ -37,13 +37,13 @@ namespace HSR_Helper.iOS
 			                            ViewControllers = new UIViewController[]
 			                                                  {
 															  	  new UINavigationController(new LunchTableViewController()),
-																  new UINavigationController(new TimetableViewController()),
+																  new UINavigationController(new TimetableMasterViewController()),
 																  new UINavigationController(new SettingsViewController())
 			                                                  }
 			                        };
 
 			_window.RootViewController = _tabBarController;
-			_window.MakeKeyAndVisible ();
+			_window.MakeKeyAndVisible();
 			
 			return true;
 		}

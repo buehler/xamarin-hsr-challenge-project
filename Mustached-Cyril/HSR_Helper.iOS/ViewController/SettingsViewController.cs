@@ -29,7 +29,7 @@ namespace HSR_Helper.iOS
 			});
 
 			Root.Add(new Section("Stundenplaneinstellungen"){
-				new StyledStringElement("Andere Stundenpläne", ShowOtherTimetables){
+				new StyledStringElement("Andere Stundenpläne", () => {NavigationController.PushViewController(new SettingsTimetablesDetailViewController(), true);}){
 					Accessory = UITableViewCellAccessory.DisclosureIndicator
 				}
 			});
@@ -64,12 +64,6 @@ namespace HSR_Helper.iOS
 			}
 		}
 
-		private void ShowOtherTimetables()
-		{
-			var dvc = new TimetableViewController();
-			NavigationController.PushViewController(dvc, true);
-		}
-
 		private void DeleteLocalFiles()
 		{
 			Console.WriteLine("Delete Local Files!!");
@@ -78,15 +72,6 @@ namespace HSR_Helper.iOS
 			ApplicationSettings.Instance.Persistency.Delete<Timetable>();
 		}
 
-		public class UserTimetableList : PersistentObject
-		{
-			public List<string> Usernames{ get; set; }
-
-			public UserTimetableList()
-			{
-				Usernames = new List<string>();
-			}
-		}
 	}
 }
 
