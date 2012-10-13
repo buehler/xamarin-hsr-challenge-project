@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
 using HSR_Helper.DomainLibrary.iOS.Persistency;
 using HSR_Helper.DomainLibrary.Domain.Userinformation;
 using HSR_Helper.DomainLibrary.Persistency;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace HSR_Helper.iOS
 {
@@ -50,13 +52,33 @@ namespace HSR_Helper.iOS
 
 		public class UserTimetableList : PersistentObject
 		{
-			public List<string> Usernames{ get; set; }
+			public HashSet<string> Usernames{ get; set; }
 
 			public string LastOpenedTimetable{ get; set; }
 
 			public UserTimetableList()
 			{
-				Usernames = new List<string>();
+				Usernames = new HashSet<string>();
+			}
+
+			public override bool Equals(object obj)
+			{
+				var o = obj as UserTimetableList;
+				if (o != null)
+				{
+					return Usernames.SetEquals(o.Usernames);
+				}
+				return false;
+			}
+
+			public override int GetHashCode()
+			{
+				var o = "";
+				foreach (var s in Usernames)
+				{
+					o += s;
+				}
+				return o.GetHashCode();
 			}
 		}
 	}

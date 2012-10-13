@@ -36,7 +36,7 @@ namespace HSR_Helper.iOS
 					});
 				}
 				Root.Add(timetables);
-				_userList = ApplicationSettings.Instance.UserTimetablelist;
+				_userList = new ApplicationSettings.UserTimetableList(){Usernames = new HashSet<string>(ApplicationSettings.Instance.UserTimetablelist.Usernames)};
 			}
 		}
 
