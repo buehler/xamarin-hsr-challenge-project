@@ -3,6 +3,8 @@ using MonoTouch.Dialog;
 using HSR_Helper.DomainLibrary.Domain.Timetable;
 using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 using MonoTouch.UIKit;
+using HSR_Helper.DomainLibrary.Persistency;
+using System.Collections.Generic;
 
 namespace HSR_Helper.iOS
 {
@@ -74,7 +76,16 @@ namespace HSR_Helper.iOS
 			ApplicationSettings.Instance.UserCredentials.Name = null;
 			ApplicationSettings.Instance.UserCredentials.Password = null;
 			ApplicationSettings.Instance.Persistency.Delete<Timetable>();
-//			ApplicationSettings.Instance.Persistency.Delete<Lunchtable> ();
+		}
+
+		public class UserTimetableList : PersistentObject
+		{
+			public List<string> Usernames{ get; set; }
+
+			public UserTimetableList()
+			{
+				Usernames = new List<string>();
+			}
 		}
 	}
 }

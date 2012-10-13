@@ -6,25 +6,27 @@ using System.Xml.Serialization;
 
 namespace HSR_Helper.DomainLibrary.Persistency
 {
-	public delegate void PersistentObjectChangedHandler (PersistentObject changedObject);
+    public delegate void PersistentObjectChangedHandler(PersistentObject changedObject);
 
-	public abstract class PersistentObject
-	{
-		[XmlIgnore]
-		public string Id {
-			get {
-				return GetType ().Name;
-			}
-		}
+    public abstract class PersistentObject
+    {
+        [XmlIgnore]
+        public virtual string Id
+        {
+            get
+            {
+                return GetType().Name;
+            }
+        }
 
-		public DateTime LastUpdated{ get; set; }
+        public DateTime LastUpdated{ get; set; }
 
-		protected void OnObjectChanged ()
-		{
-			if (ObjectChanged != null)
-				ObjectChanged (this);
-		}
+        protected void OnObjectChanged()
+        {
+            if (ObjectChanged != null)
+                ObjectChanged(this);
+        }
 
-		public event PersistentObjectChangedHandler ObjectChanged;
-	}
+        public event PersistentObjectChangedHandler ObjectChanged;
+    }
 }
