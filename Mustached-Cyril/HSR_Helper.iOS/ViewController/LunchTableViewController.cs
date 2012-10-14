@@ -17,6 +17,7 @@ namespace HSR_Helper.iOS
 		{
 			Title = "Menü";
 			NavigationItem.Title = "Menü";
+			TabBarItem.Image = UIImage.FromBundle("Menu-icon");
 		}
 		
 		public override void ViewDidLoad()
@@ -59,7 +60,7 @@ namespace HSR_Helper.iOS
 		{
 			if (lunchDay == null)
 			{
-				return new DialogViewController(new RootElement(""){
+				return new DefaultDialogViewController(new RootElement(""){
 					new Section("Kein Eintrag"){
 						new MultilineElement("Kein Menü gefunden")
 					}

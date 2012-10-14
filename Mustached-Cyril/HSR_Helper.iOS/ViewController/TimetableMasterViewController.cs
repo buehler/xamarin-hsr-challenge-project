@@ -2,6 +2,7 @@
 using System;
 using MonoTouch.Dialog;
 using System.Collections.Generic;
+using MonoTouch.UIKit;
 
 namespace HSR_Helper.iOS
 {
@@ -13,6 +14,7 @@ namespace HSR_Helper.iOS
 		{
 			Title = "Stundenpläne";
 			NavigationItem.Title = "Stundenpläne";
+			TabBarItem.Image = UIImage.FromBundle("Timetable-icon");
 		}
 
 		public override void ViewDidAppear(bool animated)
