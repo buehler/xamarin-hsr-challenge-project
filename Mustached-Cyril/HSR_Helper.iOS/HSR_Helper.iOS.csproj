@@ -123,6 +123,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\whitey_%402X.png" />
     <BundleResource Include="Resources\whitey.png" />
+    <BundleResource Include="Resources\Settings-icon.png" />
+    <BundleResource Include="Resources\Menu-icon.png" />
+    <BundleResource Include="Resources\Timetable-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\LunchTableView.xib" />

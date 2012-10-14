@@ -40,6 +40,7 @@ namespace HSR_Helper.iOS
 
 			Title = "Einstellungen";
 			NavigationItem.Title = "Einstellungen";
+			TabBarItem.Image = UIImage.FromBundle("Settings-icon");
 		}
 
 		private void UsernameChanged(object s, EventArgs e)
