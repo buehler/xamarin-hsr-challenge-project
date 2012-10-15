@@ -56,8 +56,10 @@ namespace HSR_Helper.iOS
                     foreach (var o in ApplicationSettings.Instance.UserTimetablelist.Usernames)
                     {
                         _otherTimetables.Add(new StyledStringElement(o, () => {
-                            OnTapped(o);
-                        }));
+							OnTapped(o);
+						}){
+							Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
+						});
                     }
                 }
                 this.ReloadData();
