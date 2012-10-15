@@ -73,6 +73,9 @@
     <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\UserCredentials.cs">
       <Link>Domain\Userinformation\UserCredentials.cs</Link>
     </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\UserTimetableList.cs">
+      <Link>Domain\Userinformation\UserTimetableList.cs</Link>
+    </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Helper\DomainLibraryHelper.cs">
       <Link>Helper\DomainLibraryHelper.cs</Link>
     </Compile>
@@ -102,7 +105,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" />
+      <UserProperties ProjectLinkReference="3b919c2b-391f-42e3-87ca-3ab67770c6d4" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
