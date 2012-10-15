@@ -52,6 +52,7 @@
     <Compile Include="Domain\Timetable\Timetable.cs" />
     <Compile Include="Domain\Timetable\TimetableDay.cs" />
     <Compile Include="Domain\Userinformation\UserCredentials.cs" />
+    <Compile Include="Domain\Userinformation\UserTimetableList.cs" />
     <Compile Include="Helper\DomainLibraryHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Persistency\IPersistency.cs" />

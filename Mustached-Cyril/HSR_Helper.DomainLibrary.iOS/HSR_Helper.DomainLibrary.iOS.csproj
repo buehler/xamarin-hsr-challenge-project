@@ -11,6 +11,8 @@
     <RootNamespace>HSR_Helper.DomainLibrary.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HSR_Helper.DomainLibrary.iOS</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -71,6 +73,9 @@
     </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\UserCredentials.cs">
       <Link>Domain\Userinformation\UserCredentials.cs</Link>
+    </Compile>
+    <Compile Include="..\HSR_Helper.DomainLibrary\Domain\Userinformation\UserTimetableList.cs">
+      <Link>Domain\Userinformation\UserTimetableList.cs</Link>
     </Compile>
     <Compile Include="..\HSR_Helper.DomainLibrary\Helper\DomainLibraryHelper.cs">
       <Link>Helper\DomainLibraryHelper.cs</Link>
