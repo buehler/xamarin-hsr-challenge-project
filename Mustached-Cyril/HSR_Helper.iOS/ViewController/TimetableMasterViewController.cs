@@ -10,7 +10,6 @@ namespace HSR_Helper.iOS
 {
     public class TimetableMasterViewController : DefaultDialogViewController
     {
-        private UserTimetableList _userList;
         private StyledStringElement _ownTimetable;
         private Section _otherTimetables;
 
@@ -20,6 +19,7 @@ namespace HSR_Helper.iOS
             NavigationItem.Title = "Stundenpläne";
             TabBarItem.Image = UIImage.FromBundle("Timetable-icon");
             ApplicationSettings.Instance.UserCredentials.ObjectChanged += PersistentObjectChanged;
+            ApplicationSettings.Instance.UserTimetablelist.ObjectChanged += PersistentObjectChanged;
         }
 
         public override void ViewDidLoad()
@@ -37,31 +37,41 @@ namespace HSR_Helper.iOS
                 {
                     if (_ownTimetable == null)
                     {
-                        _ownTimetable = new StyledStringElement(ApplicationSettings.Instance.UserCredentials.Name, OnTapped){
+                        _ownTimetable = new StyledStringElement(ApplicationSettings.Instance.UserCredentials.Name, OnOwnTapped){
                             Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
                         };
                         Root.Add(new Section("Eigener Stundenplan"){_ownTimetable});
-                    }
-                    else
+                    } else
                     {
                         _ownTimetable.Caption = ApplicationSettings.Instance.UserCredentials.Name;
                     }
-                }
-                else if (obj.GetType() == typeof(UserTimetableList))
+                } else if (obj.GetType() == typeof(UserTimetableList))
                 {
                     if (_otherTimetables == null)
                     {
                         _otherTimetables = new Section("Andere Stundenpläne");
                         Root.Add(_otherTimetables);
                     }
+                    _otherTimetables.Clear();
+                    foreach (var o in ApplicationSettings.Instance.UserTimetablelist.Usernames)
+                    {
+                        _otherTimetables.Add(new StyledStringElement(o, () => {
+                            OnTapped(o);
+                        }));
+                    }
                 }
                 this.ReloadData();
             }
         }
 
-        private void OnTapped()
+        private void OnOwnTapped()
         {
-            NavigationController.PushViewController(new TimetableViewController(ApplicationSettings.Instance.UserCredentials.Name), true);
+            OnTapped(ApplicationSettings.Instance.UserCredentials.Name);
+        }
+
+        private void OnTapped(string username)
+        {
+            NavigationController.PushViewController(new TimetableViewController(username), true);
         }
     }
 }
