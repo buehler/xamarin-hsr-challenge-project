@@ -3,6 +3,7 @@ using System;
 using MonoTouch.Dialog;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
+using HSR_Helper.DomainLibrary.Persistency;
 
 namespace HSR_Helper.iOS
 {
@@ -15,6 +16,7 @@ namespace HSR_Helper.iOS
 			Title = "Stundenpläne";
 			NavigationItem.Title = "Stundenpläne";
 			TabBarItem.Image = UIImage.FromBundle("Timetable-icon");
+			ApplicationSettings.Instance.UserCredentials.ObjectChanged += PersistentObjectChanged;
 		}
 
 		public override void ViewDidAppear(bool animated)
@@ -39,6 +41,14 @@ namespace HSR_Helper.iOS
 				}
 				Root.Add(timetables);
 				_userList = new ApplicationSettings.UserTimetableList(){Usernames = new HashSet<string>(ApplicationSettings.Instance.UserTimetablelist.Usernames)};
+			}
+		}
+
+		private void PersistentObjectChanged(PersistentObject obj)
+		{
+			if (IsViewLoaded)
+			{
+
 			}
 		}
 
