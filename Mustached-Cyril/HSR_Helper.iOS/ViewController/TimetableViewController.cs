@@ -29,7 +29,7 @@ namespace HSR_Helper.iOS
 			_pageScrollController = new PageScrollController<DefaultDialogViewController>(ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
 			if (ApplicationSettings.Instance.Persistency.Exists(new Timetable(){Username = _userName}))
-				TimetableCallback(ApplicationSettings.Instance.Persistency.Load(new Timetable(){Username = _userName}), null);
+				LoadTimetable(ApplicationSettings.Instance.Persistency.Load(new Timetable(){Username = _userName}), null);
 			else
 				_pageScrollController.AddPage(GetNoDataScreen());
 
@@ -52,38 +52,44 @@ namespace HSR_Helper.iOS
 			NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
 		}
 
+        private void LoadTimetable(Timetable timetable, object[] args)
+        {
+            UIApplication.SharedApplication.InvokeOnMainThread(() =>
+                                                               {
+                if (args != null)
+                {
+                    args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
+                }
+                _pageScrollController.Clear();
+                foreach (var day in timetable.TimetableDays)
+                {
+                    if (day.Lessions.Count() == 0)
+                        continue;
+                    var root = new RootElement((string.IsNullOrEmpty(day.Weekday) ? "Ohne Wochentag" : day.Weekday));
+                    foreach (var lession in day.Lessions)
+                    {
+                        var section = new Section(lession.Name + " " + lession.Type);
+                        foreach (var alloc in lession.CourseAllocations)
+                        {
+                            string t = alloc.Timeslot;
+                            if (alloc.RoomAllocations.Count() > 0)
+                                t += "\n" + alloc.RoomAllocations.FirstOrDefault().Roomnumber;
+                            section.Add(new CustomFontMultilineElement(t, lession.LecturersShortVersion));
+                        }
+                        root.Add(section);
+                    }
+                    var dvc = new DefaultDialogViewController(root, UITableViewStyle.Plain, RefreshRequested);
+                    dvc.CustomLastUpdate = timetable.LastUpdated;
+                    _pageScrollController.AddPage(dvc);
+                }
+            });
+        }
+
 		private void TimetableCallback(Timetable timetable, object[] args)
 		{
+            //TODO: Check if timetable is the same. if not --> save
 			ApplicationSettings.Instance.Persistency.Save(timetable);
-			UIApplication.SharedApplication.InvokeOnMainThread(() =>
-			{
-				if (args != null)
-				{
-					args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
-				}
-				_pageScrollController.Clear();
-				foreach (var day in timetable.TimetableDays)
-				{
-					if (day.Lessions.Count() == 0)
-						continue;
-					var root = new RootElement((string.IsNullOrEmpty(day.Weekday) ? "Ohne Wochentag" : day.Weekday));
-					foreach (var lession in day.Lessions)
-					{
-						var section = new Section(lession.Name + " " + lession.Type);
-						foreach (var alloc in lession.CourseAllocations)
-						{
-							string t = alloc.Timeslot;
-							if (alloc.RoomAllocations.Count() > 0)
-								t += "\n" + alloc.RoomAllocations.FirstOrDefault().Roomnumber;
-							section.Add(new CustomFontMultilineElement(t, lession.LecturersShortVersion));
-						}
-						root.Add(section);
-					}
-					var dvc = new DefaultDialogViewController(root, UITableViewStyle.Plain, RefreshRequested);
-					dvc.CustomLastUpdate = timetable.LastUpdated;
-					_pageScrollController.AddPage(dvc);
-				}
-			});
+            LoadTimetable(timetable, args);
 		}
 
 		private void RefreshRequested(object s, EventArgs e)
