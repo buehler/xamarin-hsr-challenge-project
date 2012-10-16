@@ -11,7 +11,7 @@ namespace HSR_Helper.DomainLibrary.Persistency
 	public abstract class PersistentObject
 	{
 		[XmlIgnore]
-		public string Id {
+		public virtual string Id {
 			get {
 				return GetType ().Name;
 			}

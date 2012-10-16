@@ -17,7 +17,6 @@ namespace HSR_Helper.DomainLibrary.Helper
 
 	public static class DomainLibraryHelper
 	{
-		//TODO: Errorhandling
 		private const string SvgroupRestUrl = "http://kck.me/svhsr";
 		private const string HsrRestUrl = "https://stundenplanws.hsr.ch:4443";
 
@@ -28,18 +27,24 @@ namespace HSR_Helper.DomainLibrary.Helper
 
 		public static void GetUserTimetable (UserCredentials userCredentials, TimetableCallback callback, object[] callbackArguments = null)
 		{
+			GetUserTimetable (userCredentials, userCredentials.Name, callback, callbackArguments);
+		}
+
+		public static void GetUserTimetable (UserCredentials userCredentials, string username, TimetableCallback callback, object[] callbackArguments = null)
+		{
 			var b = new BackgroundWorker ();
 			b.DoWork += (sender, args) =>
 			{
 				if (userCredentials.CredentialsFilled) {
-
+                    
 					var restClient = new RestClient (HsrRestUrl);
 					restClient.Authenticator = new HttpBasicAuthenticator (userCredentials.Name, userCredentials.Password);
 					restClient.AddDefaultHeader ("Accept", "text/json");
-					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + userCredentials.Name, Method.GET), (response, handle) =>
+					restClient.ExecuteAsync (new RestRequest ("/api/Timetable/" + username, Method.GET), (response, handle) =>
 					{
 						var timetable = JsonHelper.ParseJson<Timetable> (response);
 						timetable.LastUpdated = DateTime.Now;
+						timetable.Username = username;
 						callback (timetable, callbackArguments);
 					});
 				} else {
@@ -54,6 +59,7 @@ namespace HSR_Helper.DomainLibrary.Helper
 					day.Lessions.Add (lession);
 					timetable.TimetableDays.Add (day);
 					timetable.LastUpdated = DateTime.Now;
+					timetable.Username = username;
 					callback (timetable, callbackArguments);
 				}};
 			b.RunWorkerAsync ();

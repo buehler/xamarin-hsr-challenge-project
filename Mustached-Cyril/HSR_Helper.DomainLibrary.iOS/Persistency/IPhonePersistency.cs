@@ -25,24 +25,39 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 
 		public bool Exists<T> () where T : PersistentObject, new()
 		{
-			T prototype = new T ();
+			return Exists (new T ());
+		}
+
+		public bool Exists<T> (T prototype) where T : PersistentObject, new()
+		{
 			return File.Exists (Path.Combine (SavePath, prototype.Id));
 		}
 
 		public bool Delete<T> () where T : PersistentObject, new()
 		{
-			try {
-				T prototype = new T ();
-				File.Delete (Path.Combine (SavePath, prototype.Id));
-				return true;
-			} catch (Exception) {
-				return false;
+			return Delete (new T ());
+		}
+
+		public bool Delete<T> (T prototype) where T : PersistentObject, new()
+		{
+			if (Exists (prototype)) {
+				try {
+					File.Delete (Path.Combine (SavePath, prototype.Id));
+					return true;
+				} catch (Exception) {
+					return false;
+				}
 			}
+			return false;
 		}
 
 		public T Load<T> () where T : PersistentObject, new()
 		{
-			T prototype = new T ();
+			return Load (new T ());
+		}
+
+		public T Load<T> (T prototype) where T : PersistentObject, new()
+		{
 			try {
 				if (Exists<T> ()) {
 					FileStream fs = new FileStream (Path.Combine (SavePath, prototype.Id), FileMode.Open, FileAccess.Read);
