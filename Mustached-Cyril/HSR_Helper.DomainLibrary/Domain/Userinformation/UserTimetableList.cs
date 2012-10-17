@@ -6,32 +6,31 @@ using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 {
-    public class UserTimetableList : PersistentObject
-    {
-        public ObservableCollection<string> Usernames { get; set; }
+	public class UserTimetableList : PersistentObject
+	{
+		public ObservableCollection<string> Usernames { get; set; }
 
-        public string LastOpenedTimetable { get; set; }
+		public string LastOpenedTimetable { get; set; }
 
-        public UserTimetableList()
-        {
-            Usernames = new ObservableCollection<string>();
-            Usernames.CollectionChanged += (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => OnObjectChanged();
-        }
+		public UserTimetableList()
+		{
+			Usernames = new ObservableCollection<string>();
+			Usernames.CollectionChanged += (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => OnObjectChanged();
+		}
 
-        public override bool Equals(object obj)
-        {
-            var o = obj as UserTimetableList;
-            if (o != null)
-            {
-                return Usernames.ContentsAreIdentical(o.Usernames);
-            }
-            return false;
-        }
+		public override bool Equals(object obj)
+		{
+			var o = obj as UserTimetableList;
+			if (o != null)
+			{
+				return Usernames.ContentsAreIdentical(o.Usernames);
+			}
+			return false;
+		}
 
-        public override int GetHashCode()
-        {
-            var o = Usernames.Aggregate("", (current, s) => current + s);
-            return o.GetHashCode();
-        }
-    }
+		public override int GetHashCode()
+		{
+			return (Usernames.Aggregate("", (current, s) => current + s)).GetHashCode();
+		}
+	}
 }

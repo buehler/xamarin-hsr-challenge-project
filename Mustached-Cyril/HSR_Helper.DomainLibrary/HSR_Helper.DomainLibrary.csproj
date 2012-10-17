@@ -55,12 +55,12 @@
     <Compile Include="Domain\Userinformation\UserTimetableList.cs" />
     <Compile Include="Helper\DomainLibraryHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
-    <Compile Include="Helper\MethodExtensions.cs" />
     <Compile Include="Persistency\IPersistency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ISecureObject.cs" />
     <Compile Include="Security\ISecurity.cs" />
     <Compile Include="Persistency\PersistentObject.cs" />
+    <Compile Include="Helper\IEnumerableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestSharp\RestSharp.csproj">

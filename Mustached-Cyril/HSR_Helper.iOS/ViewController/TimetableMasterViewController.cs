@@ -12,6 +12,7 @@ namespace HSR_Helper.iOS
     {
         private StyledStringElement _ownTimetable;
         private Section _otherTimetables;
+        private UserTimetableList _loadedList;
 
         public TimetableMasterViewController() : base(new RootElement("Stundenpläne"))
         {
@@ -51,15 +52,18 @@ namespace HSR_Helper.iOS
                     {
                         _otherTimetables = new Section("Andere Stundenpläne");
                         Root.Add(_otherTimetables);
-                    }
-                    _otherTimetables.Clear();
-                    foreach (var o in ApplicationSettings.Instance.UserTimetablelist.Usernames)
+                    } else if (obj.Equals(_loadedList))
                     {
-                        _otherTimetables.Add(new StyledStringElement(o, () => {
-							OnTapped(o);
-						}){
-							Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
-						});
+                        _otherTimetables.Clear();
+                        foreach (var o in ApplicationSettings.Instance.UserTimetablelist.Usernames)
+                        {
+                            _otherTimetables.Add(new StyledStringElement(o, () => {
+                                OnTapped(o);
+                            }){
+							    Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
+						    });
+                        }
+                        _loadedList = obj as UserTimetableList;
                     }
                 }
                 this.ReloadData();
@@ -68,7 +72,8 @@ namespace HSR_Helper.iOS
 
         private void OnOwnTapped()
         {
-            OnTapped(ApplicationSettings.Instance.UserCredentials.Name);
+            if (!string.IsNullOrEmpty(ApplicationSettings.Instance.UserCredentials.Name))
+                OnTapped(ApplicationSettings.Instance.UserCredentials.Name);
         }
 
         private void OnTapped(string username)

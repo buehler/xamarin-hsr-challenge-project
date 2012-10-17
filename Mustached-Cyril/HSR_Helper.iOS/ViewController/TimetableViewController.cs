@@ -15,31 +15,32 @@ namespace HSR_Helper.iOS
 	{
 		private PageScrollController<DefaultDialogViewController> _pageScrollController;
 		private string _userName;
+		private Timetable _loadedTimetable;
 
-		public TimetableViewController (string userName) : base ("TimetableView", null)
+		public TimetableViewController(string userName) : base ("TimetableView", null)
 		{
 			_userName = userName;
 			Title = "Stundenplan";
 			NavigationItem.Title = "Stundenplan";
 		}
 
-		public override void ViewDidLoad ()
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
-			_pageScrollController = new PageScrollController<DefaultDialogViewController> (ScrollView, PageController);
+			base.ViewDidLoad();
+			_pageScrollController = new PageScrollController<DefaultDialogViewController>(ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
-			if (ApplicationSettings.Instance.Persistency.Exists (new Timetable (){Username = _userName}))
-				LoadTimetable (ApplicationSettings.Instance.Persistency.Load (new Timetable (){Username = _userName}), null);
+			if (ApplicationSettings.Instance.Persistency.Exists(new Timetable(){Username = _userName}))
+				LoadTimetable(ApplicationSettings.Instance.Persistency.Load(new Timetable(){Username = _userName}), null);
 			else
-				_pageScrollController.AddPage (GetNoDataScreen ());
+				_pageScrollController.AddPage(GetNoDataScreen());
 
 			View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
 		}
 
-		private DefaultDialogViewController GetNoDataScreen ()
+		private DefaultDialogViewController GetNoDataScreen()
 		{
-			return new DefaultDialogViewController (
-				new RootElement ("keine daten"){
+			return new DefaultDialogViewController(
+				new RootElement("keine daten"){
 					new Section("keine daten"){
 					new MultilineElement("pull to refresh...\n(dauert ein wenig)")
 				} 
@@ -47,50 +48,57 @@ namespace HSR_Helper.iOS
 			, UITableViewStyle.Plain, RefreshRequested);
 		}
 
-		private void PageChanged (int newPage)
+		private void PageChanged(int newPage)
 		{
 			NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
 		}
 
-		private void LoadTimetable (Timetable timetable, object[] args)
+		private void LoadTimetable(Timetable timetable, object[] args)
 		{
-			UIApplication.SharedApplication.InvokeOnMainThread (() =>
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
 			{
-				if (args != null) {
-					args.ToList ().ForEach (o => (o as DefaultDialogViewController).ReloadComplete ());
+				if (args != null)
+				{
+					args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
 				}
-				_pageScrollController.Clear ();
-				foreach (var day in timetable.TimetableDays) {
-					if (day.Lessions.Count () == 0)
+				_pageScrollController.Clear();
+				foreach (var day in timetable.TimetableDays)
+				{
+					if (day.Lessions.Count() == 0)
 						continue;
-					var root = new RootElement ((string.IsNullOrEmpty (day.Weekday) ? "Ohne Wochentag" : day.Weekday));
-					foreach (var lession in day.Lessions) {
-						var section = new Section (lession.Name + " " + lession.Type);
-						foreach (var alloc in lession.CourseAllocations) {
+					var root = new RootElement((string.IsNullOrEmpty(day.Weekday) ? "Ohne Wochentag" : day.Weekday));
+					foreach (var lession in day.Lessions)
+					{
+						var section = new Section(lession.Name + " " + lession.Type);
+						foreach (var alloc in lession.CourseAllocations)
+						{
 							string t = alloc.Timeslot;
-							if (alloc.RoomAllocations.Count () > 0)
-								t += "\n" + alloc.RoomAllocations.FirstOrDefault ().Roomnumber;
-							section.Add (new CustomFontMultilineElement (t, lession.LecturersShortVersion));
+							if (alloc.RoomAllocations.Count() > 0)
+								t += "\n" + alloc.RoomAllocations.FirstOrDefault().Roomnumber;
+							section.Add(new CustomFontMultilineElement(t, lession.LecturersShortVersion));
 						}
-						root.Add (section);
+						root.Add(section);
 					}
-					var dvc = new DefaultDialogViewController (root, UITableViewStyle.Plain, RefreshRequested);
+					var dvc = new DefaultDialogViewController(root, UITableViewStyle.Plain, RefreshRequested);
 					dvc.CustomLastUpdate = timetable.LastUpdated;
-					_pageScrollController.AddPage (dvc);
+					_pageScrollController.AddPage(dvc);
 				}
 			});
+			_loadedTimetable = timetable;
 		}
 
-		private void TimetableCallback (Timetable timetable, object[] args)
+		private void TimetableCallback(Timetable timetable, object[] args)
 		{
-			//TODO: Check if timetable is the same. if not --> save
-			ApplicationSettings.Instance.Persistency.Save (timetable);
-			LoadTimetable (timetable, args);
+			if (!timetable.Equals(_loadedTimetable))
+			{
+				ApplicationSettings.Instance.Persistency.Save(timetable);
+				LoadTimetable(timetable, args);
+			}
 		}
 
-		private void RefreshRequested (object s, EventArgs e)
+		private void RefreshRequested(object s, EventArgs e)
 		{
-			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable (ApplicationSettings.Instance.UserCredentials, _userName, TimetableCallback, new object[]{s});
+			HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, _userName, TimetableCallback, new object[]{s});
 		}
 	}
 }
