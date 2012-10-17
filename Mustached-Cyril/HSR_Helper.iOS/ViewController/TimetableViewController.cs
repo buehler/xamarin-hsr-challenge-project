@@ -30,7 +30,7 @@ namespace HSR_Helper.iOS
 			_pageScrollController = new PageScrollController<DefaultDialogViewController>(ScrollView, PageController);
 			_pageScrollController.OnPageChange += PageChanged;
 			if (ApplicationSettings.Instance.Persistency.Exists(new Timetable(){Username = _userName}))
-				LoadTimetable(ApplicationSettings.Instance.Persistency.Load(new Timetable(){Username = _userName}), null);
+				LoadTimetable(ApplicationSettings.Instance.Persistency.Load(new Timetable(){Username = _userName}));
 			else
 				_pageScrollController.AddPage(GetNoDataScreen());
 
@@ -53,14 +53,10 @@ namespace HSR_Helper.iOS
 			NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
 		}
 
-		private void LoadTimetable(Timetable timetable, object[] args)
+		private void LoadTimetable(Timetable timetable)
 		{
 			UIApplication.SharedApplication.InvokeOnMainThread(() =>
 			{
-				if (args != null)
-				{
-					args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
-				}
 				_pageScrollController.Clear();
 				foreach (var day in timetable.TimetableDays)
 				{
@@ -92,8 +88,14 @@ namespace HSR_Helper.iOS
 			if (!timetable.Equals(_loadedTimetable))
 			{
 				ApplicationSettings.Instance.Persistency.Save(timetable);
-				LoadTimetable(timetable, args);
+				LoadTimetable(timetable);
 			}
+			UIApplication.SharedApplication.InvokeOnMainThread(() => {
+				if (args != null)
+				{
+					args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
+				}
+			});
 		}
 
 		private void RefreshRequested(object s, EventArgs e)
