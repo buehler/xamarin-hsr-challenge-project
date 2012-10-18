@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using HSR_Helper.DomainLibrary.Persistency;
 using HSR_Helper.DomainLibrary.Domain.Userinformation;
+using System.Collections.ObjectModel;
 
 namespace HSR_Helper.iOS
 {
@@ -64,7 +65,9 @@ namespace HSR_Helper.iOS
 							    Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
 						    });
                         }
-                        _loadedList = obj as UserTimetableList;
+                        _loadedList = new UserTimetableList(){
+                            Usernames = new ObservableCollection<string>((obj as UserTimetableList).Usernames)
+                        };
                     }
                 }
                 this.ReloadData();

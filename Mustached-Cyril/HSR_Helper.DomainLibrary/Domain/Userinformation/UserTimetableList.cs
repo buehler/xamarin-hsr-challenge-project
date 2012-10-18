@@ -3,6 +3,7 @@ using System.Linq;
 using HSR_Helper.DomainLibrary.Persistency;
 using System.Collections.ObjectModel;
 using HSR_Helper.DomainLibrary.Helper;
+using System;
 
 namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 {
@@ -23,7 +24,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 			var o = obj as UserTimetableList;
 			if (o != null)
 			{
-				return Usernames.ContentsAreIdentical(o.Usernames);
+                return Usernames.ContentsAreIdentical(o.Usernames);
 			}
 			return false;
 		}

@@ -60,7 +60,7 @@
     <Compile Include="Security\ISecureObject.cs" />
     <Compile Include="Security\ISecurity.cs" />
     <Compile Include="Persistency\PersistentObject.cs" />
-    <Compile Include="Helper\IEnumerableExtensions.cs" />
+    <Compile Include="Helper\MethodExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestSharp\RestSharp.csproj">

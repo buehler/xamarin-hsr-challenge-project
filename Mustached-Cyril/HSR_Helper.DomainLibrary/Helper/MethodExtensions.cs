@@ -18,7 +18,6 @@ namespace HSR_Helper.DomainLibrary.Helper
 			var l2 = from o in otherItems
 					 where !items.Any(i => o.Equals(i))
                      select o;
-			var fudi = (l1.Count() == 0 && l2.Count() == 0);
 			return (l1.Count() == 0 && l2.Count() == 0);
 		}
 	}
