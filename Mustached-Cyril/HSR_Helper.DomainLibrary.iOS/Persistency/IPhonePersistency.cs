@@ -14,13 +14,23 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
         {
             try
             {
-                FileStream fs = new FileStream(Path.Combine(SavePath, obj.Id), FileMode.OpenOrCreate, FileAccess.Write);
+                Console.WriteLine("Saving: " + obj.ToString() + " to: " + Path.Combine(SavePath, obj.Id));
+                FileStream fs;
+                if (!File.Exists(Path.Combine(SavePath, obj.Id)))
+                {
+                    fs = new FileStream(Path.Combine(SavePath, obj.Id), FileMode.OpenOrCreate, FileAccess.Write);
+                }
+                else
+                {
+                    fs = new FileStream(Path.Combine(SavePath, obj.Id), FileMode.Truncate, FileAccess.Write);
+                }
                 XmlSerializer serializer = new XmlSerializer(obj.GetType());
                 serializer.Serialize(fs, obj);
                 fs.Close();
                 return true;
-            } catch (Exception)
+            } catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -67,17 +77,21 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
             {
                 if (Exists<T>(prototype))
                 {
+                    Console.WriteLine("laoding: " + prototype.ToString() + " from: " + Path.Combine(SavePath, prototype.Id));
                     FileStream fs = new FileStream(Path.Combine(SavePath, prototype.Id), FileMode.Open, FileAccess.Read);
                     XmlSerializer serializer = new XmlSerializer(typeof(T));
                     T obj = (T)serializer.Deserialize(fs);
                     fs.Close();
+                    Console.WriteLine("loaded: " + obj.ToString());
                     return obj;
-                } else
+                }
+                else
                 {
                     return new T();
                 }
-            } catch (Exception)
+            } catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 return new T();
             }
         }

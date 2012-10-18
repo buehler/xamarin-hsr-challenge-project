@@ -94,7 +94,7 @@
     <Compile Include="..\HSR_Helper.DomainLibrary\Persistency\PersistentObject.cs">
       <Link>Persistency\PersistentObject.cs</Link>
     </Compile>
-    <Compile Include="..\HSR_Helper.DomainLibrary\Helper\IEnumerableExtensions.cs">
+    <Compile Include="..\HSR_Helper.DomainLibrary\Helper\MethodExtensions.cs">
       <Link>Helper\MethodExtensions.cs</Link>
     </Compile>
   </ItemGroup>
