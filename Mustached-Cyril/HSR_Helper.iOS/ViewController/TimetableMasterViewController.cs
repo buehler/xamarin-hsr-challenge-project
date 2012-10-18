@@ -52,7 +52,8 @@ namespace HSR_Helper.iOS
                     {
                         _otherTimetables = new Section("Andere Stundenpläne");
                         Root.Add(_otherTimetables);
-                    } else if (obj.Equals(_loadedList))
+                    } 
+                    if (!obj.Equals(_loadedList))
                     {
                         _otherTimetables.Clear();
                         foreach (var o in ApplicationSettings.Instance.UserTimetablelist.Usernames)
