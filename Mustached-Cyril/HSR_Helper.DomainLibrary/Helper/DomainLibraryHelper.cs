@@ -59,7 +59,6 @@ namespace HSR_Helper.DomainLibrary.Helper
 					day.Lessions.Add (lession);
 					timetable.TimetableDays.Add (day);
 					timetable.LastUpdated = DateTime.Now;
-					timetable.Username = username;
 					callback (timetable, callbackArguments);
 				}};
 			b.RunWorkerAsync ();

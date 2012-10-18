@@ -87,7 +87,8 @@ namespace HSR_Helper.iOS
 		{
 			if (!timetable.Equals(_loadedTimetable))
 			{
-				ApplicationSettings.Instance.Persistency.Save(timetable);
+				if(!string.IsNullOrEmpty(timetable.Username)) 
+                    ApplicationSettings.Instance.Persistency.Save(timetable);
 				LoadTimetable(timetable);
 			}
 			UIApplication.SharedApplication.InvokeOnMainThread(() => {
