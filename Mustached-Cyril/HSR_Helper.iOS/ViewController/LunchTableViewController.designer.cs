@@ -12,24 +12,24 @@ namespace HSR_Helper.iOS
 	partial class LunchTableViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel BadgeSaldo { get; set; }
+		MonoTouch.UIKit.UIView PageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+		MonoTouch.UIKit.UILabel BadgeSaldo { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIPageControl PageController { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (PageView != null) {
+				PageView.Dispose ();
+				PageView = null;
+			}
+
 			if (BadgeSaldo != null) {
 				BadgeSaldo.Dispose ();
 				BadgeSaldo = null;
-			}
-
-			if (ScrollView != null) {
-				ScrollView.Dispose ();
-				ScrollView = null;
 			}
 
 			if (PageController != null) {
