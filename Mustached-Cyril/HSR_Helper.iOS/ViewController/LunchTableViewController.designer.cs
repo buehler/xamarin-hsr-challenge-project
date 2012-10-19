@@ -12,6 +12,9 @@ namespace HSR_Helper.iOS
 	partial class LunchTableViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel BadgeSaldo { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
 
 		[Outlet]
@@ -19,6 +22,11 @@ namespace HSR_Helper.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (BadgeSaldo != null) {
+				BadgeSaldo.Dispose ();
+				BadgeSaldo = null;
+			}
+
 			if (ScrollView != null) {
 				ScrollView.Dispose ();
 				ScrollView = null;

@@ -19,10 +19,34 @@ namespace HSR_Helper.DomainLibrary.Helper
     {
         private const string SvgroupRestUrl = "http://kck.me/svhsr";
         private const string HsrRestUrl = "https://stundenplanws.hsr.ch:4443";
+        private const string BadgeportalUrl = "https://152.96.80.18/VerrechnungsportalService.svc/json";
 
         public static void GetUserBadgeInformation(UserCredentials userCredentials, BadgeInformationCallback callback)
         {
-            throw new NotImplementedException("Nur Testdaten vorhanden und scheiss - SOAP Schnittstelle");
+            var b = new BackgroundWorker();
+            b.DoWork += (sender, args) =>
+            {
+                if (userCredentials.CredentialsFilled)
+                {
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, certificate, chain, sslPolicyErrors) => true;
+                    var restClient = new RestClient(BadgeportalUrl);
+                    restClient.Authenticator = new HttpBasicAuthenticator(@"SIFSV-80018\ChallPUser", "1q$2w$3e$4r$5t");//new HttpBasicAuthenticator(userCredentials.Name, userCredentials.Password);
+                    restClient.ExecuteAsync(new RestRequest("/getBadgeSaldo", Method.GET), (response, handle) =>
+                    {
+                        try
+                        {
+                            var badgeportal = JsonHelper.ParseJson<BadgeInformation>(response);
+                            callback(badgeportal);
+                        } catch (Exception)
+                        {
+                            callback(new BadgeInformation());
+                        }
+                    });
+                } else
+                {
+                    callback(new BadgeInformation(){ CashAmount = 0 });
+                }};
+            b.RunWorkerAsync();
         }
 
         public static void GetUserTimetable(UserCredentials userCredentials, TimetableCallback callback, object[] callbackArguments = null)
@@ -37,7 +61,7 @@ namespace HSR_Helper.DomainLibrary.Helper
             {
                 if (userCredentials.CredentialsFilled)
                 {
-                    
+                    //TODO: Abfangen, falls user stundenplan gelockt hat
                     var restClient = new RestClient(HsrRestUrl);
                     restClient.Authenticator = new HttpBasicAuthenticator(userCredentials.Name, userCredentials.Password);
                     restClient.AddDefaultHeader("Accept", "text/json");
@@ -48,8 +72,7 @@ namespace HSR_Helper.DomainLibrary.Helper
                         timetable.Username = username;
                         callback(timetable, callbackArguments);
                     });
-                }
-                else
+                } else
                 {
                     var timetable = new Timetable();
                     timetable.Semester = "keine userdaten.";
@@ -78,10 +101,10 @@ namespace HSR_Helper.DomainLibrary.Helper
                     Lunchtable lunchtable;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
+                        //TODO: abfangen, falls menü {} ist
                         lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
                         callback(lunchtable);
-                    }
-                    else
+                    } else
                     {
                         var errorMsg = new Dish("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusCode + ": " + response.StatusDescription));
                         lunchtable = new Lunchtable();

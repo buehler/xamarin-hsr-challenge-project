@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Linq;
 using MonoTouch.Dialog;
+using HSR_Helper.DomainLibrary.Domain.Userinformation;
 
 namespace HSR_Helper.iOS
 {
@@ -30,11 +31,13 @@ namespace HSR_Helper.iOS
             if (ApplicationSettings.Instance.Persistency.Exists<Lunchtable>())
                 LoadLunchtable(ApplicationSettings.Instance.Persistency.Load<Lunchtable>());
             View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
+            BadgeSaldo.BackgroundColor = ApplicationColors.NAVIGATIONBAR;
+            HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, BadgeInformationCallback);
         }
 
         public override void ViewDidAppear(bool animated)
         {
-            if (_lastUpdate == null || DateTime.Now.DayOfYear != _lastUpdate.DayOfYear)
+            if (_lastUpdate == DateTime.MinValue || DateTime.Now.DayOfYear != _lastUpdate.DayOfYear)
                 HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
             base.ViewDidAppear(animated);
         }
@@ -71,6 +74,14 @@ namespace HSR_Helper.iOS
                 LoadLunchtable(lunchtable);
                 _lastUpdate = DateTime.Now;
             }
+        }
+
+        private void BadgeInformationCallback(BadgeInformation badgeInformation)
+        {
+            UIApplication.SharedApplication.InvokeOnMainThread(() =>
+            {
+                BadgeSaldo.Text = badgeInformation.BadgeSaldoString;
+            });
         }
 
         private DialogViewController CreateView(LunchDay lunchDay)

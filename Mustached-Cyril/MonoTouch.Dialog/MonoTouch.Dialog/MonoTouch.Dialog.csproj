@@ -11,8 +11,6 @@
     <RootNamespace>MonoTouch.Dialog</RootNamespace>
     <AssemblyName>MonoTouch.Dialog</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>

@@ -24,7 +24,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
             var o = obj as UserTimetableList;
             if (o != null)
             {
-                return Usernames.ContentsAreIdentical(o.Usernames);
+                return Usernames.ListsAreIdentical(o.Usernames);
             }
             return false;
         }

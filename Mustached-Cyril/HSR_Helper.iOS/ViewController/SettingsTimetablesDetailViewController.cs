@@ -71,8 +71,7 @@ namespace HSR_Helper.iOS
                 if (element is StringElement)
                 {
                     _usernameSection.Add(CreateEditableElement((elementList.IndexOf(element) + 1).ToString(), (element as StringElement).Caption, editable));
-                }
-                else
+                } else
                 {
                     _usernameSection.Add(CreateEditableElement(element.Caption, (element as EntryElement).Value ?? (elementList.IndexOf(element) + 1).ToString(), editable));
                     ApplicationSettings.Instance.UserTimetablelist.Usernames [elementList.IndexOf(element)] = (element as EntryElement).Value ?? (elementList.IndexOf(element) + 1).ToString();
@@ -85,8 +84,7 @@ namespace HSR_Helper.iOS
             if (editable)
             {
                 return new EntryElement(caption, "Benutzername", content);
-            }
-            else
+            } else
             {
                 return new StringElement(content);
             }
@@ -111,6 +109,7 @@ namespace HSR_Helper.iOS
                     var section = Container.Root [indexPath.Section];
                     var element = section [indexPath.Row];
                     section.Remove(element);
+                    ApplicationSettings.Instance.Persistency.Delete(new HSR_Helper.DomainLibrary.Domain.Timetable.Timetable(){Username = element.Caption});
                     ApplicationSettings.Instance.UserTimetablelist.Usernames.RemoveAt(indexPath.Row);
                 }
             }
@@ -123,7 +122,11 @@ namespace HSR_Helper.iOS
 
             public override void MoveRow(UITableView tableView, MonoTouch.Foundation.NSIndexPath sourceIndexPath, MonoTouch.Foundation.NSIndexPath destinationIndexPath)
             {
-                // TODO: Implement - see: http://go-mono.com/docs/index.aspx?link=T%3aMonoTouch.Foundation.ModelAttribute
+                var section = Container.Root [sourceIndexPath.Section];
+                var element = section [sourceIndexPath.Row];
+                section.Remove(element);
+                section.Insert(destinationIndexPath.Row, element);
+                ApplicationSettings.Instance.UserTimetablelist.Usernames.Move(sourceIndexPath.Row, destinationIndexPath.Row);
             }
         }
 
