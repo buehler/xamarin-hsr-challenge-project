@@ -20,9 +20,7 @@ namespace HSR_Helper.Android
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            TextView textView = new TextView(this);
-            textView.Text = "Settings";
-            SetContentView(textView);
+            SetContentView(Resource.Layout.Setting);
         }
     }
 }

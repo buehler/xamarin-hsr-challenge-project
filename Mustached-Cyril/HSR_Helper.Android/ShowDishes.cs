@@ -12,6 +12,7 @@ using Android.Widget;
 using HSR_Helper.DomainLibrary.Domain;
 using HSR_Helper.DomainLibrary.Helper;
 using HSR_Helper.DomainLibrary.Domain.Lunchtable;
+using Cheesebaron.HorizontalPager;
 
 namespace HSR_Helper.Android
 {
@@ -19,32 +20,63 @@ namespace HSR_Helper.Android
     public class ShowDishes : Activity
     {
         public static Context appContext;
+        HorizontalPager horiPager;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            var display = WindowManager.DefaultDisplay;
+            horiPager= new HorizontalPager(this.ApplicationContext, display);
+            horiPager.ScreenChanged += new ScreenChangedEventHandler(horiPager_ScreenChanged);
 
-            HorizontalScrollView view = new HorizontalScrollView(this);
-            LinearLayout lmo = new LinearLayout(this);
-            lmo.Id = 1234;
-            view.AddView(lmo);
-            
-            
-            SetContentView(view);
+            //You can also use:
+            /*horiPager.ScreenChanged += (sender, e) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Switched to screen: " + ((HorizontalPager)sender).CurrentScreen);
+            };*/
+               
+
+            for (int i = 0; i < 5; i++)
+            {
+                var textView = new TextView(this.ApplicationContext);
+                textView.Id = i;
+                textView.Text = (i + 1).ToString();
+                textView.TextSize = 100;
+                textView.Gravity = GravityFlags.Center;
+                horiPager.AddView(textView);
+            }
+
+            SetContentView(horiPager);
 
             DomainLibraryHelper.GetLunchtable(addLunchtable);
 
         }
 
+        void horiPager_ScreenChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Switched to screen: " + ((HorizontalPager)sender).CurrentScreen);
+        }
+
+
+
+
         private void addLunchtable(Lunchtable lunchtable)
         {
-            var view1 = FindViewById<LinearLayout>(1234);
-            TextView a = new TextView(this);
-            a.Text = "aaa";
-            view1.AddView(a);
+            
             foreach (LunchDay day in lunchtable.LunchDays)
             {
-                System.Console.WriteLine("muuu");
+                string menu = "";
+                foreach (Dish dish in day.Dishes)
+                {
+                    menu += dish.Title + ":";
+                }
+
+                var view = this.FindViewById<TextView>(1);
+
+                view.Text = menu;
+                view.TextSize = 11;
+                view.Gravity = GravityFlags.Center;
+                System.Console.WriteLine(day.DateString);
             }
         }
 

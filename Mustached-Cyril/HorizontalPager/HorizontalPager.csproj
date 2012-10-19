@@ -5,19 +5,20 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{619927C1-79B4-4597-92A8-06AD95848F45}</ProjectGuid>
+    <ProjectGuid>{255D970A-8D9A-4B13-B97D-B79E74035E34}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HSR_Helper.Android</RootNamespace>
-    <AssemblyName>HSR_Helper.Android</AssemblyName>
+    <RootNamespace>Cheesebaron.HorizontalPager</RootNamespace>
+    <AssemblyName>HorizontalPager</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidSupportedAbis>armeabi%3bx86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,19 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="HorizontalPagerDemo.cs" />
+    <Compile Include="HorizontalPager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowDishes.cs" />
-    <Compile Include="ShowSettings.cs" />
-    <Compile Include="ShowTimetable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\Layout\Setting.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\Main.axml" />
@@ -73,23 +69,7 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HorizontalPager\HorizontalPager.csproj">
-      <Project>{255d970a-8d9a-4b13-b97d-b79e74035e34}</Project>
-      <Name>HorizontalPager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HSR_Helper.DomainLibrary.Android\HSR_Helper.DomainLibrary.Android.csproj">
-      <Project>{3F741858-52D4-48FA-940A-371E958768F1}</Project>
-      <Name>HSR_Helper.DomainLibrary.Android</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\ic_tab_dish.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\ic_tab_dish_grey.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\ic_tab_dish_white.png" />
+    <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
