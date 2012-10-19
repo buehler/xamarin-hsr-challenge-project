@@ -9,15 +9,6 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
 {
 	public class Timetable : PersistentObject
 	{
-		[XmlIgnore]
-		public override string Id
-		{
-			get
-			{
-				return base.Id + Username;
-			}
-		}
-
 		[JsonProperty("Days")]
 		public List<TimetableDay> TimetableDays { get; set; }
 		[JsonProperty("Semester")]

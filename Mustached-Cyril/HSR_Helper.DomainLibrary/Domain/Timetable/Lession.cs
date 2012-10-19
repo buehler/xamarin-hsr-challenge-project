@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
-using System.Linq;
 using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.DomainLibrary.Domain.Timetable
