@@ -4,6 +4,13 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>myHSR</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Resources/MyHSR_Logo57.png</string>
+		<string>Resources/MyHSR_Logo114.png</string>
+		<string>Resources/MyHSR_Logo58.png</string>
+		<string>Resources/MyHSR_Logo29.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>myHSR</string>
 	<key>CFBundleVersion</key>

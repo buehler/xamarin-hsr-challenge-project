@@ -129,9 +129,21 @@
     <BundleResource Include="Resources\Settings-icon.png" />
     <BundleResource Include="Resources\Timetable-icon_%402X.png" />
     <BundleResource Include="Resources\Timetable-icon.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\MyHSR_Logo29.png" />
+    <BundleResource Include="Resources\MyHSR_Logo57.png" />
+    <BundleResource Include="Resources\MyHSR_Logo58.png" />
+    <BundleResource Include="Resources\MyHSR_Logo114.png" />
+    <BundleResource Include="Resources\MyHSR_Logo512.png" />
+    <BundleResource Include="Resources\MyHSR_Logo1024.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\LunchTableView.xib" />
     <InterfaceDefinition Include="Views\TimetableView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
