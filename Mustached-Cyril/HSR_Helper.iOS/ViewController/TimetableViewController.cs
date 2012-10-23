@@ -105,12 +105,22 @@ namespace HSR_Helper.iOS
                     ApplicationSettings.Instance.Persistency.Save(timetable);
                 LoadTimetable(timetable);
             }
-            UIApplication.SharedApplication.InvokeOnMainThread(() => {
-                if (args != null)
-                {
-                    args.ToList().ForEach(o => (o as DefaultDialogViewController).ReloadComplete());
-                }
-            });
+            else
+            {
+                UIApplication.SharedApplication.InvokeOnMainThread(() => {
+                    if (args != null)
+                    {
+                        foreach (var o in args)
+                        {
+                            var obj = o as DefaultDialogViewController;
+                            if (obj != null)
+                            {
+                                obj.ReloadComplete();
+                            }
+                        }
+                    }
+                });
+            }
         }
 
         private void RefreshRequested(object s, EventArgs e)
