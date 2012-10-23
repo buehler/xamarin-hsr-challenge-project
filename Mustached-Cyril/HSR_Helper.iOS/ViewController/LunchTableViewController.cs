@@ -12,10 +12,9 @@ namespace HSR_Helper.iOS
 {
     public partial class LunchTableViewController : UIViewController
     {
-        private PageScrollController<DialogViewController> _pageScrollController;
+        private PagingController _pagingController;
         private Lunchtable _loadedTimetable;
         private DateTime _lastUpdate;
-        private UIPageViewController _pageController;
 
         public LunchTableViewController() : base ("LunchTableView", null)
         {
@@ -29,21 +28,13 @@ namespace HSR_Helper.iOS
             base.ViewDidLoad();
             //_pageScrollController = new PageScrollController<DialogViewController>(ScrollView, PageController);
             //_pageScrollController.OnPageChange += PageChanged;
-
-
-            this._pageController = new UIPageViewController(UIPageViewControllerTransitionStyle.PageCurl,
-                                                            UIPageViewControllerNavigationOrientation.Horizontal,
-                                                            UIPageViewControllerSpineLocation.Min);
-            this._pageController.View.Frame = this.PageView.Bounds;
-            this.PageView.AddSubview(this._pageController.View);
-            _pageController.DataSource = new PageControllerDatasource();
+            _pagingController = new PagingController(PageView);
 
             if (ApplicationSettings.Instance.Persistency.Exists<Lunchtable>())
                 LoadLunchtable(ApplicationSettings.Instance.Persistency.Load<Lunchtable>());
-            PageView.BackgroundColor = View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
+            View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
             BadgeSaldo.BackgroundColor = ApplicationColors.NAVIGATIONBAR;
             HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, BadgeInformationCallback);
-
         }
 
         public override void ViewDidAppear(bool animated)
@@ -53,25 +44,7 @@ namespace HSR_Helper.iOS
             base.ViewDidAppear(animated);
         }
 
-        private void PageChanged(int newPage)
-        {
-            //NavigationItem.Title = _pageScrollController [newPage].Root.Caption;
-        }
-
-        private void LoadLunchtable(Lunchtable lunchtable)
-        {
-            UIApplication.SharedApplication.InvokeOnMainThread(() =>
-            {
-                if ((_pageController.DataSource as PageControllerDatasource).Lunchtable == null)
-                {
-                    _pageController.SetViewControllers(new UIViewController[] { CreateView(lunchtable.LunchDays [1]) }, UIPageViewControllerNavigationDirection.Forward, false, s => { });
-                }
-                (_pageController.DataSource as PageControllerDatasource).Lunchtable = lunchtable;
-                _pageController.ReloadInputViews();
-            });
-            _loadedTimetable = lunchtable;
-        }
-        private DialogViewController CreateView(LunchDay lunchDay)
+        private DefaultDialogViewController CreateView(LunchDay lunchDay)
         {
             if (lunchDay == null)
             {
@@ -94,6 +67,7 @@ namespace HSR_Helper.iOS
             
             return new DefaultDialogViewController(root);
         }
+
         private void LunchtableCallback(Lunchtable lunchtable)
         {
             if (!lunchtable.Equals(_loadedTimetable))
@@ -112,52 +86,22 @@ namespace HSR_Helper.iOS
             });
         }
 
-        private class PageControllerDatasource : UIPageViewControllerDataSource
+        private void LoadLunchtable(Lunchtable lunchtable)
         {
-
-            public Lunchtable Lunchtable{ get; set; }
-
-            public PageControllerDatasource() : base()
-            {
-            }
-
-            public override UIViewController GetPreviousViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
-            {
-                if (Lunchtable == null)
-                    return null;
-                return CreateView(Lunchtable.LunchDays [1]);
-            }    
-
-            public override UIViewController GetNextViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
-            {
-                if (Lunchtable == null)
-                    return null;
-                return CreateView(Lunchtable.LunchDays [1]);
-            }  
-
-            private DialogViewController CreateView(LunchDay lunchDay)
-            {
-                if (lunchDay == null)
+            UIApplication.SharedApplication.InvokeOnMainThread(() => {
+                _pagingController.Clear();
+                foreach (LunchDay lunchDay in lunchtable.LunchDays)
                 {
-                    return new DefaultDialogViewController(new RootElement(""){
-                        new Section("Kein Eintrag"){
-                            new MultilineElement("Kein Menü gefunden")
-                        }
-                    });
+                    _pagingController.AddPage(CreateView(lunchDay));
                 }
-                var root = new RootElement(lunchDay.DateString);
-                foreach (Dish d in lunchDay.Dishes)
+                try
                 {
-                    var section = new Section(d.Title)
-                    {
-                        new CustomFontMultilineElement(d.Description, 15, CustomFontMultilineElement.FontStyle.Normal),
-                        new CustomFontMultilineElement("", "CHF " + d.PriceInternal, 14, CustomFontMultilineElement.FontStyle.Bold, CustomFontMultilineElement.FontStyle.Bold)
-                    };
-                    root.Add(section);
+                    // _pageScrollController.ScrollToPage((int)DateTime.Now.DayOfWeek - 1);
+                } catch (Exception)
+                {
                 }
-                
-                return new DefaultDialogViewController(root);
-            }
+            });
+            _loadedTimetable = lunchtable;
         }
     }
 }
