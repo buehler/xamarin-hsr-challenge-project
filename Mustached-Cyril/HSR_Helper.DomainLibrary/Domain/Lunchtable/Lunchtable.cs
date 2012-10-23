@@ -9,6 +9,8 @@ namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
     {
         [JsonProperty("days")]
         public List<LunchDay> LunchDays { get; set; }
+
+        public bool NoMenuesFound{ get; set; }
         
         public Lunchtable()
         {
