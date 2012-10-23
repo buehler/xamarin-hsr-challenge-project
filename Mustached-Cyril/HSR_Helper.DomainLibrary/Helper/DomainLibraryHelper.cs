@@ -68,13 +68,24 @@ namespace HSR_Helper.DomainLibrary.Helper
                     restClient.ExecuteAsync(new RestRequest("/api/Timetable/" + username, Method.GET), (response, handle) =>
                     {
                         Timetable timetable;
-                        if (!string.IsNullOrEmpty(response.Content))
-                            timetable = JsonHelper.ParseJson<Timetable>(response);
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            if (!string.IsNullOrEmpty(response.Content))
+                                timetable = JsonHelper.ParseJson<Timetable>(response);
+                            else
+                                timetable = new Timetable(){BlockedTimetable = true};
+                            timetable.LastUpdated = DateTime.Now;
+                            timetable.Username = username;
+                            callback(timetable, callbackArguments);
+                        }
                         else
-                            timetable = new Timetable(){BlockedTimetable = true};
-                        timetable.LastUpdated = DateTime.Now;
-                        timetable.Username = username;
-                        callback(timetable, callbackArguments);
+                        {
+                            //error TODO: add some error handling
+                            timetable = new Timetable(){Semester = "NO SEMESTER.. ERROR"};
+                            timetable.LastUpdated = DateTime.Now;
+                            timetable.Username = username;
+                            callback(timetable, callbackArguments);
+                        }
                     });
                 }
                 else

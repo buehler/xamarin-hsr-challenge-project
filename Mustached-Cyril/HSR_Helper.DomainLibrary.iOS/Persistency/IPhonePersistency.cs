@@ -50,7 +50,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
         {
             return Delete(new T());
         }
-
+       
         public bool Delete<T>(T prototype) where T : PersistentObject, new()
         {
             if (Exists(prototype))

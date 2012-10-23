@@ -28,7 +28,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
             var o = obj as CourseAllocation;
             if (o != null)
             {
-                return (Description.CompareString(o.Description) && Timeslot.CompareString(o.Timeslot) && Type.CompareString(o.Type) && RoomAllocations.ContentsAreIdentical(o.RoomAllocations));
+                return (StaticMethods.CompareString(Description, o.Description) && StaticMethods.CompareString(Timeslot, o.Timeslot) && StaticMethods.CompareString(Type, o.Type) && RoomAllocations.ContentsAreIdentical(o.RoomAllocations));
             }
             return false;
         }

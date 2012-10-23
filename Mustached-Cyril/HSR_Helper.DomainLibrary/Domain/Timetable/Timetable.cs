@@ -36,7 +36,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
             var o = obj as Timetable;
             if (o != null)
             {
-                return (Semester.CompareString(o.Semester) && Username.Equals(o.Username) && TimetableDays.ContentsAreIdentical(o.TimetableDays));
+                return (StaticMethods.CompareString(Semester, o.Semester) && Username.Equals(o.Username) && TimetableDays.ContentsAreIdentical(o.TimetableDays));
             }
             return false;
         }
