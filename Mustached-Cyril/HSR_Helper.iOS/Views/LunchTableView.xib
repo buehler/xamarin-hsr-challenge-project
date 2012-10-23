@@ -59,7 +59,7 @@
 					<object class="IBUIScrollView" id="315985870">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 15}, {320, 332}}</string>
+						<string key="NSFrame">{{0, 20}, {320, 327}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="609661935"/>
@@ -74,7 +74,7 @@
 					<object class="IBUILabel" id="175060904">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 16}</string>
+						<string key="NSFrameSize">{320, 23}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="315985870"/>
@@ -94,13 +94,13 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Helvetica</string>
+							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
-							<int key="traits">0</int>
+							<int key="traits">2</int>
 							<double key="pointSize">15</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
+							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
