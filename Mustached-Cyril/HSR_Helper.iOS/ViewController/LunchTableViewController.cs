@@ -26,9 +26,7 @@ namespace HSR_Helper.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //_pageScrollController = new PageScrollController<DialogViewController>(ScrollView, PageController);
-            //_pageScrollController.OnPageChange += PageChanged;
-            _pagingController = new PagingController(PageView);
+            _pagingController = new PagingController(PageView, PageController);
 
             if (ApplicationSettings.Instance.Persistency.Exists<Lunchtable>())
                 LoadLunchtable(ApplicationSettings.Instance.Persistency.Load<Lunchtable>());
