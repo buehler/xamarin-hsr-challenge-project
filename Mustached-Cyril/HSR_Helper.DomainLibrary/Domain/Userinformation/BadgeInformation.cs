@@ -20,5 +20,18 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
                 return "Saldo: " + CashAmount.ToString() + " Chf";
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var o = obj as BadgeInformation;
+            if (o == null)
+                return false;
+            return CashAmount == o.CashAmount;
+        }
+
+        public override int GetHashCode()
+        {
+            return CashAmount.GetHashCode();
+        }
     }
 }

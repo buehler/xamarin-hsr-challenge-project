@@ -14,6 +14,7 @@ namespace HSR_Helper.iOS
     {
         private PageScrollController<DialogViewController> _pageScrollController;
         private Lunchtable _loadedTimetable;
+        private BadgeInformation _loadedBadgeInformation;
         private DateTime _lastUpdate;
 
         public LunchTableViewController() : base ("LunchTableView", null)
@@ -30,15 +31,20 @@ namespace HSR_Helper.iOS
             _pageScrollController.OnPageChange += PageChanged;
             if (ApplicationSettings.Instance.Persistency.Exists<Lunchtable>())
                 LoadLunchtable(ApplicationSettings.Instance.Persistency.Load<Lunchtable>());
+            if (ApplicationSettings.Instance.Persistency.Exists<BadgeInformation>())
+                LoadBadgeInformation(ApplicationSettings.Instance.Persistency.Load<BadgeInformation>());
+            else
+                BadgeSaldo.Text = (new BadgeInformation()).BadgeSaldoString;
             View.BackgroundColor = ApplicationColors.DEFAULT_BACKGROUND;
             BadgeSaldo.BackgroundColor = ApplicationColors.NAVIGATIONBAR;
-            HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, BadgeInformationCallback);
+            BadgeSaldo.TextColor = UIColor.White;
         }
 
         public override void ViewDidAppear(bool animated)
         {
             if (_lastUpdate == DateTime.MinValue || DateTime.Now.DayOfYear != _lastUpdate.DayOfYear)
                 HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetLunchtable(LunchtableCallback);
+            HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, BadgeInformationCallback);
             base.ViewDidAppear(animated);
         }
 
@@ -76,12 +82,22 @@ namespace HSR_Helper.iOS
             }
         }
 
-        private void BadgeInformationCallback(BadgeInformation badgeInformation)
+        private void LoadBadgeInformation(BadgeInformation badgeInformation)
         {
             UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 BadgeSaldo.Text = badgeInformation.BadgeSaldoString;
             });
+            _loadedBadgeInformation = badgeInformation;
+        }
+
+        private void BadgeInformationCallback(BadgeInformation badgeInformation)
+        {
+            if (!badgeInformation.Equals(_loadedBadgeInformation))
+            {
+                ApplicationSettings.Instance.Persistency.Save(badgeInformation);
+                LoadBadgeInformation(badgeInformation);
+            }
         }
 
         private DialogViewController CreateView(LunchDay lunchDay)
