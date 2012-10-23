@@ -43,11 +43,13 @@ namespace HSR_Helper.iOS
                             Accessory = MonoTouch.UIKit.UITableViewCellAccessory.DisclosureIndicator
                         };
                         Root.Add(new Section("Eigener Stundenplan"){_ownTimetable});
-                    } else
+                    }
+                    else
                     {
                         _ownTimetable.Caption = ApplicationSettings.Instance.UserCredentials.Name;
                     }
-                } else if (obj.GetType() == typeof(UserTimetableList))
+                }
+                else if (obj.GetType() == typeof(UserTimetableList))
                 {
                     if (_otherTimetables == null)
                     {
@@ -76,13 +78,13 @@ namespace HSR_Helper.iOS
 
         private void OnOwnTapped()
         {
-            if (!string.IsNullOrEmpty(ApplicationSettings.Instance.UserCredentials.Name))
-                OnTapped(ApplicationSettings.Instance.UserCredentials.Name);
+            OnTapped(ApplicationSettings.Instance.UserCredentials.Name);
         }
 
         private void OnTapped(string username)
         {
-            NavigationController.PushViewController(new TimetableViewController(username), true);
+            if (!string.IsNullOrEmpty(username))
+                NavigationController.PushViewController(new TimetableViewController(username), true);
         }
     }
 }

@@ -42,6 +42,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
 
         public bool Exists<T>(T prototype) where T : PersistentObject, new()
         {
+            Console.WriteLine("Checking: " + prototype.ToString() + " is existing in : " + Path.Combine(SavePath, prototype.Id));
             return File.Exists(Path.Combine(SavePath, prototype.Id));
         }
 
@@ -77,7 +78,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
             {
                 if (Exists<T>(prototype))
                 {
-                    Console.WriteLine("laoding: " + prototype.ToString() + " from: " + Path.Combine(SavePath, prototype.Id));
+                    Console.WriteLine("loading: " + prototype.ToString() + " from: " + Path.Combine(SavePath, prototype.Id));
                     FileStream fs = new FileStream(Path.Combine(SavePath, prototype.Id), FileMode.Open, FileAccess.Read);
                     XmlSerializer serializer = new XmlSerializer(typeof(T));
                     T obj = (T)serializer.Deserialize(fs);
