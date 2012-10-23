@@ -33,4 +33,16 @@ namespace HSR_Helper.DomainLibrary.Helper
             return true;
         }
     }
+
+    public static class StringExtensions
+    {
+        public static bool CompareString(this string s1, string s2)
+        {
+            if ((s1 == null && s2 != null) || (s2 == null && s1 != null))
+                return false;
+            if (s1 == null && s2 == null)
+                return true;
+            return s1.Equals(s2);
+        }
+    }
 }

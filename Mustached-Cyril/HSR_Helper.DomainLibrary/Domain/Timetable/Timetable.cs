@@ -7,33 +7,35 @@ using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.DomainLibrary.Domain.Timetable
 {
-	public class Timetable : PersistentObject
-	{
-		[JsonProperty("Days")]
-		public List<TimetableDay> TimetableDays { get; set; }
-		[JsonProperty("Semester")]
-		public string Semester { get; set; }
+    public class Timetable : PersistentObject
+    {
+        [JsonProperty("Days")]
+        public List<TimetableDay> TimetableDays { get; set; }
+        [JsonProperty("Semester")]
+        public string Semester { get; set; }
 
-		public string Username { get; set; }
+        public string Username { get; set; }
+
+        public bool BlockedTimetable{ get; set; }
         
-		public Timetable()
-		{
-			TimetableDays = new List<TimetableDay>();
-		}
+        public Timetable()
+        {
+            TimetableDays = new List<TimetableDay>();
+        }
 
-		public override bool Equals(object obj)
-		{
-			var o = obj as Timetable;
-			if (o != null)
-			{
-				return (this.Semester.Equals(o.Semester) && this.Username.Equals(o.Username) && this.TimetableDays.ContentsAreIdentical(o.TimetableDays));
-			}
-			return false;
-		}
+        public override bool Equals(object obj)
+        {
+            var o = obj as Timetable;
+            if (o != null)
+            {
+                return (Semester.CompareString(o.Semester) && Username.Equals(o.Username) && TimetableDays.ContentsAreIdentical(o.TimetableDays));
+            }
+            return false;
+        }
 
-		public override int GetHashCode()
-		{
-			return (TimetableDays.Aggregate(Username + Semester, (current, day) => current + day.ToString())).GetHashCode();
-		}
-	}
+        public override int GetHashCode()
+        {
+            return (TimetableDays.Aggregate(Username + Semester, (current, day) => current + day.ToString())).GetHashCode();
+        }
+    }
 }

@@ -28,7 +28,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
             var o = obj as CourseAllocation;
             if (o != null)
             {
-                return (CompareString(Description, o.Description) && CompareString(Timeslot, o.Timeslot) && CompareString(Type, o.Type) && RoomAllocations.ContentsAreIdentical(o.RoomAllocations));
+                return (Description.CompareString(o.Description) && Timeslot.CompareString(o.Timeslot) && Type.CompareString(o.Type) && RoomAllocations.ContentsAreIdentical(o.RoomAllocations));
             }
             return false;
         }
@@ -41,15 +41,6 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
         public override string ToString()
         {
             return (RoomAllocations.Aggregate(Description + Timeslot + Type, (c,r) => c + r.ToString()));
-        }
-
-        private bool CompareString(string s1, string s2)
-        {
-            if ((s1 == null && s2 != null) || (s2 == null && s1 != null))
-                return false;
-            if (s1 == null && s2 == null)
-                return true;
-            return s1.Equals(s2);
         }
     }
 

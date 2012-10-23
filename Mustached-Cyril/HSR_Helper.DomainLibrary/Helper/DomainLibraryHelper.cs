@@ -42,7 +42,8 @@ namespace HSR_Helper.DomainLibrary.Helper
                             callback(new BadgeInformation());
                         }
                     });
-                } else
+                }
+                else
                 {
                     callback(new BadgeInformation(){ CashAmount = 0 });
                 }};
@@ -61,18 +62,22 @@ namespace HSR_Helper.DomainLibrary.Helper
             {
                 if (userCredentials.CredentialsFilled)
                 {
-                    //TODO: Abfangen, falls user stundenplan gelockt hat
                     var restClient = new RestClient(HsrRestUrl);
                     restClient.Authenticator = new HttpBasicAuthenticator(userCredentials.Name, userCredentials.Password);
                     restClient.AddDefaultHeader("Accept", "text/json");
                     restClient.ExecuteAsync(new RestRequest("/api/Timetable/" + username, Method.GET), (response, handle) =>
                     {
-                        var timetable = JsonHelper.ParseJson<Timetable>(response);
+                        Timetable timetable;
+                        if (!string.IsNullOrEmpty(response.Content))
+                            timetable = JsonHelper.ParseJson<Timetable>(response);
+                        else
+                            timetable = new Timetable(){BlockedTimetable = true};
                         timetable.LastUpdated = DateTime.Now;
                         timetable.Username = username;
                         callback(timetable, callbackArguments);
                     });
-                } else
+                }
+                else
                 {
                     var timetable = new Timetable();
                     timetable.Semester = "keine userdaten.";
@@ -103,8 +108,10 @@ namespace HSR_Helper.DomainLibrary.Helper
                     {
                         //TODO: abfangen, falls menü {} ist
                         lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
+
                         callback(lunchtable);
-                    } else
+                    }
+                    else
                     {
                         var errorMsg = new Dish("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusCode + ": " + response.StatusDescription));
                         lunchtable = new Lunchtable();
