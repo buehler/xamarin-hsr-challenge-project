@@ -12,25 +12,25 @@ namespace HSR_Helper.iOS
     {
         public SettingsViewController() : base(new RootElement("Einstellungen"))
         {
+            var root = new RootElement("Einstellungen");
             var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
             var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Password, true);
             userEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
             userEntry.AutocapitalizationType = MonoTouch.UIKit.UITextAutocapitalizationType.None;
             userEntry.Changed += UsernameChanged;
             passwordEntry.Changed += PasswordChanged;
-            
-            
-            Root.Add(new Section("Benutzerinformationen"){
+
+            root.Add(new Section("Benutzerinformationen"){
                 userEntry,
                 passwordEntry
             });
             
-            Root.Add(new Section("Stundenplaneinstellungen"){
+            root.Add(new Section("Stundenplaneinstellungen"){
                 new StyledStringElement("Andere Stundenpläne", () => {NavigationController.PushViewController(new SettingsTimetablesDetailViewController(), true);}){
                     Accessory = UITableViewCellAccessory.DisclosureIndicator
                 }
             });
-
+            Root = root;
             Title = "Einstellungen";
             NavigationItem.Title = "Einstellungen";
             TabBarItem.Image = UIImage.FromBundle("Settings-icon");
