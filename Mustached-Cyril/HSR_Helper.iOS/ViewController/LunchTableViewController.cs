@@ -58,15 +58,26 @@ namespace HSR_Helper.iOS
             UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 _pageScrollController.Clear();
-                foreach (LunchDay lunchDay in lunchtable.LunchDays)
+                if (lunchtable.HasError)
                 {
-                    _pageScrollController.AddPage(CreateView(lunchDay));
+                    _pageScrollController.AddPage(new DefaultDialogViewController(new RootElement("Error"){
+                        new Section("Error"){
+                            new MultilineElement(lunchtable.ErrorMessage)
+                        }
+                    }));
                 }
-                try
+                else
                 {
-                    _pageScrollController.ScrollToPage((int)DateTime.Now.DayOfWeek - 1);
-                } catch (Exception)
-                {
+                    foreach (LunchDay lunchDay in lunchtable.LunchDays)
+                    {
+                        _pageScrollController.AddPage(CreateView(lunchDay));
+                    }
+                    try
+                    {
+                        _pageScrollController.ScrollToPage((int)DateTime.Now.DayOfWeek - 1);
+                    } catch (Exception)
+                    {
+                    }
                 }
             });
             _loadedTimetable = lunchtable;

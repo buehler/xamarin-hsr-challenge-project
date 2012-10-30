@@ -69,6 +69,17 @@ namespace HSR_Helper.iOS
                     dvc.CustomLastUpdate = timetable.LastUpdated;
                     _pageScrollController.AddPage(dvc);
                 }
+                else if (timetable.HasError)
+                {
+                    var root = new RootElement("Error"){
+                        new Section("Error"){
+                            new MultilineElement(timetable.ErrorMessage)
+                        }
+                    };
+                    var dvc = new DefaultDialogViewController(root, UITableViewStyle.Plain, RefreshRequested);
+                    dvc.CustomLastUpdate = timetable.LastUpdated;
+                    _pageScrollController.AddPage(dvc);
+                }
                 else
                 {
                     foreach (var day in timetable.TimetableDays)
