@@ -70,23 +70,24 @@ namespace HSR_Helper.DomainLibrary.Helper
                         Timetable timetable;
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            if (!string.IsNullOrEmpty(response.Content))
-                                timetable = JsonHelper.ParseJson<Timetable>(response);
-                            else
-                                timetable = new Timetable(){BlockedTimetable = true};
+                            timetable = JsonHelper.ParseJson<Timetable>(response);
                             timetable.LastUpdated = DateTime.Now;
                             timetable.Username = username;
                             callback(timetable, callbackArguments);
                         }
+                        else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden && string.IsNullOrEmpty(response.Content))
+                        {
+                            callback(new Timetable(){BlockedTimetable = true, LastUpdated = DateTime.Now, Username = username}, callbackArguments);
+                        }
                         else
                         {
-                            callback(new Timetable(){ErrorMessage=response.StatusDescription, LastUpdated=DateTime.Now, Username=username}, callbackArguments);
+                            callback(new Timetable(){ErrorMessage = response.StatusDescription, LastUpdated = DateTime.Now, Username = username}, callbackArguments);
                         }
                     });
                 }
                 else
                 {
-                    callback(new Timetable(){ErrorMessage="Keine Benutzerdaten vorhanden.", LastUpdated=DateTime.Now, Username=username}, callbackArguments);
+                    callback(new Timetable(){ErrorMessage = "Keine Benutzerdaten vorhanden.", LastUpdated = DateTime.Now, Username = username}, callbackArguments);
                 }};
             b.RunWorkerAsync();
         }
