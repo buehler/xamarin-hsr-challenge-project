@@ -19,9 +19,7 @@ namespace HSR_Helper.DomainLibrary.Persistency
             }
         }
 
-        [XmlIgnore]
         public string ErrorMessage{ get; set; }
-        [XmlIgnore]
         public bool HasError
         {
             get

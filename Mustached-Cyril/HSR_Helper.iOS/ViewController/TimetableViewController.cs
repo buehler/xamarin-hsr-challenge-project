@@ -95,7 +95,13 @@ namespace HSR_Helper.iOS
                                 string t = alloc.Timeslot;
                                 if (alloc.RoomAllocations.Count() > 0)
                                     t += "\n" + alloc.RoomAllocations.FirstOrDefault().Roomnumber;
-                                section.Add(new CustomFontMultilineElement(t, lession.LecturersShortVersion));
+                                var tmpLession = new Lession(){CourseAllocations=lession.CourseAllocations,
+                                                               Lecturers=lession.Lecturers,
+                                                               Name=lession.Name,
+                                                               Type=lession.Type};
+                                section.Add(new MultilineElement(t, () => {
+
+                                    OnElementTappet(tmpLession);}){Value=lession.LecturersShortVersion});
                             }
                             root.Add(section);
                         }
@@ -137,6 +143,29 @@ namespace HSR_Helper.iOS
         private void RefreshRequested(object s, EventArgs e)
         {
             HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, _userName, TimetableCallback, new object[]{s});
+        }
+
+        private void OnElementTappet(Lession lession)
+        {
+            var root = new RootElement(lession.Name);
+            var allocations = new Section("Termine");
+            foreach (CourseAllocation alloc in lession.CourseAllocations)
+            {
+                string t = alloc.Timeslot;
+                if (!string.IsNullOrEmpty(alloc.Type))
+                    t += "\n" + alloc.Type;
+                if (!string.IsNullOrEmpty(alloc.Description))
+                    t += "\n" + alloc.Description;
+                allocations.Add(new MultilineElement(t, (alloc.RoomAllocations.Count() > 0 ? alloc.RoomAllocations.FirstOrDefault().Roomnumber : string.Empty)));
+            }
+            root.Add(allocations);
+            var lecturers = new Section("Betreuer");
+            foreach (Lecturer l in lession.Lecturers)
+            {
+                lecturers.Add(new StringElement(l.Fullname, l.Shortname));
+            }
+            root.Add(lecturers);
+            NavigationController.PushViewController(new DefaultDialogViewController(root), true);
         }
     }
 }
