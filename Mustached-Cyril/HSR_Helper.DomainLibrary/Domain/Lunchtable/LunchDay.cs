@@ -6,6 +6,7 @@ using HSR_Helper.DomainLibrary.Persistency;
 using RestSharp.Deserializers;
 using Newtonsoft.Json;
 using HSR_Helper.DomainLibrary.Helper;
+using System.Xml.Serialization;
 
 namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
 {
@@ -16,6 +17,14 @@ namespace HSR_Helper.DomainLibrary.Domain.Lunchtable
         public string DateString { get; set; }
         [JsonProperty("menus")]
         public List<Dish> Dishes { get; set; }
+        [XmlIgnore]
+        public bool HasDishes
+        {
+            get
+            {
+                return Dishes.Count() != 0;
+            }
+        }
 
         public LunchDay()
         {

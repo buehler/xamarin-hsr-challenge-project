@@ -37,9 +37,9 @@ namespace HSR_Helper.DomainLibrary.Helper
                         {
                             var badgeportal = JsonHelper.ParseJson<BadgeInformation>(response);
                             callback(badgeportal);
-                        } catch (Exception)
+                        } catch (Exception e)
                         {
-                            callback(new BadgeInformation());
+                            callback(new BadgeInformation(){ErrorMessage = e.Message});
                         }
                     });
                 }
@@ -80,28 +80,13 @@ namespace HSR_Helper.DomainLibrary.Helper
                         }
                         else
                         {
-                            //error TODO: add some error handling
-                            timetable = new Timetable(){Semester = "NO SEMESTER.. ERROR"};
-                            timetable.LastUpdated = DateTime.Now;
-                            timetable.Username = username;
-                            callback(timetable, callbackArguments);
+                            callback(new Timetable(){ErrorMessage=response.StatusDescription, LastUpdated=DateTime.Now, Username=username}, callbackArguments);
                         }
                     });
                 }
                 else
                 {
-                    var timetable = new Timetable();
-                    timetable.Semester = "keine userdaten.";
-                    var day = new TimetableDay();
-                    day.Id = 0;
-                    day.Weekday = "error";
-                    var lession = new Lession();
-                    lession.Name = "userdaten erfassen";
-                    lession.CourseAllocations.Add(new CourseAllocation(){Timeslot="um daten abzurufen\nbitte userdaten eingeben!"});
-                    day.Lessions.Add(lession);
-                    timetable.TimetableDays.Add(day);
-                    timetable.LastUpdated = DateTime.Now;
-                    callback(timetable, callbackArguments);
+                    callback(new Timetable(){ErrorMessage="Keine Benutzerdaten vorhanden.", LastUpdated=DateTime.Now, Username=username}, callbackArguments);
                 }};
             b.RunWorkerAsync();
         }
@@ -119,17 +104,11 @@ namespace HSR_Helper.DomainLibrary.Helper
                     {
                         //TODO: abfangen, falls menü {} ist
                         lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
-
                         callback(lunchtable);
                     }
                     else
                     {
-                        var errorMsg = new Dish("Errorbeschreibung", (response.ErrorMessage != null ? response.ErrorMessage : response.StatusCode + ": " + response.StatusDescription));
-                        lunchtable = new Lunchtable();
-                        var lunchday = new LunchDay("error");
-                        lunchday.Dishes.Add(errorMsg);
-                        lunchtable.LunchDays.Add(lunchday);
-                        callback(lunchtable);
+                        callback(new Lunchtable(){ErrorMessage=response.StatusDescription});
                     }
                 });
             };

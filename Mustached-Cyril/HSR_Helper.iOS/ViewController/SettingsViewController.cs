@@ -37,7 +37,6 @@ namespace HSR_Helper.iOS
 
         private void UsernameChanged(object s, EventArgs e)
         {
-            Console.WriteLine("Username changed");
             var field = s as EntryElement;
             if (field != null)
             {
@@ -48,7 +47,6 @@ namespace HSR_Helper.iOS
 
         private void PasswordChanged(object s, EventArgs e)
         {
-            Console.WriteLine("PW Changed");
             var field = s as EntryElement;
             if (field != null)
             {

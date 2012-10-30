@@ -35,9 +35,9 @@ namespace HSR_Helper.DomainLibrary.Helper
         }
     }
 
-    public static class StaticMethods
+    public static class StringExtensions
     {
-        public static bool CompareString(string s1, string s2)
+        public static bool CompareString(this string s1, string s2)
         {
             if ((s1 == null && s2 != null) || (s2 == null && s1 != null))
                 return false;
@@ -46,4 +46,5 @@ namespace HSR_Helper.DomainLibrary.Helper
             return s1.Equals(s2);
         }
     }
+
 }
