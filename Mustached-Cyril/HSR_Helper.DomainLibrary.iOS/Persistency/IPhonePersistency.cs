@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using HSR_Helper.DomainLibrary.Persistency;
+using System.Xml;
+using System.Text;
 
 
 namespace HSR_Helper.DomainLibrary.iOS.Persistency
@@ -25,7 +27,8 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
                     fs = new FileStream(Path.Combine(SavePath, obj.Id), FileMode.Truncate, FileAccess.Write);
                 }
                 XmlSerializer serializer = new XmlSerializer(obj.GetType());
-                serializer.Serialize(fs, obj);
+                XmlWriter writer = new XmlTextWriter(fs, Encoding.UTF8);
+                serializer.Serialize(writer, obj);
                 fs.Close();
                 return true;
             } catch (Exception ex)

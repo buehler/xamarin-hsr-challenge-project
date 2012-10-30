@@ -12,8 +12,8 @@ namespace HSR_Helper.iOS
     {
         public SettingsViewController() : base(new RootElement("Einstellungen"))
         {
-            var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
-            var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name, true);
+            var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name ?? string.Empty);
+            var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name ?? string.Empty, true);
             userEntry.AutocorrectionType = passwordEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
             userEntry.AutocapitalizationType = passwordEntry.AutocapitalizationType = MonoTouch.UIKit.UITextAutocapitalizationType.None;
             userEntry.Changed += UsernameChanged;
