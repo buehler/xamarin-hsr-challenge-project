@@ -61,6 +61,7 @@ namespace HSR_Helper.DomainLibrary.iOS.Persistency
                 try
                 {
                     File.Delete(Path.Combine(SavePath, prototype.Id));
+                    Console.WriteLine("deleted: " + prototype.ToString() + " from: " + Path.Combine(SavePath, prototype.Id));
                     return true;
                 } catch (Exception)
                 {

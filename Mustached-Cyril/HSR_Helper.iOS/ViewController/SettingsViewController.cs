@@ -12,23 +12,24 @@ namespace HSR_Helper.iOS
     {
         public SettingsViewController() : base(new RootElement("Einstellungen"))
         {
-            var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name ?? string.Empty);
-            var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Name ?? string.Empty, true);
-            userEntry.AutocorrectionType = passwordEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
-            userEntry.AutocapitalizationType = passwordEntry.AutocapitalizationType = MonoTouch.UIKit.UITextAutocapitalizationType.None;
+            var userEntry = new EntryElement("Benutzername", "benutzername", ApplicationSettings.Instance.UserCredentials.Name);
+            var passwordEntry = new EntryElement("Passwort", "passwort", ApplicationSettings.Instance.UserCredentials.Password, true);
+            userEntry.AutocorrectionType = MonoTouch.UIKit.UITextAutocorrectionType.No;
+            userEntry.AutocapitalizationType = MonoTouch.UIKit.UITextAutocapitalizationType.None;
             userEntry.Changed += UsernameChanged;
             passwordEntry.Changed += PasswordChanged;
-
+            
+            
             Root.Add(new Section("Benutzerinformationen"){
-				userEntry,
-				passwordEntry
-			});
-
+                userEntry,
+                passwordEntry
+            });
+            
             Root.Add(new Section("Stundenplaneinstellungen"){
-				new StyledStringElement("Andere Stundenpläne", () => {NavigationController.PushViewController(new SettingsTimetablesDetailViewController(), true);}){
-					Accessory = UITableViewCellAccessory.DisclosureIndicator
-				}
-			});
+                new StyledStringElement("Andere Stundenpläne", () => {NavigationController.PushViewController(new SettingsTimetablesDetailViewController(), true);}){
+                    Accessory = UITableViewCellAccessory.DisclosureIndicator
+                }
+            });
 
             Title = "Einstellungen";
             NavigationItem.Title = "Einstellungen";
@@ -40,6 +41,7 @@ namespace HSR_Helper.iOS
             var field = s as EntryElement;
             if (field != null)
             {
+                ApplicationSettings.Instance.Persistency.Delete(new HSR_Helper.DomainLibrary.Domain.Timetable.Timetable(){Username = ApplicationSettings.Instance.UserCredentials.Name});
                 ApplicationSettings.Instance.UserCredentials.Name = field.Value;
                 ApplicationSettings.Instance.Persistency.Save(ApplicationSettings.Instance.UserCredentials);
             }
