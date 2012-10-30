@@ -11,7 +11,7 @@ using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.Android
 {
-    [Activity(MainLauncher = true, Label = "@string/ApplicationName")]
+    [Activity(Label = "@string/ApplicationName")]
     public class MainActivity : TabActivity
     {
         protected override void OnCreate(Bundle bundle)

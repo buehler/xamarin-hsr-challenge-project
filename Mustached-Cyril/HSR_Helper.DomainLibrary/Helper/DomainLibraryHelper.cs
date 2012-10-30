@@ -6,8 +6,8 @@ using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 using HSR_Helper.DomainLibrary.Domain.Userinformation;
 using HSR_Helper.DomainLibrary.Domain.Timetable;
 using System.ComponentModel;
-using RestSharp;
 using System.Threading;
+using RestSharp;
 
 namespace HSR_Helper.DomainLibrary.Helper
 {
