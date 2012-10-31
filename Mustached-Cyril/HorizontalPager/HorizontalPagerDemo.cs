@@ -27,7 +27,7 @@ using Android.Graphics;
 
 namespace Cheesebaron.HorizontalPager
 {
-    [Activity(Label = "HorizontalPager", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "HorizontalPager", Icon = "@drawable/icon")]
     public class Activity1 : Activity
     {
         protected override void OnCreate(Bundle bundle)
