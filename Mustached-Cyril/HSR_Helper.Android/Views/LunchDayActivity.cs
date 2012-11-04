@@ -30,8 +30,6 @@ namespace HSR_Helper.Android
             horiPager = new HorizontalPager(this.ApplicationContext, display);
             SetContentView(horiPager);
             DomainLibraryHelper.GetLunchtable(addLunchtable);
-            horiPager.SetCurrentScreen(3, false);
-            //DomainLibraryHelper.GetUserBadgeInformation(
         }
 
         public void addLunchtable(Lunchtable lunchtable)
@@ -47,7 +45,7 @@ namespace HSR_Helper.Android
                 System.Console.WriteLine(day.DateString);
                 this.RunOnUiThread(() => horiPager.AddView(new LunchDayView(day).GetView(this, day_value)));
             }
-            horiPager.SetCurrentScreen(day_value, false);
+            this.RunOnUiThread(() => horiPager.SetCurrentScreen(day_value, false));
         }
 
     }
