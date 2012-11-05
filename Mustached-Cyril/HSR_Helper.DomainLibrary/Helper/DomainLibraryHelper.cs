@@ -19,7 +19,7 @@ namespace HSR_Helper.DomainLibrary.Helper
     {
         private const string SvgroupRestUrl = "http://kck.me/svhsr";
         private const string HsrRestUrl = "https://stundenplanws.hsr.ch:4443";
-        private const string BadgeportalUrl = "https://152.96.80.18/VerrechnungsportalService.svc/json";
+        private const string BadgeportalUrl = "https://verrechnungsportal.hsr.ch:4450/VerrechnungsportalService.svc/json";
 
         public static void GetUserBadgeInformation(UserCredentials userCredentials, BadgeInformationCallback callback)
         {
@@ -30,7 +30,7 @@ namespace HSR_Helper.DomainLibrary.Helper
                 {
                     System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, certificate, chain, sslPolicyErrors) => true;
                     var restClient = new RestClient(BadgeportalUrl);
-                    restClient.Authenticator = new HttpBasicAuthenticator(@"SIFSV-80018\ChallPUser", "1q$2w$3e$4r$5t");//new HttpBasicAuthenticator(userCredentials.Name, userCredentials.Password);
+                    restClient.Authenticator = new HttpBasicAuthenticator(userCredentials.DomainName, userCredentials.Password);
                     restClient.ExecuteAsync(new RestRequest("/getBadgeSaldo", Method.GET), (response, handle) =>
                     {
                         try

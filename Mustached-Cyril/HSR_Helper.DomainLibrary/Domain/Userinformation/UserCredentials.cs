@@ -20,6 +20,15 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
             }
         }
 
+        [XmlIgnore]
+        public string DomainName
+        {
+            get
+            {
+                return @"hsr\" + Name;
+            }
+        }
+
         private string _password;
         public string Password
         {

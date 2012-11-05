@@ -97,7 +97,15 @@ namespace HSR_Helper.iOS
         {
             UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
-                BadgeSaldo.Text = badgeInformation.BadgeSaldoString;
+                if (badgeInformation.HasError)
+                {
+                    if (_loadedBadgeInformation != null && _loadedBadgeInformation.CashAmount == 0)
+                        BadgeSaldo.Text = badgeInformation.ErrorMessage;
+                }
+                else
+                {
+                    BadgeSaldo.Text = badgeInformation.BadgeSaldoString;
+                }
             });
             _loadedBadgeInformation = badgeInformation;
         }
