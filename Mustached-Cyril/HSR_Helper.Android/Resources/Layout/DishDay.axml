@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1"
+        android:background="@android:color/background_dark">
+        <ImageButton
+            android:src="@drawable/navigation_previous_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/previousDay"
+            android:layout_marginLeft="0.0dp"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/day_text"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:gravity="center" />
+        <ImageButton
+            android:src="@drawable/navigation_next_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextDay"
+            android:layout_marginLeft="0.0dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="0.0dp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dish_list"
+        android:choiceMode="none" />
+</LinearLayout>

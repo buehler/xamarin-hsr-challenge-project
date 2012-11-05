@@ -23,7 +23,7 @@ namespace HSR_Helper.Android
             Intent intent;            // Reusable Intent for each tab
 
             // Create an Intent to launch an Activity for the tab
-            intent = new Intent(this, typeof(ShowDishes));
+            intent = new Intent(this, typeof(LunchDayActivity));
             intent.AddFlags(ActivityFlags.NewTask);
 
             // Initialize a TabSpec for each tab and add it to the TabHost
