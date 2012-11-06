@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ApplicationName">HSR Helper</string>
-    <string name="helloButtonText">Say Ueli</string>
-    <string name="helloLabelText">Hello Mono for Android</string>
-  <string name="timetable">Stundenplan</string>
-  <string name="lunchtable">Menü</string>
-  <string name="settings">Einstellungen</string>
+    <string name="timetable">Stundenplan</string>
+    <string name="lunchtable">Menü</string>
+    <string name="settings">Einstellungen</string>
+    <string name="userName">Benutzername</string>
+    <string name="enterUser">Benutzerdaten:</string>
+    <string name="pwd">Passwort</string>
 </resources>

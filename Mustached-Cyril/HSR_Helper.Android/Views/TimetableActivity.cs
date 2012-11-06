@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Cheesebaron.HorizontalPager;
+using HSR_Helper.DomainLibrary.Helper;
 
 namespace HSR_Helper.Android
 {
@@ -16,13 +18,16 @@ namespace HSR_Helper.Android
     public class ShowTimeTable : Activity
     {
         public static Context appContext;
+        HorizontalPager horiPager;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            TextView textView = new TextView(this);
-            textView.Text = "Stundenplan -> todo";
-            SetContentView(textView);
+            var display = WindowManager.DefaultDisplay;
+            horiPager = new HorizontalPager(this.ApplicationContext, display);
+            SetContentView(horiPager);
+            //DomainLibraryHelper.GetUserTimetable();
         }
+
     }
 }

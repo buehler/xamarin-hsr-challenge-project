@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HSR_Helper.Android.Views1
+namespace HSR_Helper.Android.Views
 {
     class DishItemAdapter: BaseAdapter
     {

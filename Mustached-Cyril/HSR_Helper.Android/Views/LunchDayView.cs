@@ -13,7 +13,7 @@ using HSR_Helper.DomainLibrary.Domain.Lunchtable;
 using Android.Content.Res;
 using Android.Util;
 
-namespace HSR_Helper.Android.Views1
+namespace HSR_Helper.Android.Views
 {
     class LunchDayView
     {
