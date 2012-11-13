@@ -14,6 +14,7 @@ namespace HSR_Helper.iOS
         private StyledStringElement _ownTimetable;
         private Section _otherTimetables;
         private UserTimetableList _loadedList;
+        private Dictionary<string, TimetableViewController> _loadedViews = new Dictionary<string, TimetableViewController>();
 
         public TimetableMasterViewController() : base(new RootElement("Stundenpläne"))
         {
@@ -29,6 +30,15 @@ namespace HSR_Helper.iOS
             base.ViewDidLoad();
             PersistentObjectChanged(ApplicationSettings.Instance.UserCredentials);
             PersistentObjectChanged(ApplicationSettings.Instance.UserTimetablelist);
+        }
+
+        public override void DidReceiveMemoryWarning()
+        {
+            lock (_loadedViews)
+            {
+                _loadedViews.Clear();
+            }
+            base.DidReceiveMemoryWarning();
         }
 
         private void PersistentObjectChanged(PersistentObject obj)
@@ -85,7 +95,16 @@ namespace HSR_Helper.iOS
         private void OnTapped(string username)
         {
             if (!string.IsNullOrEmpty(username))
-                NavigationController.PushViewController(new TimetableViewController(username), true);
+            {
+                if (!_loadedViews.ContainsKey(username))
+                {
+                    lock (_loadedViews)
+                    {
+                        _loadedViews.Add(username, new TimetableViewController(username));
+                    }
+                }
+                NavigationController.PushViewController(_loadedViews [username], true);
+            }
         }
     }
 }
