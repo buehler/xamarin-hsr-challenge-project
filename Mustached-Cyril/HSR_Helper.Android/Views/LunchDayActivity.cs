@@ -47,12 +47,12 @@ namespace HSR_Helper.Android
 
                 if (act <= db)
                 {
-                    DomainLibraryHelper.GetLunchtable(lunchtableCallback);
+                    addLunchtable(_loadedLuchtable);
                     return;
                 }
             }
             System.Console.WriteLine(_loadedLuchtable.LastUpdated);
-            addLunchtable(_loadedLuchtable);
+            DomainLibraryHelper.GetLunchtable(lunchtableCallback);
 
         }
 
