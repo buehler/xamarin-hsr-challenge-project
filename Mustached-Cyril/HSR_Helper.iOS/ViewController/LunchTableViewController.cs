@@ -99,7 +99,7 @@ namespace HSR_Helper.iOS
             {
                 if (badgeInformation.HasError)
                 {
-                    if (_loadedBadgeInformation != null && _loadedBadgeInformation.CashAmount == 0)
+                    if (_loadedBadgeInformation == null && _loadedBadgeInformation.CashAmount == 0)
                         BadgeSaldo.Text = badgeInformation.ErrorMessage;
                 }
                 else
