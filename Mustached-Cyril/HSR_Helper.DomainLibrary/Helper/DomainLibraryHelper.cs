@@ -105,6 +105,7 @@ namespace HSR_Helper.DomainLibrary.Helper
                     {
                         //TODO: abfangen, falls menü {} ist
                         lunchtable = JsonHelper.ParseJson<Lunchtable>(response);
+                        lunchtable.LastUpdated = System.DateTime.Today;
                         callback(lunchtable);
                     }
                     else

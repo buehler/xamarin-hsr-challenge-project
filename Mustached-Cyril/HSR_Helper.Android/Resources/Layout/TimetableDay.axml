@@ -4,14 +4,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout1"
-        android:background="@android:color/background_dark"
-        android:minWidth="25px"
-        android:minHeight="25px">
+        android:background="@android:color/background_dark">
         <ImageButton
-            android:src="@drawable/navigation_next_item"
+            android:src="@drawable/navigation_previous_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/previousDay"
