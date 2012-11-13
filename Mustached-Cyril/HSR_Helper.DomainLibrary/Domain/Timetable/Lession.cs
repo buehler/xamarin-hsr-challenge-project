@@ -12,12 +12,38 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
     {
         [JsonProperty("Name")]
         public string Name { get; set; }
+
         [JsonProperty("Type")]
         public string Type { get; set; }
+
+        private List<CourseAllocation> _courseAllocations;
         [JsonProperty("CourseAllocations")]
-        public List<CourseAllocation> CourseAllocations { get; set; }
+        public List<CourseAllocation> CourseAllocations
+        {
+            get
+            {
+                return _courseAllocations;
+            }
+            set
+            {
+                _courseAllocations = value;
+            }
+        }
+
+        private List<Lecturer> _lecturers = new List<Lecturer>();
         [JsonProperty("Lecturers")]
-        public List<Lecturer> Lecturers { get; set; }
+        public List<Lecturer> Lecturers
+        {
+            get
+            {
+                return _lecturers;
+            }
+            set
+            {
+                _lecturers = value;
+            }
+        }
+
         [XmlIgnore]
         public string LecturersShortVersion
         {
@@ -25,12 +51,6 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
             {
                 return Lecturers.Aggregate("", (current, l) => current + l.Shortname + (Lecturers.IndexOf(l) == Lecturers.Count() - 1 ? "" : "/"));
             }
-        }
-
-        public Lession()
-        {
-            CourseAllocations = new List<CourseAllocation>();
-            Lecturers = new List<Lecturer>();
         }
 
         public override bool Equals(object obj)

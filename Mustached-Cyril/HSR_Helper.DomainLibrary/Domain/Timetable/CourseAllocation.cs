@@ -11,16 +11,25 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
     {
         [JsonProperty("Description")]
         public string Description { get; set; }
+
         [JsonProperty("Timeslot")]
         public string Timeslot { get; set; }
+
         [JsonProperty("Type")]
         public string Type { get; set; }
-        [JsonProperty("RoomAllocations")]
-        public List<RoomAllocation> RoomAllocations { get; set; }
 
-        public CourseAllocation()
+        private List<RoomAllocation> _roomAllocations = new List<RoomAllocation>();
+        [JsonProperty("RoomAllocations")]
+        public List<RoomAllocation> RoomAllocations
         {
-            RoomAllocations = new List<RoomAllocation>();
+            get
+            {
+                return _roomAllocations;
+            }
+            set
+            {
+                _roomAllocations = value;
+            }
         }
 
         public override bool Equals(object obj)

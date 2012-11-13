@@ -6,7 +6,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
 {
     public sealed class UserCredentials : SecureObject
     {
-        private string _name;
+        private string _name = "user";
         public string Name
         {
             get
@@ -29,7 +29,7 @@ namespace HSR_Helper.DomainLibrary.Domain.Userinformation
             }
         }
 
-        private string _password;
+        private string _password = "pass";
         public string Password
         {
             get

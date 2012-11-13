@@ -11,6 +11,8 @@ namespace HSR_Helper.DomainLibrary.Helper
     {
         public static bool ContentsAreIdentical<T>(this IEnumerable<T> items, IEnumerable<T> otherItems)
         {
+            if (items == null || otherItems == null)
+                return false;
             if (items.Count() != otherItems.Count())
                 return false;
             var l1 = from o in items

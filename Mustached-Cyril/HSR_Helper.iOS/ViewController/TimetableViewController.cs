@@ -125,16 +125,9 @@ namespace HSR_Helper.iOS
             else
             {
                 UIApplication.SharedApplication.InvokeOnMainThread(() => {
-                    if (args != null)
+                    foreach (var o in _pageScrollController)
                     {
-                        foreach (var o in args)
-                        {
-                            var obj = o as DefaultDialogViewController;
-                            if (obj != null)
-                            {
-                                obj.ReloadComplete();
-                            }
-                        }
+                        o.ReloadComplete();
                     }
                 });
             }
@@ -142,7 +135,7 @@ namespace HSR_Helper.iOS
 
         private void RefreshRequested(object s, EventArgs e)
         {
-            HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, _userName, TimetableCallback, new object[]{s});
+            HSR_Helper.DomainLibrary.Helper.DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, _userName, TimetableCallback);
         }
 
         private void OnElementTappet(Lession lession)

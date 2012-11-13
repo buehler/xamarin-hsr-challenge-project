@@ -17,19 +17,26 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
             }
         }
 
+        private List<TimetableDay> _days = new List<TimetableDay>();
         [JsonProperty("Days")]
-        public List<TimetableDay> TimetableDays { get; set; }
+        public List<TimetableDay> TimetableDays
+        {
+            get
+            {
+                return _days;
+            }
+            set
+            {
+                _days = value;
+            }
+        }
+
         [JsonProperty("Semester")]
         public string Semester { get; set; }
 
         public string Username { get; set; }
 
         public bool BlockedTimetable{ get; set; }
-        
-        public Timetable()
-        {
-            TimetableDays = new List<TimetableDay>();
-        }
 
         public override bool Equals(object obj)
         {

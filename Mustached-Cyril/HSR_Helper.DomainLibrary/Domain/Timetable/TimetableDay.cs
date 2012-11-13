@@ -11,12 +11,19 @@ namespace HSR_Helper.DomainLibrary.Domain.Timetable
         public string Weekday { get; set; }
         [JsonProperty("Id")]
         public int Id { get; set; }
-        [JsonProperty("Lessons")]
-        public List<Lession> Lessions { get; set; }
 
-        public TimetableDay()
+        private List<Lession> _lessions = new List<Lession>();
+        [JsonProperty("Lessons")]
+        public List<Lession> Lessions
         {
-            Lessions = new List<Lession>();
+            get
+            {
+                return _lessions;
+            }
+            set
+            {
+                _lessions = value;
+            }
         }
 
         public override bool Equals(object obj)
