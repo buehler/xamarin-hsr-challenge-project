@@ -32,7 +32,7 @@ namespace HSR_Helper.Android
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
-            intent = new Intent(this, typeof(ShowTimeTable));
+            intent = new Intent(this, typeof(TimetableActivity));
             intent.AddFlags(ActivityFlags.NewTask);
             spec = TabHost.NewTabSpec("timetables");
             spec.SetIndicator(Resources.GetString(Resource.String.timetable), Resources.GetDrawable(Resource.Drawable.ic_tab_dish));

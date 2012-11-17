@@ -23,6 +23,10 @@ namespace HSR_Helper.Android
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Setting);
+            var username = this.FindViewById<EditText>(Resource.Id.userName);
+            username.Text = ApplicationSettings.Instance.UserCredentials.Name;
+            var pwd = this.FindViewById<EditText>(Resource.Id.password);
+            pwd.Text = ApplicationSettings.Instance.UserCredentials.Password;
             var save = this.FindViewById<Button>(Resource.Id.saveButton);
             save.Click += (sender,evt) => 
                 {

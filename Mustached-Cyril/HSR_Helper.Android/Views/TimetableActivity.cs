@@ -13,11 +13,12 @@ using Cheesebaron.HorizontalPager;
 using HSR_Helper.DomainLibrary.Helper;
 using HSR_Helper.Andoid;
 using HSR_Helper.DomainLibrary.Domain.Timetable;
+using HSR_Helper.Android.Views;
 
 namespace HSR_Helper.Android
 {
     [Activity(Icon="@drawable/Icon")]
-    public class ShowTimeTable : Activity
+    public class TimetableActivity : Activity
     {
         public static Context appContext;
         HorizontalPager horiPager;
@@ -31,16 +32,20 @@ namespace HSR_Helper.Android
             DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials,TimetableCallback);
         }
 
-        private void TimetableCallback(DomainLibrary.Domain.Timetable.Timetable timetable, object[] callbackArguments)
+        private void TimetableCallback(Timetable timetable, object[] callbackArguments)
         {
+            this.RunOnUiThread(() => horiPager.RemoveAllViews());
             if (timetable != null)
             {
                 foreach (TimetableDay day in timetable.TimetableDays) 
                 {
+
+                    this.RunOnUiThread(() => horiPager.AddView(new TimetableDayView(day).GetView(this)));
+
                     System.Console.WriteLine(day.Weekday);
                     foreach (Lession lession in day.Lessions)
                     {
-                        System.Console.WriteLine(lession.Name);
+                        System.Console.WriteLine(lession);
                     }
 
                 }

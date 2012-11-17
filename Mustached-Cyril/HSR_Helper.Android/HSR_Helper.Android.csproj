@@ -53,6 +53,8 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ApplicationSettings.cs" />
+    <Compile Include="Views\TimetableItemAdaper.cs" />
+    <Compile Include="Views\TimetableDayView.cs" />
     <Compile Include="Views\LunchDayView.cs" />
     <Compile Include="Views\DishItemAdaper.cs" />
     <Compile Include="Views\LunchDayActivity.cs" />
