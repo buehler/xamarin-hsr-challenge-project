@@ -6,53 +6,39 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <LinearLayout
-        android:orientation="horizontal"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1">
+        android:id="@+id/relativeLayout1"
+        android:background="@android:color/background_dark"
+        android:paddingBottom="2.5px">
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/linearLayout2"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:paddingRight="5px">
             <TextView
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_from"
-                android:layout_gravity="center_vertical" />
+                android:id="@+id/text_from" />
+            <TextView
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_to" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
+        <ListView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout3">
-            <TextView
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/text_lesson" />
-            <TextView
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/text_lecturers" />
-            <TextView
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/text_room" />
-        </LinearLayout>
+            android:id="@+id/lession_list"
+            android:choiceMode="none" />
     </LinearLayout>
 </LinearLayout>

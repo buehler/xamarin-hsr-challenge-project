@@ -26,16 +26,46 @@ namespace HSR_Helper.Android.Views
 
         public View GetView(Activity activity)
         {
-            var timetableDayView = activity.LayoutInflater.Inflate(Resource.Layout.TimetableDay, null);
-            var dayTitle = timetableDayView.FindViewById<TextView>(Resource.Id.day_text);
-            dayTitle.Text = timetableDay.Weekday;
+            if (timetableDay.Weekday.Length < 1)
+            {
+                var timetableDayView = activity.LayoutInflater.Inflate(Resource.Layout.TimetableDay, null);
+                var dayTitle = timetableDayView.FindViewById<TextView>(Resource.Id.day_text);
+                dayTitle.Text = "Spezial";
 
-            //dishDay.SetBackgroundDrawable(context.Resources.GetDrawable(Resource.Drawable.whitey));
-            var adapter = new TimetableItemAdapter(activity, timetableDay.Lessions);
-            var list = timetableDayView.FindViewById<ListView>(Resource.Id.timetable_list);
-            list.Adapter = adapter;
+                //dishDay.SetBackgroundDrawable(context.Resources.GetDrawable(Resource.Drawable.whitey));
+                List<lessionText> lessionTexts = new List<lessionText>();
+                foreach (Lession lession in timetableDay.Lessions)
+                {
+                    foreach (CourseAllocation allocation in lession.CourseAllocations)
+                    {
+                        var room = "";
+                        foreach (RoomAllocation r in allocation.RoomAllocations)
+                        {
+                            room += r.Roomnumber + ";";
+                        }
+                        lessionTexts.Add(new lessionText(lession.Name, lession.LecturersShortVersion, room.TrimEnd(';')));
+                    }
+                }
+                var adapter = new LessionItemAdaper(activity, lessionTexts);
+                var list = timetableDayView.FindViewById<ListView>(Resource.Id.timetable_list);
+                list.Adapter = adapter;
 
-            return timetableDayView;
+                return timetableDayView;
+            }
+            else
+            {
+                var timetableDayView = activity.LayoutInflater.Inflate(Resource.Layout.TimetableDay, null);
+                var dayTitle = timetableDayView.FindViewById<TextView>(Resource.Id.day_text);
+                dayTitle.Text = timetableDay.Weekday;
+
+                //dishDay.SetBackgroundDrawable(context.Resources.GetDrawable(Resource.Drawable.whitey));
+                var adapter = new TimetableItemAdapter(activity, timetableDay.Lessions);
+                var list = timetableDayView.FindViewById<ListView>(Resource.Id.timetable_list);
+                list.Adapter = adapter;
+
+                return timetableDayView;
+            }
+
         }
 
 

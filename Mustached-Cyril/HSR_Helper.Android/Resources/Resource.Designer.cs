@@ -70,14 +70,11 @@ namespace HSR_Helper.Android
 			// aapt resource value: 0x7f060005
 			public const int dish_title = 2131099653;
 			
-			// aapt resource value: 0x7f06000d
-			public const int linearLayout1 = 2131099661;
-			
-			// aapt resource value: 0x7f06000e
-			public const int linearLayout2 = 2131099662;
+			// aapt resource value: 0x7f060013
+			public const int lession_list = 2131099667;
 			
 			// aapt resource value: 0x7f060010
-			public const int linearLayout3 = 2131099664;
+			public const int linearLayout2 = 2131099664;
 			
 			// aapt resource value: 0x7f060003
 			public const int nextDay = 2131099651;
@@ -100,20 +97,23 @@ namespace HSR_Helper.Android
 			// aapt resource value: 0x7f060008
 			public const int textView1 = 2131099656;
 			
-			// aapt resource value: 0x7f06000f
-			public const int text_from = 2131099663;
-			
-			// aapt resource value: 0x7f060012
-			public const int text_lecturers = 2131099666;
-			
 			// aapt resource value: 0x7f060011
-			public const int text_lesson = 2131099665;
+			public const int text_from = 2131099665;
 			
-			// aapt resource value: 0x7f060013
-			public const int text_room = 2131099667;
+			// aapt resource value: 0x7f06000d
+			public const int text_lecturers = 2131099661;
 			
 			// aapt resource value: 0x7f06000c
-			public const int timetable_list = 2131099660;
+			public const int text_lesson = 2131099660;
+			
+			// aapt resource value: 0x7f06000e
+			public const int text_room = 2131099662;
+			
+			// aapt resource value: 0x7f060012
+			public const int text_to = 2131099666;
+			
+			// aapt resource value: 0x7f06000f
+			public const int timetable_list = 2131099663;
 			
 			// aapt resource value: 0x7f060009
 			public const int userName = 2131099657;
@@ -139,10 +139,13 @@ namespace HSR_Helper.Android
 			public const int Setting = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int TimetableDay = 2130903044;
+			public const int TimeSlotItem = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int TimetableItem = 2130903045;
+			public const int TimetableDay = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int TimetableItem = 2130903046;
 			
 			private Layout()
 			{
