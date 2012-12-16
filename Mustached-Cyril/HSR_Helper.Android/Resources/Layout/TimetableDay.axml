@@ -4,12 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout1"
-        android:background="@android:color/background_dark">
+        android:background="@color/day_title">
         <ImageButton
             android:src="@drawable/navigation_previous_item"
             android:layout_width="wrap_content"
@@ -26,7 +24,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textStyle="bold"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textColor="@android:color/black" />
         <ImageButton
             android:src="@drawable/navigation_next_item"
             android:layout_width="wrap_content"
@@ -38,8 +37,6 @@
             android:visibility="invisible" />
     </RelativeLayout>
     <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timetable_list"

@@ -28,16 +28,28 @@ namespace HSR_Helper.Android
             base.OnCreate(bundle);
             var display = WindowManager.DefaultDisplay;
             horiPager = new HorizontalPager(this.ApplicationContext, display);
+            TextView test = new TextView(this);
+            test.Text = "Am Lade...";
+            horiPager.AddView(test);
             SetContentView(horiPager);
-            DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials,TimetableCallback);
+
+            var _loadedTimetable = ApplicationSettings.Instance.Persistency.Load<Timetable>();
+            if (_loadedTimetable != null && _loadedTimetable.TimetableDays.Count > 0)
+            {
+                displayTimetable(_loadedTimetable);
+            }
+            else
+            {
+                DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, TimetableCallback);
+            }
         }
 
-        private void TimetableCallback(Timetable timetable, object[] callbackArguments)
+        private void displayTimetable(Timetable timetable)
         {
             this.RunOnUiThread(() => horiPager.RemoveAllViews());
-            if (timetable != null)
+            if (timetable != null && timetable.TimetableDays.Count > 0)
             {
-                foreach (TimetableDay day in timetable.TimetableDays) 
+                foreach (TimetableDay day in timetable.TimetableDays)
                 {
 
                     this.RunOnUiThread(() => horiPager.AddView(new TimetableDayView(day).GetView(this)));
@@ -50,6 +62,18 @@ namespace HSR_Helper.Android
 
                 }
             }
+            else
+            {
+                TextView test = new TextView(this);
+                test.Text = "Keine Daten gefunden";
+                horiPager.AddView(test);
+            }
+        }
+
+        private void TimetableCallback(Timetable timetable, object[] callbackArguments)
+        {
+            displayTimetable(timetable);
+            ApplicationSettings.Instance.Persistency.Save(timetable);
         }
 
     }

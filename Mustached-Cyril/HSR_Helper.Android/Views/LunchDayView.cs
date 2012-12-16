@@ -28,18 +28,6 @@ namespace HSR_Helper.Android.Views
         {
             var dishDay = activity.LayoutInflater.Inflate(Resource.Layout.DishDay, null);
 
-            if (index == 0)
-            {
-                var previous = dishDay.FindViewById<ImageButton>(Resource.Id.previousDay);
-                previous.Visibility = ViewStates.Invisible;
-                previous.Enabled = false;
-            }
-            if (index == 5)
-            {
-                var next = dishDay.FindViewById<ImageButton>(Resource.Id.nextDay);
-                next.Visibility = ViewStates.Invisible;
-                next.Enabled = false;
-            }
             var dayTitle = dishDay.FindViewById<TextView>(Resource.Id.day_text);
             dayTitle.Text = lunchDay.DateString;
 
@@ -50,7 +38,5 @@ namespace HSR_Helper.Android.Views
 
             return dishDay;
         }
-
-
     }
 }

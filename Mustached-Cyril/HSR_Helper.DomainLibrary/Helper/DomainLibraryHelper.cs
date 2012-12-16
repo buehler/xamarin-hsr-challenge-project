@@ -21,6 +21,9 @@ namespace HSR_Helper.DomainLibrary.Helper
         private const string HsrRestUrl = "https://stundenplanws.hsr.ch:4443";
         private const string BadgeportalUrl = "https://verrechnungsportal.hsr.ch:4450/VerrechnungsportalService.svc/json";
 
+        // "https://verrechnungsportal.hsr.ch:4450/VerrechnungsportalService.svc/JSON/getBadgeSaldo"
+ 
+
         public static void GetUserBadgeInformation(UserCredentials userCredentials, BadgeInformationCallback callback)
         {
             var b = new BackgroundWorker();

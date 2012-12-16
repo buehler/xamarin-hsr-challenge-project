@@ -16,6 +16,7 @@ using Cheesebaron.HorizontalPager;
 using HSR_Helper.Android.Views;
 using HSR_Helper.Andoid;
 using System.Globalization;
+using HSR_Helper.DomainLibrary.Domain.Userinformation;
 
 namespace HSR_Helper.Android
 {
@@ -32,7 +33,7 @@ namespace HSR_Helper.Android
             horiPager = new HorizontalPager(this.ApplicationContext, display);
             SetContentView(horiPager);
             TextView test = new TextView(this);
-            test.Text = "Am Lade...";
+            test.Text = "Laden...";
             horiPager.AddView(test);
             var _loadedLuchtable = ApplicationSettings.Instance.Persistency.Load<Lunchtable>();
             if (_loadedLuchtable != null && _loadedLuchtable.LunchDays.Count > 0)
@@ -40,20 +41,36 @@ namespace HSR_Helper.Android
                 var cal = CultureInfo.CurrentCulture.Calendar;
                 int db = cal.GetWeekOfYear(_loadedLuchtable.LastUpdated, DateTimeFormatInfo.CurrentInfo.CalendarWeekRule,
                 DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek);
-                System.Console.WriteLine("Kalender woche des Ladens: " + db);
                 int act = cal.GetWeekOfYear(System.DateTime.Today, DateTimeFormatInfo.CurrentInfo.CalendarWeekRule,
                 DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek);
-                System.Console.WriteLine("Kalender woche aktuell: " + act);
 
                 if (act <= db)
                 {
                     addLunchtable(_loadedLuchtable);
+                    DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, badgeInfoCallback);
                     return;
                 }
             }
             System.Console.WriteLine(_loadedLuchtable.LastUpdated);
             DomainLibraryHelper.GetLunchtable(lunchtableCallback);
+            DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, badgeInfoCallback);
 
+        }
+
+        public void badgeInfoCallback(BadgeInformation badgeInfo)
+        {
+            for (int i = 0; i < horiPager.ChildCount; i++)
+            {
+                var view = horiPager.GetChildAt(i);
+                var textField = view.FindViewById<TextView>(Resource.Id.saldo);
+                if (textField != null )
+                {
+                    if (badgeInfo != null)
+                        textField.Text = badgeInfo.BadgeSaldoString;
+                    else
+                        textField.Text = "Saldo: 00.00";
+                } 
+            }
         }
 
         public void lunchtableCallback(Lunchtable lunchtable)
@@ -65,9 +82,13 @@ namespace HSR_Helper.Android
         public void addLunchtable(Lunchtable lunchtable)
         {
             this.RunOnUiThread(() => horiPager.RemoveAllViews());
-            if (lunchtable.NoMenuesFound)
+            if (lunchtable.NoMenuesFound || lunchtable.LunchDays.Count < 1)
             {
-                System.Console.WriteLine("Leider keine Daten gefunden");
+                View dishDay = this.LayoutInflater.Inflate(Resource.Layout.DishDay, null);
+
+                var dayTitle = dishDay.FindViewById<TextView>(Resource.Id.day_text);
+                dayTitle.Text = "Keine Menüeinträge!";
+                this.RunOnUiThread(() => horiPager.AddView(dishDay));
                 return;
             }
             int day_value = (int)System.DateTime.Today.DayOfWeek-1;
