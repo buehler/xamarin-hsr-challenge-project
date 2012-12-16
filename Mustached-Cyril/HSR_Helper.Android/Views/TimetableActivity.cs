@@ -23,13 +23,22 @@ namespace HSR_Helper.Android
         public static Context appContext;
         HorizontalPager horiPager;
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            var MenuItem1 = menu.Add(0, 1, 1, "Aktualisieren");
+            var MenuItem2 = menu.Add(0, 2, 2, "Beenden");
+
+            // Set icon
+            return base.OnCreateOptionsMenu(menu);
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             var display = WindowManager.DefaultDisplay;
             horiPager = new HorizontalPager(this.ApplicationContext, display);
             TextView test = new TextView(this);
-            test.Text = "Am Lade...";
+            test.Text = "Laden...";
             horiPager.AddView(test);
             SetContentView(horiPager);
 
@@ -49,24 +58,24 @@ namespace HSR_Helper.Android
             this.RunOnUiThread(() => horiPager.RemoveAllViews());
             if (timetable != null && timetable.TimetableDays.Count > 0)
             {
+                int i = 0;
+                int day_value = (int)System.DateTime.Today.DayOfWeek;
+                if (day_value == 0) day_value = 7;
                 foreach (TimetableDay day in timetable.TimetableDays)
                 {
-
-                    this.RunOnUiThread(() => horiPager.AddView(new TimetableDayView(day).GetView(this)));
-
-                    System.Console.WriteLine(day.Weekday);
-                    foreach (Lession lession in day.Lessions)
-                    {
-                        System.Console.WriteLine(lession);
-                    }
-
+                    this.RunOnUiThread(() => horiPager.AddView(new TimetableDayView(day, i > 0, i < timetable.TimetableDays.Count - 1).GetView(this)));
+                    i++;
                 }
+                this.RunOnUiThread(() => horiPager.SetCurrentScreen(day_value, false));
             }
             else
             {
                 TextView test = new TextView(this);
-                test.Text = "Keine Daten gefunden";
-                horiPager.AddView(test);
+                if (timetable.ErrorMessage != null)
+                    test.Text = timetable.ErrorMessage;
+                else
+                    test.Text = "Keine Daten gefunden";
+                this.RunOnUiThread(() => horiPager.AddView(test));
             }
         }
 
@@ -74,6 +83,23 @@ namespace HSR_Helper.Android
         {
             displayTimetable(timetable);
             ApplicationSettings.Instance.Persistency.Save(timetable);
+        }
+
+
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case 1:
+                    DomainLibraryHelper.GetUserTimetable(ApplicationSettings.Instance.UserCredentials, TimetableCallback);
+                    return true;
+                case 2:
+                    Finish();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
     }

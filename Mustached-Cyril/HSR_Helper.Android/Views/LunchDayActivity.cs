@@ -26,6 +26,15 @@ namespace HSR_Helper.Android
         public static Context appContext;
         HorizontalPager horiPager;
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            var MenuItem1 = menu.Add(0, 1, 1, "Aktualisieren");
+            var MenuItem2 = menu.Add(0, 2, 2, "Beenden");
+
+            // Set icon
+            return base.OnCreateOptionsMenu(menu);
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -51,7 +60,6 @@ namespace HSR_Helper.Android
                     return;
                 }
             }
-            System.Console.WriteLine(_loadedLuchtable.LastUpdated);
             DomainLibraryHelper.GetLunchtable(lunchtableCallback);
             DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, badgeInfoCallback);
 
@@ -107,6 +115,22 @@ namespace HSR_Helper.Android
             return cal.GetWeekOfYear(date, 
                 DateTimeFormatInfo.CurrentInfo.CalendarWeekRule,
                 DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case 1:
+                    DomainLibraryHelper.GetLunchtable(lunchtableCallback);
+                    DomainLibraryHelper.GetUserBadgeInformation(ApplicationSettings.Instance.UserCredentials, badgeInfoCallback);
+                    return true;
+                case 2:
+                    Finish();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
     }

@@ -28,21 +28,21 @@ namespace HSR_Helper.Android
 
             // Initialize a TabSpec for each tab and add it to the TabHost
             spec = TabHost.NewTabSpec("lunchtable");
-            spec.SetIndicator(Resources.GetString(Resource.String.lunchtable), Resources.GetDrawable(Resource.Drawable.ic_tab_dish));
+            spec.SetIndicator(Resources.GetString(Resource.String.lunchtable), Resources.GetDrawable(Resource.Drawable.menu));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
             intent = new Intent(this, typeof(TimetableActivity));
             intent.AddFlags(ActivityFlags.NewTask);
             spec = TabHost.NewTabSpec("timetables");
-            spec.SetIndicator(Resources.GetString(Resource.String.timetable), Resources.GetDrawable(Resource.Drawable.ic_tab_dish));
+            spec.SetIndicator(Resources.GetString(Resource.String.timetable), Resources.GetDrawable(Resource.Drawable.timetable));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
             intent = new Intent(this, typeof(ShowSettings));
             intent.AddFlags(ActivityFlags.NewTask);
             spec = TabHost.NewTabSpec("settings");
-            spec.SetIndicator(Resources.GetString(Resource.String.settings), Resources.GetDrawable(Resource.Drawable.ic_tab_dish));
+            spec.SetIndicator(Resources.GetString(Resource.String.settings), Resources.GetDrawable(Resource.Drawable.settings));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 

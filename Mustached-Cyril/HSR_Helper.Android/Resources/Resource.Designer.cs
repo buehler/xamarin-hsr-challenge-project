@@ -37,6 +37,15 @@ namespace HSR_Helper.Android
 			// aapt resource value: 0x7f060000
 			public const int day_title = 2131099648;
 			
+			// aapt resource value: 0x7f060002
+			public const int entry = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int entry_text = 2131099651;
+			
+			// aapt resource value: 0x7f060001
+			public const int title_text = 2131099649;
+			
 			private Color()
 			{
 			}
@@ -58,16 +67,25 @@ namespace HSR_Helper.Android
 			public const int Icon = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int navigation_next_item = 2130837508;
+			public const int menu = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int navigation_previous_item = 2130837509;
+			public const int navigation_next_item = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int splash = 2130837510;
+			public const int navigation_previous_item = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int whitey = 2130837511;
+			public const int settings = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int splash = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int timetable = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int whitey = 2130837514;
 			
 			private Drawable()
 			{

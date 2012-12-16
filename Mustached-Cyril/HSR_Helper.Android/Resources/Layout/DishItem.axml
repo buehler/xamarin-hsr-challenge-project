@@ -2,26 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_light">
     <TextView
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dish_title"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@color/day_title" />
     <TextView
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/black" />
     <TextView
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/price"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray" />
 </LinearLayout>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@android:color/background_light">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -15,7 +16,10 @@
             android:id="@+id/previousDay"
             android:layout_marginLeft="0.0dp"
             android:layout_alignParentLeft="true"
-            android:visibility="invisible" />
+            android:visibility="visible"
+            android:maxHeight="1dp"
+            android:maxWidth="1dp"
+            android:background="@color/day_title" />
         <TextView
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
@@ -25,7 +29,7 @@
             android:layout_centerVertical="true"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/title_text" />
         <ImageButton
             android:src="@drawable/navigation_next_item"
             android:layout_width="wrap_content"
@@ -34,11 +38,14 @@
             android:layout_marginLeft="0.0dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="0.0dp"
-            android:visibility="invisible" />
+            android:maxHeight="1dp"
+            android:maxWidth="1dp"
+            android:background="@color/day_title" />
     </RelativeLayout>
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timetable_list"
-        android:choiceMode="none" />
+        android:choiceMode="none"
+        android:background="@android:color/white" />
 </LinearLayout>

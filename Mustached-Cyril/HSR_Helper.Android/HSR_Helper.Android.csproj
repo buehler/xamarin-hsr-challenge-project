@@ -125,10 +125,19 @@
     <AndroidResource Include="Resources\Drawable\whitey.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\navigation_next_item.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\Drawable\navigation_previous_item.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\navigation_next_item.png" />
+    <AndroidResource Include="Resources\Drawable\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\timetable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

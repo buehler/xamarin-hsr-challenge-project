@@ -5,27 +5,33 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:id="@+id/relativeLayout1"
-    android:paddingBottom="2.5px">
+    android:paddingBottom="2.5px"
+    android:background="@android:color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout2"
         android:layout_gravity="center_vertical"
-        android:paddingRight="5px"
-        android:background="@android:color/background_dark">
+        android:paddingRight="15px"
+        android:background="@android:color/white"
+        android:paddingLeft="10px">
         <TextView
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_from" />
+            android:id="@+id/text_from"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black" />
         <TextView
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_to" />
+            android:id="@+id/text_to"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black" />
     </LinearLayout>
     <ListView
         android:layout_width="fill_parent"

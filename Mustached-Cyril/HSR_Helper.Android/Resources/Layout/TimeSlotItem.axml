@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="0dp"
     android:paddingTop="0dp"
-    android:background="@color/day_title">
+    android:background="@color/entry">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_lesson"
-            android:textColor="@android:color/background_dark" />
+            android:textColor="@color/entry_text" />
         <TextView
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -27,12 +27,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_room"
             android:gravity="right"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:textColor="@color/entry_text" />
     </LinearLayout>
     <TextView
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_lecturers" />
+        android:id="@+id/text_lecturers"
+        android:textColor="@color/entry_text" />
 </LinearLayout>

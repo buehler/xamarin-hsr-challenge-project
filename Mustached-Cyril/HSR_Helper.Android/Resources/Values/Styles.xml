@@ -4,5 +4,8 @@
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
   </style>
-  <color name="day_title">#EEE2C2</color>
+  <color name="day_title">#0A6AA6</color>
+  <color name="title_text">#E9F1DF</color>
+  <color name="entry">#6595BF</color>
+  <color name="entry_text">#33332D</color>
 </resources>
