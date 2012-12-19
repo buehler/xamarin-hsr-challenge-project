@@ -67,18 +67,21 @@ namespace HSR_Helper.Android
 
         public void badgeInfoCallback(BadgeInformation badgeInfo)
         {
-            for (int i = 0; i < horiPager.ChildCount; i++)
-            {
-                var view = horiPager.GetChildAt(i);
-                var textField = view.FindViewById<TextView>(Resource.Id.saldo);
-                if (textField != null )
+            RunOnUiThread(() => { 
+                for (int i = 0; i < horiPager.ChildCount; i++)
                 {
-                    if (badgeInfo != null)
-                        textField.Text = badgeInfo.BadgeSaldoString;
-                    else
-                        textField.Text = "Saldo: 00.00";
-                } 
-            }
+                    var view = horiPager.GetChildAt(i);
+                    var textField = view.FindViewById<TextView>(Resource.Id.saldo);
+                    if (textField != null )
+                    {
+                        if (badgeInfo != null)
+                            textField.Text = badgeInfo.BadgeSaldoString;
+                        else
+                            textField.Text = "Saldo: 00.00";
+                    } 
+                }         
+            });
+            
         }
 
         public void lunchtableCallback(Lunchtable lunchtable)

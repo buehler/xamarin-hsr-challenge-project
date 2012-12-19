@@ -39,10 +39,11 @@ namespace HSR_Helper.Android
             horiPager = new HorizontalPager(this.ApplicationContext, display);
             TextView test = new TextView(this);
             test.Text = "Laden...";
+
             horiPager.AddView(test);
             SetContentView(horiPager);
 
-            var _loadedTimetable = ApplicationSettings.Instance.Persistency.Load<Timetable>();
+            var _loadedTimetable = ApplicationSettings.Instance.Persistency.Load<Timetable>(new Timetable() { Username=ApplicationSettings.Instance.UserCredentials.Name });
             if (_loadedTimetable != null && _loadedTimetable.TimetableDays.Count > 0)
             {
                 displayTimetable(_loadedTimetable);
